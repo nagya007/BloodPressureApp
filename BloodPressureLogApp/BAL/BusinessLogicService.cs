@@ -26,10 +26,41 @@ namespace BloodPressureLogApp.BAL
         {
             return password + "1";
         }       
-        public void AvgEntryByUserIdAndDateTime(string user_id)
+        public void GetAvgEntryByDia(IQueryable<Entry>avgEntries)
         {
-
-
+          avgEntries.Average(avg => avg.Dia );
+        }
+        public void GetAvgEntryBySys(IQueryable<Entry> avgEntries)
+        {
+            avgEntries.Average(avg => avg.Sys);
+        }
+        public void GetAvgEntryByPulse(IQueryable<Entry> avgEntries)
+        {
+            avgEntries.Average(avg => avg.Pulse);
+        }
+        public void GetMinEntryBySys(IQueryable<Entry>minEntry)
+        {
+            minEntry.Min(min => min.Sys);
+        }
+        public void GetMinEntryByDia(IQueryable<Entry> minEntry)
+        {
+            minEntry.Min(min => min.Dia);
+        }
+        public void GetMinEntryByPulse(IQueryable<Entry> minEntry)
+        {
+            minEntry.Min(min => min.Pulse);
+        }
+        public void GetMaxEntryBySys(IQueryable<Entry> maxEntry)
+        {
+            maxEntry.Max(max => max.Sys);
+        }
+        public void GetMaxEntryByDia(IQueryable<Entry> maxEntry)
+        {
+            maxEntry.Max(max => max.Dia);
+        }
+        public void GetMaxEntryByPulse(IQueryable<Entry> maxEntry)
+        {
+            maxEntry.Max(max => max.Pulse);
         }
         public bool IsAm(DateTime date1)
         {
@@ -47,7 +78,7 @@ namespace BloodPressureLogApp.BAL
         {
             return rangeEntries.Where(entry => entry.IsAm == isAm);
         }
-
+        
     }
   
 

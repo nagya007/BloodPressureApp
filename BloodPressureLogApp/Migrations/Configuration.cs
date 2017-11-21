@@ -70,7 +70,22 @@ namespace BloodPressureLogApp.Migrations
                     new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "nagye").Id, Sys = 120, Dia = 60, Pulse = 60, Date = Convert.ToDateTime("2017-07-28 23:30"),IsAm = false },
                     new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 120, Dia = 60, Pulse = 60, Date = Convert.ToDateTime("2017-08-29 06:30"), IsAm = true },
                     new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "nagye").Id, Sys = 120, Dia = 60, Pulse = 60, Date = Convert.ToDateTime("2017-09-24 20:30"), IsAm = false},
-                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "fazekask").Id, Sys = 110, Dia = 70, Pulse = 56, Date = Convert.ToDateTime("2017-06-11 23:50"), IsAm = false }
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "fazekask").Id, Sys = 110, Dia = 70, Pulse = 56, Date = Convert.ToDateTime("2017-06-11 23:50"), IsAm = false },
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 118, Dia = 65, Pulse = 62, Date = Convert.ToDateTime("2017-06-27 13:30"), IsAm = false },
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 125, Dia = 55, Pulse = 55, Date = Convert.ToDateTime("2017-06-26 09:30"), IsAm = true },
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 105, Dia = 69, Pulse = 120, Date = Convert.ToDateTime("2017-06-26 22:30"), IsAm = false },
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 128, Dia = 88, Pulse = 90, Date = Convert.ToDateTime("2017-06-25 04:30"), IsAm = true }, 
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 130, Dia = 45, Pulse = 50, Date = Convert.ToDateTime("2017-06-25 09:30"), IsAm = true },
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 111, Dia = 70, Pulse = 110, Date = Convert.ToDateTime("2017-06-24 05:30"), IsAm = true },
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 122, Dia = 62, Pulse = 100, Date = Convert.ToDateTime("2017-06-24 19:30"), IsAm = false},
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 145, Dia = 68, Pulse = 60, Date = Convert.ToDateTime("2017-06-23 09:30"), IsAm = true },
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 101, Dia = 55, Pulse = 75, Date = Convert.ToDateTime("2017-06-23 20:30"), IsAm = false},
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 110, Dia = 49, Pulse = 63, Date = Convert.ToDateTime("2017-06-22 09:30"), IsAm = true }, 
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 99, Dia = 59, Pulse = 59, Date = Convert.ToDateTime("2017-06-22 19:10"), IsAm = false},
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 136, Dia = 72, Pulse = 86, Date = Convert.ToDateTime("2017-06-21 06:25"), IsAm = true },
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 105, Dia = 56, Pulse = 71, Date = Convert.ToDateTime("2017-06-21 23:30"), IsAm = false },
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 111, Dia = 73, Pulse = 115, Date = Convert.ToDateTime("2017-06-20 02:30"), IsAm = true },
+                    new Entry() { UserId = context.Users.FirstOrDefault(u => u.UserName == "valaki01").Id, Sys = 139, Dia = 51, Pulse = 69, Date = Convert.ToDateTime("2017-06-20 21:30"), IsAm = false }
 
 
                 );
