@@ -36,12 +36,15 @@ namespace BloodPressureLogApp.BAL
             {
                 return true;
             }
-            else if (date1.Hour > 12)
+            else
             {
                 return false;
             }
-            else { return true; }
 
+        }
+        public IQueryable<Entry> GetEntriesByDayPart(IQueryable<Entry> rangeEntries, bool isAm)
+        {
+            return rangeEntries.Where(entry => entry.IsAm == isAm);
         }
 
     }

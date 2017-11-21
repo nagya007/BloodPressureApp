@@ -18,28 +18,9 @@ namespace BloodPressureLogApp
         public bool IsAm { get; set; }
         public int Sys { get; set; }
         public int Dia { get; set; }
-        public int Pulse { get; set; }        
+        public int Pulse { get; set; }
+        [ForeignKey("User")]
         public int UserId { get; set; }
         public virtual User User { get; set; }
-        public Entry() { }
-        public Entry(int id)
-        {
-            this.Id = id;
-        }
-        public void entrysetup(DateTime date, int sys, int dia,int pulse,bool isam)
-        {
-            this.Date = date;
-            this.Sys = sys;
-            this.Dia = dia;
-            this.Pulse = pulse;
-            this.IsAm = isam;
-        }
-        public void entryUserId(int userId)
-        {
-            this.UserId = userId;
-        }
     }
-   
-    
-    
 }

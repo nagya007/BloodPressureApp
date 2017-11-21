@@ -12,7 +12,16 @@ namespace BloodPressureLogApp.DAL
         LogDbContext context;
         DbSet<User> users;
         DbSet<Entry> entries;
+
+        public GraficDbService()
+        {
+            context = new LogDbContext();
+            this.users = context.Users;
+            this.entries = context.Entries;
+        }
+
         static GraficDbService instance = null;
+
         public static GraficDbService getInstance()
         {
             if (instance==null)
@@ -21,6 +30,5 @@ namespace BloodPressureLogApp.DAL
             }
             return instance;
         }
-
     }
 }

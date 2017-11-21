@@ -21,9 +21,13 @@ namespace BloodPressureLogApp
         DAL.DbService dbService = DAL.DbService.getInstance();
         private void bt_Save_Click(object sender, EventArgs e)
         {
-            User newUser = new User(logicService.CurrentUser);
+            User newUser = new User();
+            newUser.UserName = logicService.CurrentUser;
             newUser.Password = logicService.GetPasswordHash(logicService.CurrentPassword);
-            newUser.setUser(tb_Name.Text,tb_Addres.Text,tb_PhoneNumber.Text, dtp_BirhDate.Value);
+            newUser.Name = tb_Name.Text;
+            newUser.Adress = tb_Addres.Text;
+            newUser.PhoneNumber = tb_PhoneNumber.Text;
+            newUser.BirthDate = dtp_BirhDate.Value;
             dbService.AddUser(newUser);
             this.Close();
         }

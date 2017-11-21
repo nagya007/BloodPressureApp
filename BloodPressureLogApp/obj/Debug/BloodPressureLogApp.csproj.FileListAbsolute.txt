@@ -14,10 +14,9 @@ c:\users\adam\documents\visual studio 2017\Projects\BloodPressureLogApp\BloodPre
 c:\users\adam\documents\visual studio 2017\Projects\BloodPressureLogApp\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.Fr_belep.resources
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.csprojResolveAssemblyReference.cache
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.Fr_belep.resources
+C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.fr_Reg.resources
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.Properties.Resources.resources
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.csproj.GenerateResource.Cache
-C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.exe
-C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.pdb
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\bin\Debug\BloodPressureLogApp.exe.config
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\bin\Debug\BloodPressureLogApp.exe
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\bin\Debug\BloodPressureLogApp.pdb
@@ -25,7 +24,8 @@ C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPr
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\bin\Debug\EntityFramework.xml
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.fr_Reg.resources
-C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.form_login.resources
+C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.exe
+C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.pdb
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.csprojResolveAssemblyReference.cache
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.Migrations.Initial.resources
+C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.main.resources

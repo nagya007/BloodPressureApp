@@ -49,7 +49,7 @@ namespace BloodPressureLogApp
             {
                 logicService.CurrentUser = currentUser.UserName;
                 logicService.CurrentPassword = currentUser.Password;
-                form_login Log = new form_login();
+                main Log = new main();
                 Log.ShowDialog();
 
             }

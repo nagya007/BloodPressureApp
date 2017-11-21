@@ -13,7 +13,7 @@ namespace BloodPressureLogApp.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201711201625425_Initial"; }
+            get { return "201711202333000_Initial"; }
         }
         
         string IMigrationMetadata.Source

@@ -86,10 +86,9 @@ namespace BloodPressureLogApp.DAL
                 }
                 return false;            
         }
-        public IEnumerable<DateTime> GetDateListBetweenTwoDates(DateTime date1, DateTime date2)
+        public IQueryable<Entry> GetEntriesByDateRange(DateTime date1, DateTime date2)
         {
-            List<DateTime> dates = new List<DateTime>();
-            return dates.Where(d => d >= date1 && d < date2);
+            return this.entries.Where(entry => (entry.Date >= date1 && entry.Date <= date2));
         }
       
        
