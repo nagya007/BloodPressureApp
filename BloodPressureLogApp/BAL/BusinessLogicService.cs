@@ -12,6 +12,7 @@ namespace BloodPressureLogApp.BAL
    {
         public string CurrentUser {get;set;}
         public string CurrentPassword {get;set;}
+        public int CurrentUserId { get; set; }
         static BusinessLogicService instance = null;
         public static BusinessLogicService getInstance()
         {

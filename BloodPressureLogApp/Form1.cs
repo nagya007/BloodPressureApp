@@ -30,6 +30,7 @@ namespace BloodPressureLogApp
             {
                 logicService.CurrentUser = tb_UserName.Text;
                 logicService.CurrentPassword = tb_Password.Text;
+              
                 fr_Reg Reg = new fr_Reg();
                 Reg.ShowDialog();
             }
@@ -49,6 +50,7 @@ namespace BloodPressureLogApp
             {
                 logicService.CurrentUser = currentUser.UserName;
                 logicService.CurrentPassword = currentUser.Password;
+                logicService.CurrentUserId = currentUser.Id;
                 main Log = new main();
                 Log.ShowDialog();
 
