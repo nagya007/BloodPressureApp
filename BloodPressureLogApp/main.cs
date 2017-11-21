@@ -19,7 +19,8 @@ namespace BloodPressureLogApp
         DAL.DbService dbService = DAL.DbService.getInstance();
         LogDbContext context = new LogDbContext();
         Series sys = null;
-        
+        Series dia = null;
+        Series pulse = null;
 
 
         IQueryable<Entry> selectedItems;
@@ -28,6 +29,17 @@ namespace BloodPressureLogApp
         {
             InitializeComponent();
             sys = chart1.Series.Add("Sys");
+            dia = chart1.Series.Add("Dia");
+            pulse = chart1.Series.Add("Pulse");
+            chart1.Series[1].ChartType = SeriesChartType.Line;
+            chart1.Series[1].BorderWidth=5;
+            chart1.Series[1].BorderColor =Color.Red;
+            chart1.Series[2].ChartType = SeriesChartType.Line;
+            chart1.Series[2].BorderWidth = 5;
+            chart1.Series[1].BorderColor = Color.Azure;
+            chart1.Series[3].ChartType = SeriesChartType.Line;
+            chart1.Series[3].BorderWidth = 5;
+            chart1.Series[1].BorderColor = Color.DarkGreen;
         }
          
 
@@ -35,25 +47,24 @@ namespace BloodPressureLogApp
         {
            
         }
-      
+        
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            sys.XAxisType = AxisType.Primary;
-            sys.XValueType= ChartValueType.Date;
+            sys.XValueType= ChartValueType.Date;            
             if(dateTimePicker2.Value != null)
             {
                 selectedItems = dbService.GetEntriesByDateRange(dateTimePicker1.Value, dateTimePicker2.Value);
                 if (radiobutton_Sys.Checked)
                 {
-                    sys.Points.DataBindXY(selectedItems.Select(entry => entry.Date).Distinct().ToList(),selectedItems.Select(entry => entry.Sys).ToList());
+                    sys.Points.DataBindXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date).Distinct().ToList(),selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Sys).ToList());
                   
                 }
                 else if (radiobutton_Dia.Checked)
                 {
-                    sys.Points.DataBindXY(selectedItems.Select(entry => entry.Date).Distinct().ToList(), selectedItems.Select(entry => entry.Sys).ToList());
+                    dia.Points.DataBindXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date).Distinct().ToList(), selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Dia).ToList());
                 } else if (radiobutton_Pulse.Checked)
                 {
-                    sys.Points.DataBindXY(selectedItems.Select(entry => entry.Date).Distinct().ToList(), selectedItems.Select(entry => entry.Sys).ToList());
+                    pulse.Points.DataBindXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date).Distinct().ToList(), selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Pulse).ToList());
                 }
                 else MessageBox.Show("Nem Választotta ki hogy mit szaretne megjelaníteni!", "Figyelmeztetés", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                
@@ -70,15 +81,15 @@ namespace BloodPressureLogApp
                 
                 if (radiobutton_Sys.Checked)
                 {
-                    sys.Points.DataBindXY(selectedItems.Select(entry => entry.Date).Distinct().ToList()), selectedItems.Select(entry => entry.Sys).ToList());
+                    sys.Points.DataBindXY( selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry =>entry.Date).Distinct().ToList(), selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Sys).ToList());
                 }
                 else if (radiobutton_Dia.Checked)
                 {
-                    sys.Points.DataBindXY(selectedItems.Select(entry => entry.Date).Distinct().ToList(), selectedItems.Select(entry => entry.Sys).ToList());
+                    dia.Points.DataBindXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date).Distinct().ToList(), selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Dia).ToList());
                 }
                 else if (radiobutton_Pulse.Checked)
                 {
-                    sys.Points.DataBindXY(selectedItems.Select(entry => entry.Date).Distinct().ToList(), selectedItems.Select(entry => entry.Sys).ToList());
+                    pulse.Points.DataBindXY(selectedItems.Where(entry => entry.UserId==logicService.CurrentUserId).Select(entry => entry.Date).Distinct().ToList(), selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Pulse).ToList());
                 }
                 else MessageBox.Show("Nem Választotta ki hogy mit szaretne megjelaníteni!", "Figyelmeztetés", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }

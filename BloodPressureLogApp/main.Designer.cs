@@ -32,6 +32,10 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.radiobutton_Pulse = new System.Windows.Forms.RadioButton();
+            this.radiobutton_Dia = new System.Windows.Forms.RadioButton();
+            this.radiobutton_Sys = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -40,15 +44,11 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.radiobutton_Sys = new System.Windows.Forms.RadioButton();
-            this.radiobutton_Dia = new System.Windows.Forms.RadioButton();
-            this.radiobutton_Pulse = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -63,6 +63,51 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.radiobutton_Pulse);
+            this.groupBox4.Controls.Add(this.radiobutton_Dia);
+            this.groupBox4.Controls.Add(this.radiobutton_Sys);
+            this.groupBox4.Location = new System.Drawing.Point(228, 81);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(121, 100);
+            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "groupBox4";
+            // 
+            // radiobutton_Pulse
+            // 
+            this.radiobutton_Pulse.AutoSize = true;
+            this.radiobutton_Pulse.Location = new System.Drawing.Point(7, 68);
+            this.radiobutton_Pulse.Name = "radiobutton_Pulse";
+            this.radiobutton_Pulse.Size = new System.Drawing.Size(45, 17);
+            this.radiobutton_Pulse.TabIndex = 2;
+            this.radiobutton_Pulse.TabStop = true;
+            this.radiobutton_Pulse.Text = "Puls";
+            this.radiobutton_Pulse.UseVisualStyleBackColor = true;
+            // 
+            // radiobutton_Dia
+            // 
+            this.radiobutton_Dia.AutoSize = true;
+            this.radiobutton_Dia.Location = new System.Drawing.Point(7, 44);
+            this.radiobutton_Dia.Name = "radiobutton_Dia";
+            this.radiobutton_Dia.Size = new System.Drawing.Size(41, 17);
+            this.radiobutton_Dia.TabIndex = 1;
+            this.radiobutton_Dia.TabStop = true;
+            this.radiobutton_Dia.Text = "Dia";
+            this.radiobutton_Dia.UseVisualStyleBackColor = true;
+            // 
+            // radiobutton_Sys
+            // 
+            this.radiobutton_Sys.AutoSize = true;
+            this.radiobutton_Sys.Location = new System.Drawing.Point(7, 20);
+            this.radiobutton_Sys.Name = "radiobutton_Sys";
+            this.radiobutton_Sys.Size = new System.Drawing.Size(42, 17);
+            this.radiobutton_Sys.TabIndex = 0;
+            this.radiobutton_Sys.TabStop = true;
+            this.radiobutton_Sys.Text = "Sys";
+            this.radiobutton_Sys.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -143,6 +188,8 @@
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(11, 13);
             this.chart1.Name = "chart1";
+            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
+            this.chart1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
@@ -150,51 +197,6 @@
             this.chart1.Size = new System.Drawing.Size(781, 478);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.radiobutton_Pulse);
-            this.groupBox4.Controls.Add(this.radiobutton_Dia);
-            this.groupBox4.Controls.Add(this.radiobutton_Sys);
-            this.groupBox4.Location = new System.Drawing.Point(228, 81);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(121, 100);
-            this.groupBox4.TabIndex = 3;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "groupBox4";
-            // 
-            // radiobutton_Sys
-            // 
-            this.radiobutton_Sys.AutoSize = true;
-            this.radiobutton_Sys.Location = new System.Drawing.Point(7, 20);
-            this.radiobutton_Sys.Name = "radiobutton_Sys";
-            this.radiobutton_Sys.Size = new System.Drawing.Size(42, 17);
-            this.radiobutton_Sys.TabIndex = 0;
-            this.radiobutton_Sys.TabStop = true;
-            this.radiobutton_Sys.Text = "Sys";
-            this.radiobutton_Sys.UseVisualStyleBackColor = true;
-            // 
-            // radiobutton_Dia
-            // 
-            this.radiobutton_Dia.AutoSize = true;
-            this.radiobutton_Dia.Location = new System.Drawing.Point(7, 44);
-            this.radiobutton_Dia.Name = "radiobutton_Dia";
-            this.radiobutton_Dia.Size = new System.Drawing.Size(41, 17);
-            this.radiobutton_Dia.TabIndex = 1;
-            this.radiobutton_Dia.TabStop = true;
-            this.radiobutton_Dia.Text = "Dia";
-            this.radiobutton_Dia.UseVisualStyleBackColor = true;
-            // 
-            // radiobutton_Pulse
-            // 
-            this.radiobutton_Pulse.AutoSize = true;
-            this.radiobutton_Pulse.Location = new System.Drawing.Point(7, 68);
-            this.radiobutton_Pulse.Name = "radiobutton_Pulse";
-            this.radiobutton_Pulse.Size = new System.Drawing.Size(45, 17);
-            this.radiobutton_Pulse.TabIndex = 2;
-            this.radiobutton_Pulse.TabStop = true;
-            this.radiobutton_Pulse.Text = "Puls";
-            this.radiobutton_Pulse.UseVisualStyleBackColor = true;
             // 
             // main
             // 
@@ -206,12 +208,12 @@
             this.Name = "main";
             this.Text = "Belépve";
             this.groupBox1.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
