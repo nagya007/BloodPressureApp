@@ -96,10 +96,13 @@ namespace BloodPressureLogApp.DAL
         {
             XDocument doc = new XDocument();
             XElement xml = new XElement("Info",
-            new XElement("UserName", users.Select(user => user.Name == currrentuser)),
-            new XElement("Cím", users.Where(user => user.UserName == currrentuser).Select(user => user.Adress)));
+            new XElement("Felhasználónév", currrentuser),
+            new XElement("Név", users.Where(user => user.UserName==currrentuser).Select(user => user.Name)),
+            new XElement("Cím", users.Where(user => user.UserName == currrentuser).Select(user => user.Adress)),
+            new XElement("Telefonszám", users.Where(user => user.UserName == currrentuser).Select(user => user.PhoneNumber)),
+             new XElement("Születésnap", users.Where(user => user.UserName == currrentuser).Select(user => user.BirthDate)));
             doc.Add(xml);
-            doc.Save("elsomentes");
+            doc.Save(currrentuser);
 
         }
 

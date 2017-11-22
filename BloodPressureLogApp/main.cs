@@ -12,6 +12,7 @@ using BloodPressureLogApp.Properties;
 using System.Windows.Forms.DataVisualization.Charting;
 
 
+
 namespace BloodPressureLogApp
 {
     public partial class main : Form
@@ -41,7 +42,7 @@ namespace BloodPressureLogApp
             chart1.Series[3].ChartType = SeriesChartType.Line;
             chart1.Series[3].BorderWidth = 5;
             chart1.Series[1].BorderColor = Color.DarkGreen;
-          
+                     
         }
          
 
@@ -55,6 +56,7 @@ namespace BloodPressureLogApp
             if (rb.Checked)
             {
                 this.label1.Text = rb.Text;
+                dbService.WrireXml(context.Users, context.Entries, logicService.CurrentUser);
             }
 
         }
@@ -66,8 +68,7 @@ namespace BloodPressureLogApp
                 switch (rb.Name)
                 {
                     case"radiobutton_Day":
-                        selectedItems.Where(entriy => entriy.UserId == logicService.CurrentUserId);
-                        selectedItems.Take(1);
+                     
                         MessageBox.Show(selectedItems.ToString());
                         break;
                     case"radiobutton_Am":
