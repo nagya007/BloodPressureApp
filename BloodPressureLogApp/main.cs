@@ -49,12 +49,34 @@ namespace BloodPressureLogApp
         {
 
         }
-        public void radioButton_CheckedChanged(object sender, EventArgs e)
+        private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton rb = sender as RadioButton;
             if (rb.Checked)
             {
                 this.label1.Text = rb.Text;
+            }
+
+        }
+        private void radioButton_CheckedChangedDayPart(object sender, EventArgs e)
+        {  
+            RadioButton rb = sender as RadioButton;
+            if (rb.Checked)
+            {
+                switch (rb.Name)
+                {
+                    case"radiobutton_Day":
+                        selectedItems.Where(entriy => entriy.UserId == logicService.CurrentUserId);
+                        selectedItems.Take(1);
+                        MessageBox.Show(selectedItems.ToString());
+                        break;
+                    case"radiobutton_Am":
+                        MessageBox.Show("0-12");
+                        break;
+                    case"radiobutton_Pm":
+                        MessageBox.Show("12-24");
+                        break;
+                }
             }
 
         }

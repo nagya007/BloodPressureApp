@@ -40,27 +40,27 @@ namespace BloodPressureLogApp.BAL
         }
         public void GetMinEntryBySys(IQueryable<Entry>minEntry)
         {
-            minEntry.Min(min => min.Sys);
+            minEntry.Min(entries => entries.Sys);
         }
         public void GetMinEntryByDia(IQueryable<Entry> minEntry)
         {
-            minEntry.Min(min => min.Dia);
+            minEntry.Min(entries => entries.Dia);
         }
         public void GetMinEntryByPulse(IQueryable<Entry> minEntry)
         {
-            minEntry.Min(min => min.Pulse);
+            minEntry.Min(entries => entries.Pulse);
         }
         public void GetMaxEntryBySys(IQueryable<Entry> maxEntry)
         {
-            maxEntry.Max(max => max.Sys);
+            maxEntry.Max(entries => entries.Sys);
         }
         public void GetMaxEntryByDia(IQueryable<Entry> maxEntry)
         {
-            maxEntry.Max(max => max.Dia);
+            maxEntry.Max(entries => entries.Dia);
         }
         public void GetMaxEntryByPulse(IQueryable<Entry> maxEntry)
         {
-            maxEntry.Max(max => max.Pulse);
+            maxEntry.Max(entries => entries.Pulse);
         }
         public bool IsAm(DateTime date1)
         {

@@ -29,18 +29,18 @@ namespace BloodPressureLogApp
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.radiobutton_Pulse = new System.Windows.Forms.RadioButton();
             this.radiobutton_Dia = new System.Windows.Forms.RadioButton();
             this.radiobutton_Sys = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radiobutton_Pm = new System.Windows.Forms.RadioButton();
+            this.radiobutton_Am = new System.Windows.Forms.RadioButton();
+            this.radiobutton_Day = new System.Windows.Forms.RadioButton();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -88,7 +88,7 @@ namespace BloodPressureLogApp
             this.radiobutton_Pulse.TabStop = true;
             this.radiobutton_Pulse.Text = "Puls";
             this.radiobutton_Pulse.UseVisualStyleBackColor = true;
-            this.radiobutton_Pulse.CheckedChanged += new System.EventHandler(radioButton_CheckedChanged);
+            this.radiobutton_Pulse.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // radiobutton_Dia
             // 
@@ -100,7 +100,7 @@ namespace BloodPressureLogApp
             this.radiobutton_Dia.TabStop = true;
             this.radiobutton_Dia.Text = "Dia";
             this.radiobutton_Dia.UseVisualStyleBackColor = true;
-            this.radiobutton_Dia.CheckedChanged += new System.EventHandler(radioButton_CheckedChanged);
+            this.radiobutton_Dia.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // radiobutton_Sys
             // 
@@ -112,13 +112,13 @@ namespace BloodPressureLogApp
             this.radiobutton_Sys.TabStop = true;
             this.radiobutton_Sys.Text = "Sys";
             this.radiobutton_Sys.UseVisualStyleBackColor = true;
-            this.radiobutton_Sys.CheckedChanged += new System.EventHandler(radioButton_CheckedChanged);
+            this.radiobutton_Sys.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.radioButton3);
-            this.groupBox3.Controls.Add(this.radioButton2);
-            this.groupBox3.Controls.Add(this.radioButton1);
+            this.groupBox3.Controls.Add(this.radiobutton_Pm);
+            this.groupBox3.Controls.Add(this.radiobutton_Am);
+            this.groupBox3.Controls.Add(this.radiobutton_Day);
             this.groupBox3.Location = new System.Drawing.Point(21, 81);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(200, 100);
@@ -126,38 +126,41 @@ namespace BloodPressureLogApp
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "groupBox3";
             // 
-            // radioButton3
+            // radiobutton_Pm
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(7, 68);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(85, 17);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "radioButton3";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radiobutton_Pm.AutoSize = true;
+            this.radiobutton_Pm.Location = new System.Drawing.Point(7, 68);
+            this.radiobutton_Pm.Name = "radiobutton_Pm";
+            this.radiobutton_Pm.Size = new System.Drawing.Size(42, 17);
+            this.radiobutton_Pm.TabIndex = 2;
+            this.radiobutton_Pm.TabStop = true;
+            this.radiobutton_Pm.Text = "Esti";
+            this.radiobutton_Pm.UseVisualStyleBackColor = true;
+            this.radiobutton_Pm.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChangedDayPart);
+            //
+            // radiobutton_Am
             // 
-            // radioButton2
+            this.radiobutton_Am.AutoSize = true;
+            this.radiobutton_Am.Location = new System.Drawing.Point(8, 44);
+            this.radiobutton_Am.Name = "radiobutton_Am";
+            this.radiobutton_Am.Size = new System.Drawing.Size(61, 17);
+            this.radiobutton_Am.TabIndex = 1;
+            this.radiobutton_Am.TabStop = true;
+            this.radiobutton_Am.Text = "Reggeli";
+            this.radiobutton_Am.UseVisualStyleBackColor = true;
+            this.radiobutton_Am.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChangedDayPart);
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(7, 44);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            // radiobutton_Day
             // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(7, 20);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radiobutton_Day.AutoSize = true;
+            this.radiobutton_Day.Location = new System.Drawing.Point(7, 20);
+            this.radiobutton_Day.Name = "radiobutton_Day";
+            this.radiobutton_Day.Size = new System.Drawing.Size(72, 17);
+            this.radiobutton_Day.TabIndex = 0;
+            this.radiobutton_Day.TabStop = true;
+            this.radiobutton_Day.Text = "Egésznap";
+            this.radiobutton_Day.UseVisualStyleBackColor = true;
+            this.radiobutton_Day.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChangedDayPart);
             // 
             // dateTimePicker2
             // 
@@ -197,18 +200,18 @@ namespace BloodPressureLogApp
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(11, 13);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             this.chart1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(781, 478);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -238,9 +241,9 @@ namespace BloodPressureLogApp
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radiobutton_Pm;
+        private System.Windows.Forms.RadioButton radiobutton_Am;
+        private System.Windows.Forms.RadioButton radiobutton_Day;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.GroupBox groupBox2;
