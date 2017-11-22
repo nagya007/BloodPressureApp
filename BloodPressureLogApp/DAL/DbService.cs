@@ -9,6 +9,8 @@ using System.Xml.XPath;
 using System.Xml.XmlConfiguration;
 using System.Xml.Linq;
 
+
+
 namespace BloodPressureLogApp.DAL
 {
     class DbService
@@ -90,8 +92,18 @@ namespace BloodPressureLogApp.DAL
         {
             return this.entries.Where(entry => (entry.Date >= date1 && entry.Date <= date2));
         }
-      
-       
+        public void WrireXml(DbSet<User> users, DbSet<Entry>entries,string currrentuser)
+        {
+            XDocument doc = new XDocument();
+            XElement xml = new XElement("Info",
+            new XElement("UserName", users.Select(user => user.Name == currrentuser)),
+            new XElement("Cím", users.Where(user => user.UserName == currrentuser).Select(user => user.Adress)));
+            doc.Add(xml);
+            doc.Save("elsomentes");
+
+        }
+
+
 
 
     }

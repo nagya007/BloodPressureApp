@@ -11,6 +11,7 @@ using System.Data.Entity;
 using BloodPressureLogApp.Properties;
 using System.Windows.Forms.DataVisualization.Charting;
 
+
 namespace BloodPressureLogApp
 {
     public partial class main : Form
@@ -40,14 +41,24 @@ namespace BloodPressureLogApp
             chart1.Series[3].ChartType = SeriesChartType.Line;
             chart1.Series[3].BorderWidth = 5;
             chart1.Series[1].BorderColor = Color.DarkGreen;
+          
         }
          
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+
         }
-        
+        public void radioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            if (rb.Checked)
+            {
+                this.label1.Text = rb.Text;
+            }
+
+        }
+
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             sys.XValueType= ChartValueType.Date;            
@@ -94,5 +105,7 @@ namespace BloodPressureLogApp
                 else MessageBox.Show("Nem Választotta ki hogy mit szaretne megjelaníteni!", "Figyelmeztetés", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+       
     }
 }

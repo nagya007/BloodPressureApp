@@ -1,4 +1,5 @@
-﻿namespace BloodPressureLogApp
+﻿
+namespace BloodPressureLogApp
 {
     partial class main
     {
@@ -43,6 +44,7 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -86,6 +88,7 @@
             this.radiobutton_Pulse.TabStop = true;
             this.radiobutton_Pulse.Text = "Puls";
             this.radiobutton_Pulse.UseVisualStyleBackColor = true;
+            this.radiobutton_Pulse.CheckedChanged += new System.EventHandler(radioButton_CheckedChanged);
             // 
             // radiobutton_Dia
             // 
@@ -97,6 +100,7 @@
             this.radiobutton_Dia.TabStop = true;
             this.radiobutton_Dia.Text = "Dia";
             this.radiobutton_Dia.UseVisualStyleBackColor = true;
+            this.radiobutton_Dia.CheckedChanged += new System.EventHandler(radioButton_CheckedChanged);
             // 
             // radiobutton_Sys
             // 
@@ -108,6 +112,7 @@
             this.radiobutton_Sys.TabStop = true;
             this.radiobutton_Sys.Text = "Sys";
             this.radiobutton_Sys.UseVisualStyleBackColor = true;
+            this.radiobutton_Sys.CheckedChanged += new System.EventHandler(radioButton_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -172,6 +177,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.chart1);
             this.groupBox2.Location = new System.Drawing.Point(2, 0);
             this.groupBox2.Name = "groupBox2";
@@ -179,6 +185,15 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(676, 105);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "label1";
             // 
             // chart1
             // 
@@ -213,6 +228,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
@@ -233,5 +249,6 @@
         private System.Windows.Forms.RadioButton radiobutton_Pulse;
         private System.Windows.Forms.RadioButton radiobutton_Dia;
         private System.Windows.Forms.RadioButton radiobutton_Sys;
+        private System.Windows.Forms.Label label1;
     }
 }
