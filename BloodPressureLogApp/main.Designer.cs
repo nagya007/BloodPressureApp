@@ -29,9 +29,11 @@ namespace BloodPressureLogApp
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.radiobutton_Pulse = new System.Windows.Forms.RadioButton();
@@ -46,6 +48,7 @@ namespace BloodPressureLogApp
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.button_mutat = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -55,6 +58,7 @@ namespace BloodPressureLogApp
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button_mutat);
             this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.dateTimePicker2);
@@ -137,7 +141,7 @@ namespace BloodPressureLogApp
             this.radiobutton_Pm.Text = "Esti";
             this.radiobutton_Pm.UseVisualStyleBackColor = true;
             this.radiobutton_Pm.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChangedDayPart);
-            //
+            // 
             // radiobutton_Am
             // 
             this.radiobutton_Am.AutoSize = true;
@@ -200,21 +204,48 @@ namespace BloodPressureLogApp
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(11, 13);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             this.chart1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Sys";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
             series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.Legend = "Legend1";
-            series2.Name = "Series1";
+            series2.Name = "Dia";
+            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series3.Legend = "Legend1";
+            series3.Name = "Pulse";
+            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+            this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(781, 478);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
+            // 
+            // button_mutat
+            // 
+            this.button_mutat.Location = new System.Drawing.Point(21, 188);
+            this.button_mutat.Name = "button_mutat";
+            this.button_mutat.Size = new System.Drawing.Size(109, 26);
+            this.button_mutat.TabIndex = 4;
+            this.button_mutat.Text = "Mutat";
+            this.button_mutat.UseVisualStyleBackColor = true;
+            this.button_mutat.Click += new System.EventHandler(this.button_mutat_Click);
             // 
             // main
             // 
@@ -253,5 +284,6 @@ namespace BloodPressureLogApp
         private System.Windows.Forms.RadioButton radiobutton_Dia;
         private System.Windows.Forms.RadioButton radiobutton_Sys;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button_mutat;
     }
 }

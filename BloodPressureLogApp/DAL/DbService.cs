@@ -92,6 +92,33 @@ namespace BloodPressureLogApp.DAL
         {
             return this.entries.Where(entry => (entry.Date >= date1 && entry.Date <= date2));
         }
+        public IQueryable<Entry> GetEntriesByDayPartAndDataType(User currentUserId, string dayPart, string dateType)
+        {
+            IQueryable<Entry>filterdEntries;
+            switch(dayPart)
+            {
+                case "all":
+                   filterdEntries = entries.Where(entry => entry.UserId == currentUserId.Id);
+                    break;
+                case "am":
+                  filterdEntries = entries.Where(entry => entry.UserId == currentUserId.Id && entry.IsAm);
+                    break;
+                case "pm":
+                   filterdEntries = entries.Where(entry => entry.UserId == currentUserId.Id && !entry.IsAm);
+                    break;
+            }
+
+            switch (dateType)
+            {
+                case "sys":
+                    return filterdEntries.All(entry => entry.sys);                  
+                case "dia":
+                    return filterdEntries.All(entry => entry.dia);
+                  
+                case "pulse":
+                    return filterdEntries.All(entry => entry.pulse);
+            }
+        }
         public void WrireXml(DbSet<User> users, DbSet<Entry>entries,string currrentuser)
         {
             XDocument doc = new XDocument();
