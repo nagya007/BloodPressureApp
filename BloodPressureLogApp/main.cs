@@ -24,9 +24,10 @@ namespace BloodPressureLogApp
         //Series dia = null;
         //Series pulse = null;
         string dayPart;
-       // string sysdiapuls;
-        IQueryable<Entry> selectedItems;
+        string dataType;
+        XmlHandler xhandler = new XmlHandler();
 
+        IQueryable<Entry> selectedItems;
         public main()
         {
             InitializeComponent();
@@ -43,10 +44,7 @@ namespace BloodPressureLogApp
             //chart1.Series[3].BorderWidth = 5;
             //chart1.Series[1].BorderColor = Color.DarkGreen;
                      
-        }
-         
-
-       
+        }       
         private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton rb = sender as RadioButton;
@@ -55,18 +53,17 @@ namespace BloodPressureLogApp
                 switch (rb.Name)
                 {
                     case "radiobutton_Sys":
-                        sysdiapuls = "Sys";
+                        dataType = "Sys";
                         break;
-                    case "Dia":
-                        sysdiapuls = "radiobutton_Dia";
-                        sysdiapuls = "Dia";
+                    case "radiobutton_Dia":
+                        dataType = "Dia";
                         break;
                     case "radiobutton_Pulse":
-                        sysdiapuls = "Pulse";
+                        dataType = "Pulse";
                         break;
                 }
                 this.label1.Text = rb.Text;
-                dbService.WrireXml(context.Users, context.Entries, logicService.CurrentUser);
+               // dbService.WrireXml(context.Users, context.Entries, logicService.CurrentUser);
             }
 
         }
@@ -91,7 +88,6 @@ namespace BloodPressureLogApp
             }
 
         }
-
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
                       
@@ -118,7 +114,6 @@ namespace BloodPressureLogApp
                
             }
         }
-
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             //sys.XAxisType = AxisType.Primary;
@@ -142,10 +137,23 @@ namespace BloodPressureLogApp
                 else MessageBox.Show("Nem Választotta ki hogy mit szaretne megjelaníteni!", "Figyelmeztetés", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void button_mutat_Click(object sender, EventArgs e)
         {
-             
+            //DataPoint newDatapointSys = new DataPoint();
+            //var graficdata= dbService.GetEntriesByDayPartAndDataType(logicService.CurrentUserId, dayPart, dataType);
+            //newDatapointSys.SetValueXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date).Distinct().ToList(), graficdata.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Sys).ToList());
+            //chart1.Series["Sys"].Points.Add(newDatapointSys);
+            if (!xhandler.WriteToXml("books2Create.Xml",context.Users))
+            {
+               
+                MessageBox.Show(xhandler.LastError);
+            }
+            else
+            {
+                MessageBox.Show("Siker");
+              
+            }
         }
+        
     }
 }

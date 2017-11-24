@@ -92,49 +92,53 @@ namespace BloodPressureLogApp.DAL
         {
             return this.entries.Where(entry => (entry.Date >= date1 && entry.Date <= date2));
         }
-        public IQueryable<Entry> GetEntriesByDayPartAndDataType(User currentUserId, string dayPart, string dateType)
+
+        IQueryable<Entry> filterdEntries;
+        public IQueryable<Entry> GetEntriesByDayPartAndDataType(int currentUserId, string dayPart, string dataType)
+
         {
-            IQueryable<Entry>filterdEntries;
-            switch(dayPart)
+
+            switch (dayPart)
             {
-                case "all":
-                   filterdEntries = entries.Where(entry => entry.UserId == currentUserId.Id);
-                    break;
+
+
                 case "am":
-                  filterdEntries = entries.Where(entry => entry.UserId == currentUserId.Id && entry.IsAm);
-                    break;
+                    return filterdEntries = entries.Where(entry => entry.UserId == currentUserId && entry.IsAm);
+                //break;
                 case "pm":
-                   filterdEntries = entries.Where(entry => entry.UserId == currentUserId.Id && !entry.IsAm);
-                    break;
+                    return filterdEntries = entries.Where(entry => entry.UserId == currentUserId && !entry.IsAm);
+                    //break;
+
             }
+            return filterdEntries = entries.Where(entry => entry.UserId == currentUserId);
+            //break;
 
-            switch (dateType)
-            {
-                case "sys":
-                    return filterdEntries.All(entry => entry.sys);                  
-                case "dia":
-                    return filterdEntries.All(entry => entry.dia);
-                  
-                case "pulse":
-                    return filterdEntries.All(entry => entry.pulse);
-            }
-        }
-        public void WrireXml(DbSet<User> users, DbSet<Entry>entries,string currrentuser)
-        {
-            XDocument doc = new XDocument();
-            XElement xml = new XElement("Info",
-            new XElement("Felhasználónév", currrentuser),
-            new XElement("Név", users.Where(user => user.UserName==currrentuser).Select(user => user.Name)),
-            new XElement("Cím", users.Where(user => user.UserName == currrentuser).Select(user => user.Adress)),
-            new XElement("Telefonszám", users.Where(user => user.UserName == currrentuser).Select(user => user.PhoneNumber)),
-             new XElement("Születésnap", users.Where(user => user.UserName == currrentuser).Select(user => user.BirthDate)));
-            doc.Add(xml);
-            doc.Save(currrentuser);
+            //switch (dataType)
+            //{
+            //    case "sys":
+            //      return filterdEntries.Where(entry => entry.Sys);                  
+            //    case "dia":
+            //        return filterdEntries.Where(entry => entry.Dia);
 
-        }
+            //    case "pulse":
+            //        return filterdEntries.Where(entry => entry.Pulse);
+        }    }
+       // public void WrireXml(DbSet<User> users, DbSet<Entry>entries,string currrentuser)
+       // {
+       //     XDocument doc = new XDocument();
+       //     XElement xml = new XElement("Info",
+       //     new XElement("Felhasználónév", currrentuser),
+       //     new XElement("Név", users.Where(user => user.UserName==currrentuser).Select(user => user.Name)),
+       //     new XElement("Cím", users.Where(user => user.UserName == currrentuser).Select(user => user.Adress)),
+       //     new XElement("Telefonszám", users.Where(user => user.UserName == currrentuser).Select(user => user.PhoneNumber)),
+       //      new XElement("Születésnap", users.Where(user => user.UserName == currrentuser).Select(user => user.BirthDate)));
+       //     doc.Add(xml);
+       //     doc.Save(currrentuser);
 
+        
 
 
 
-    }
+
+    
 }
