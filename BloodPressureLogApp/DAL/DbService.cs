@@ -94,7 +94,7 @@ namespace BloodPressureLogApp.DAL
         }
 
         IQueryable<Entry> filterdEntries;
-        public IQueryable<Entry> GetEntriesByDayPartAndDataType(int currentUserId, string dayPart, string dataType)
+        public IQueryable<int> GetEntriesByDayPartAndDataType(int currentUserId, string dayPart, string dataType)
 
         {
 
@@ -117,12 +117,12 @@ namespace BloodPressureLogApp.DAL
             switch (dataType)
             {
                 case "sys":
-                    return filterdEntries.Where(entry => entry.Sys);
+                    return filterdEntries.Select(entry => entry.Sys);
                 case "dia":
-                    return filterdEntries.Where(entry => entry.Dia);
+                    return filterdEntries.Select(entry => entry.Dia);
 
                 case "pulse":
-                    return filterdEntries.Where(entry => entry.Pulse);
+                    return filterdEntries.Select(entry => entry.Pulse);
                 default: return null;
             }
             
