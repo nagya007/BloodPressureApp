@@ -35,6 +35,7 @@ namespace BloodPressureLogApp
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_mutat = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.radiobutton_Pulse = new System.Windows.Forms.RadioButton();
             this.radiobutton_Dia = new System.Windows.Forms.RadioButton();
@@ -48,7 +49,6 @@ namespace BloodPressureLogApp
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button_mutat = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -69,6 +69,16 @@ namespace BloodPressureLogApp
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // button_mutat
+            // 
+            this.button_mutat.Location = new System.Drawing.Point(21, 188);
+            this.button_mutat.Name = "button_mutat";
+            this.button_mutat.Size = new System.Drawing.Size(109, 26);
+            this.button_mutat.TabIndex = 4;
+            this.button_mutat.Text = "Mutat";
+            this.button_mutat.UseVisualStyleBackColor = true;
+            this.button_mutat.Click += new System.EventHandler(this.button_mutat_Click);
             // 
             // groupBox4
             // 
@@ -236,16 +246,6 @@ namespace BloodPressureLogApp
             this.chart1.Size = new System.Drawing.Size(781, 478);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
-            // 
-            // button_mutat
-            // 
-            this.button_mutat.Location = new System.Drawing.Point(21, 188);
-            this.button_mutat.Name = "button_mutat";
-            this.button_mutat.Size = new System.Drawing.Size(109, 26);
-            this.button_mutat.TabIndex = 4;
-            this.button_mutat.Text = "Mutat";
-            this.button_mutat.UseVisualStyleBackColor = true;
-            this.button_mutat.Click += new System.EventHandler(this.button_mutat_Click);
             // 
             // main
             // 

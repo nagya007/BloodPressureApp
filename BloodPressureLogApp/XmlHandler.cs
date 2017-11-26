@@ -29,7 +29,7 @@ namespace BloodPressureLogApp
                 using (FileStream fs =new FileStream(filePath,FileMode.Create))
                 {
                     XmlSerializer xSerializer = new XmlSerializer(typeof(User));
-                    xSerializer.Serialize(fs, context.Users);
+                    xSerializer.Serialize(fs, users);
                     return true;
                 }
             }
