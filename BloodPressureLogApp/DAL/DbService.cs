@@ -101,28 +101,33 @@ namespace BloodPressureLogApp.DAL
             switch (dayPart)
             {
 
-
+                case "all":
+                    filterdEntries = entries.Where(entry => entry.UserId == currentUserId);
+                    break;
                 case "am":
-                    return filterdEntries = entries.Where(entry => entry.UserId == currentUserId && entry.IsAm);
-                //break;
+                    filterdEntries = entries.Where(entry => entry.UserId == currentUserId && entry.IsAm);
+                    break;
                 case "pm":
-                    return filterdEntries = entries.Where(entry => entry.UserId == currentUserId && !entry.IsAm);
-                    //break;
+                    filterdEntries = entries.Where(entry => entry.UserId == currentUserId && !entry.IsAm);
+                    break;
 
             }
-            return filterdEntries = entries.Where(entry => entry.UserId == currentUserId);
-            //break;
+            
 
-            //switch (dataType)
-            //{
-            //    case "sys":
-            //      return filterdEntries.Where(entry => entry.Sys);                  
-            //    case "dia":
-            //        return filterdEntries.Where(entry => entry.Dia);
+            switch (dataType)
+            {
+                case "sys":
+                    return filterdEntries.Where(entry => entry.Sys);
+                case "dia":
+                    return filterdEntries.Where(entry => entry.Dia);
 
-            //    case "pulse":
-            //        return filterdEntries.Where(entry => entry.Pulse);
-        }    }
+                case "pulse":
+                    return filterdEntries.Where(entry => entry.Pulse);
+                default: return null;
+            }
+            
+        }
+    }
        // public void WrireXml(DbSet<User> users, DbSet<Entry>entries,string currrentuser)
        // {
        //     XDocument doc = new XDocument();
