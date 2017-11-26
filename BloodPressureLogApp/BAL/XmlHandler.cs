@@ -22,6 +22,7 @@ namespace BloodPressureLogApp
             this.entries = context.Entries;
         }
         public string LastError;
+        List<User> userList = users.ToList();
         public bool WriteToXml(string filePath,DbSet<User> user)
         {
             try
