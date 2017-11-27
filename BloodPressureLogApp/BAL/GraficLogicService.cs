@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace BloodPressureLogApp.BAL
 {
     class GraficLogicService
-    {   static GraficLogicService instance = null;
+    {   static GraficLogicService instance = null; 
         public static GraficLogicService getInstance()
         {
             if (instance == null)
@@ -17,8 +17,6 @@ namespace BloodPressureLogApp.BAL
                 instance = new GraficLogicService();
             }
             return instance;
-        }
-       
-      
+        }            
     }
 }

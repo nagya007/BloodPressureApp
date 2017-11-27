@@ -29,6 +29,9 @@ namespace BloodPressureLogApp.BAL
             writer.WriteStartElement("user");
             writer.WriteElementString("username", User.UserName);
             writer.WriteElementString("name", User.Name);
+            writer.WriteElementString("phonenumber",User.PhoneNumber);
+            writer.WriteElementString("birthdate", User.BirthDate.ToString("yyyy-MM-dd"));
+            writer.WriteElementString("adress", User.Adress);
             writer.WriteEndElement();
 
             writer.WriteStartElement("entries");

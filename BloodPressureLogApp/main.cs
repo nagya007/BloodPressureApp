@@ -130,12 +130,12 @@ namespace BloodPressureLogApp
             var graficdata = dbService.GetEntriesByDayPartAndDataType(logicService.CurrentUserId, dayPart, dataType);
 
 
-            // dbService.WrireXml(context.Users,context.Entries,logicService.CurrentUser);
-            //foreach (var item in graficdata)
-            //{
-            //    newDatapointSys.SetValueXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date), item);
-            //    chart1.Series["Sys"].Points.Add(newDatapointSys);
-            //}
+
+            foreach (var item in graficdata)
+            {
+                newDatapointSys.SetValueXY(Convert.ToDateTime(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date)), item);
+                chart1.Series["Sys"].Points.Add(newDatapointSys);
+            }
 
             //newDatapointSys.SetValueXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date), graficdata.Select(entry => entry));
             //chart1.Series["Sys"].Points.Add(newDatapointSys);
