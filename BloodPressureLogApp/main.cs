@@ -22,7 +22,7 @@ namespace BloodPressureLogApp
         LogDbContext context = new LogDbContext();
         string dayPart;
         string dataType;
-        XmlHandler xhandler = new XmlHandler();
+        BAL.XmlHandler xhandler = new BAL.XmlHandler();
         IQueryable<Entry> selectedItems;
         public main()
         {
@@ -128,9 +128,9 @@ namespace BloodPressureLogApp
         {
             DataPoint newDatapointSys = new DataPoint();
             var graficdata = dbService.GetEntriesByDayPartAndDataType(logicService.CurrentUserId, dayPart, dataType);
-            
 
-           // dbService.WrireXml(context.Users,context.Entries,logicService.CurrentUser);
+
+            // dbService.WrireXml(context.Users,context.Entries,logicService.CurrentUser);
             //foreach (var item in graficdata)
             //{
             //    newDatapointSys.SetValueXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date), item);
@@ -144,7 +144,14 @@ namespace BloodPressureLogApp
             //    newDatapointSys.SetValueXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date), graficdata.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Sys).ToList());
             //}
             //chart1.Series["Sys"].Points.Add(newDatapointSys);
-            if (!xhandler.WriteToXml(logicService.CurrentUser, context.Users))
+
+            BAL.UserOutput userOut = new BAL.UserOutput();
+            userOut.User = dbService.GetUserByUserName(logicService.CurrentUser);
+            userOut.AllUserData = dbService.FindAllEntriesOfUser(userOut.User).ToList();
+            // string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6);
+            string fileName = userOut.User.UserName + "_" + DateTime.Now.ToString("yyyyMMddHHmm") + ".xml";
+
+            if (!xhandler.WriteToXml(fileName, userOut))
             {
 
                 MessageBox.Show(xhandler.LastError);

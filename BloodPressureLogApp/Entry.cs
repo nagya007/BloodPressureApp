@@ -7,7 +7,7 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace BloodPressureLogApp
-{   [Serializable]
+{
     public class Entry
     {   
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

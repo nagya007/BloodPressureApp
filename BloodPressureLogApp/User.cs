@@ -10,8 +10,9 @@ using System.Xml;
 using System.Xml.Serialization;
 
 namespace BloodPressureLogApp
-{  [Serializable]
-   public class User
+{
+    [Serializable]
+    public class User
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]

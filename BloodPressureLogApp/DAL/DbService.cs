@@ -18,6 +18,7 @@ namespace BloodPressureLogApp.DAL
         LogDbContext context;
         DbSet<User> users;
         DbSet<Entry> entries;
+        IQueryable<Entry> filterdEntries;
         static DbService instance = null;
         public DbService()
         {
@@ -33,14 +34,7 @@ namespace BloodPressureLogApp.DAL
             }
             return instance;
         }
-        public bool IsUserExists(string username)
-        {
-            return this.users.Any(user => user.UserName == username);
-        }
-        public User GetUserByUserName(string username)
-        {
-            return this.users.FirstOrDefault(user => user.UserName == username);
-        }
+
         public bool AddUser(User user)
         {
             if (this.users.Add(user).Equals(user))
@@ -61,39 +55,14 @@ namespace BloodPressureLogApp.DAL
             return false;
 
         }
-        public bool RemoveEntryByDateTimeAndUserId(DateTime date1, int user_id)
-        { var result = entries.SingleOrDefault(entries => entries.UserId == user_id && entries.Date == date1);
-
-            if (result != null)
-            {
-                entries.Remove(result);
-                context.SaveChanges();
-                return true;
-            }
-            return false;
-        }
-        public bool UpdateEntryByDateAndUserId(int user_id, DateTime date1, int sys, int dia, int pulse)
+        public IQueryable<Entry> FindAllEntriesOfUser(User user)
         {
-
-            var result = this.entries.SingleOrDefault(entries => entries.UserId == user_id && entries.Date == date1);
-            if (result != null)
-            {
-                result.Sys = sys;
-                result.Dia = dia;
-                result.Pulse = pulse;
-                context.SaveChanges();
-
-                return true;
-
-            }
-            return false;
+            return entries.Where(entry => entry.UserId == user.Id).OrderBy(entry => entry.Date);
         }
         public IQueryable<Entry> GetEntriesByDateRange(DateTime date1, DateTime date2)
         {
             return this.entries.Where(entry => (entry.Date >= date1 && entry.Date <= date2));
         }
-
-        IQueryable<Entry> filterdEntries;
         public IQueryable<int> GetEntriesByDayPartAndDataType(int currentUserId, string dayPart, string dataType)
         {
 
@@ -126,27 +95,43 @@ namespace BloodPressureLogApp.DAL
             }
 
         }
-        //public void WrireXml(DbSet<User> users, DbSet<Entry> entries, string currrentuser)
-        //{
-        //    XDocument doc = new XDocument();
-        //    XElement xml = new XElement("Info",
-        //    new XElement("Felhasználónév", currrentuser),
-        //    new XElement("Név", users.Where(user => user.UserName == currrentuser).Select(user => user.Name)),
-        //    new XElement("Cím", users.Where(user => user.UserName == currrentuser).Select(user => user.Adress)),
-        //    new XElement("Telefonszám", users.Where(user => user.UserName == currrentuser).Select(user => user.PhoneNumber)),
-        //    new XElement("Születésnap", users.Where(user => user.UserName == currrentuser).Select(user => user.BirthDate))
-         
-        //     );
-        //    doc.Add(xml);
-        //    doc.Save(currrentuser);
-        //}
+        public User GetUserByUserName(string username)
+        {
+            return this.users.FirstOrDefault(user => user.UserName == username);
+        }
+        public bool IsUserExists(string username)
+        {
+            return this.users.Any(user => user.UserName == username);
+        }
+        public bool RemoveEntryByDateTimeAndUserId(DateTime date1, int user_id)
+        { var result = entries.SingleOrDefault(entries => entries.UserId == user_id && entries.Date == date1);
 
+            if (result != null)
+            {
+                entries.Remove(result);
+                context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+        public bool UpdateEntryByDateAndUserId(int user_id, DateTime date1, int sys, int dia, int pulse)
+        {
+
+            var result = this.entries.SingleOrDefault(entries => entries.UserId == user_id && entries.Date == date1);
+            if (result != null)
+            {
+                result.Sys = sys;
+                result.Dia = dia;
+                result.Pulse = pulse;
+                context.SaveChanges();
+
+                return true;
+
+            }
+            return false;
+        }
+
+        
+        
     }
-
-
-
-
-
-
-
 }
