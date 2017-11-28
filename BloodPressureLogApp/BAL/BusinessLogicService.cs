@@ -26,41 +26,41 @@ namespace BloodPressureLogApp.BAL
         {
             return password + "1";
         }       
-        public void GetAvgEntryByDia(IQueryable<Entry>avgEntries)
+        public double GetAvgEntryByDia(IQueryable<Entry>avgEntries)
         {
-          avgEntries.Average(avg => avg.Dia );
+          return  avgEntries.Average(avg => avg.Dia );
         }
-        public void GetAvgEntryBySys(IQueryable<Entry> avgEntries)
+        public double GetAvgEntryBySys(IQueryable<Entry> avgEntries)
         {
-            avgEntries.Average(avg => avg.Sys);
+           return  avgEntries.Average(avg => avg.Sys);
         }
-        public void GetAvgEntryByPulse(IQueryable<Entry> avgEntries)
+        public double GetAvgEntryByPulse(IQueryable<Entry> avgEntries)
         {
-            avgEntries.Average(avg => avg.Pulse);
+          return  avgEntries.Average(avg => avg.Pulse);
         }
-        public void GetMinEntryBySys(IQueryable<Entry>minEntry)
+        public double GetMinEntryBySys(IQueryable<Entry>minEntry)
         {
-            minEntry.Min(entries => entries.Sys);
+          return  minEntry.Min(entries => entries.Sys);
         }
-        public void GetMinEntryByDia(IQueryable<Entry> minEntry)
+        public double GetMinEntryByDia(IQueryable<Entry> minEntry)
         {
-            minEntry.Min(entries => entries.Dia);
+          return  minEntry.Min(entries => entries.Dia);
         }
-        public void GetMinEntryByPulse(IQueryable<Entry> minEntry)
+        public double GetMinEntryByPulse(IQueryable<Entry> minEntry)
         {
-            minEntry.Min(entries => entries.Pulse);
+          return  minEntry.Min(entries => entries.Pulse);
         }
-        public void GetMaxEntryBySys(IQueryable<Entry> maxEntry)
+        public double GetMaxEntryBySys(IQueryable<Entry> maxEntry)
         {
-            maxEntry.Max(entries => entries.Sys);
+         return   maxEntry.Max(entries => entries.Sys);
         }
-        public void GetMaxEntryByDia(IQueryable<Entry> maxEntry)
+        public double GetMaxEntryByDia(IQueryable<Entry> maxEntry)
         {
-            maxEntry.Max(entries => entries.Dia);
+          return  maxEntry.Max(entries => entries.Dia);
         }
-        public void GetMaxEntryByPulse(IQueryable<Entry> maxEntry)
+        public double GetMaxEntryByPulse(IQueryable<Entry> maxEntry)
         {
-            maxEntry.Max(entries => entries.Pulse);
+          return  maxEntry.Max(entries => entries.Pulse);
         }
         public bool IsAm(DateTime date1)
         {

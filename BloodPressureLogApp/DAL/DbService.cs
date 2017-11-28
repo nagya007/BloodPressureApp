@@ -15,9 +15,9 @@ namespace BloodPressureLogApp.DAL
 {
     class DbService
     {
-        LogDbContext context;
-        DbSet<User> users;
-        DbSet<Entry> entries;
+      public  LogDbContext context;
+      public  DbSet<User> users;
+      public    DbSet<Entry> entries;
        // IQueryable<Entry> filterdEntries;
         static DbService instance = null;
         public DbService()
@@ -58,9 +58,9 @@ namespace BloodPressureLogApp.DAL
         {
             return entries.Where(entry => entry.UserId == user.Id).OrderBy(entry => entry.Date);
         }
-        public IQueryable<Entry> GetEntryiesByDayPart(int userId, bool isAm)
+        public IQueryable<Entry> GetEntryiesByDayPart(User user, bool isAm)
         {
-            return this.entries.Where(entry => entry.UserId == userId && entry.IsAm == isAm);
+            return this.entries.Where(entry => entry.UserId == user.Id && entry.IsAm == isAm);
         }
         public IQueryable<Entry> GetEntriesByDateRangeAndUser(DateTime date1, DateTime date2, int userid)
         {
