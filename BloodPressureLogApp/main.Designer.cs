@@ -29,12 +29,16 @@ namespace BloodPressureLogApp
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button7 = new System.Windows.Forms.Button();
             this.button_Max = new System.Windows.Forms.Button();
             this.button_Min = new System.Windows.Forms.Button();
@@ -55,16 +59,12 @@ namespace BloodPressureLogApp
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -88,6 +88,51 @@ namespace BloodPressureLogApp
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.radioButton3);
+            this.groupBox5.Controls.Add(this.radioButton2);
+            this.groupBox5.Controls.Add(this.radioButton1);
+            this.groupBox5.Location = new System.Drawing.Point(228, 19);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(121, 75);
+            this.groupBox5.TabIndex = 13;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "groupBox5";
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(6, 52);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(89, 17);
+            this.radioButton3.TabIndex = 2;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Elmúlt 30 nap";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(6, 35);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(105, 17);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Két dátum között";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(6, 19);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(83, 17);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Összes adat";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // button7
             // 
@@ -135,6 +180,7 @@ namespace BloodPressureLogApp
             this.button_delet.TabIndex = 8;
             this.button_delet.Text = "Adat Törlése";
             this.button_delet.UseVisualStyleBackColor = true;
+            this.button_delet.Click += new System.EventHandler(this.button_delet_Click);
             // 
             // button_Update
             // 
@@ -144,6 +190,7 @@ namespace BloodPressureLogApp
             this.button_Update.TabIndex = 7;
             this.button_Update.Text = "Adat Szerkesztés";
             this.button_Update.UseVisualStyleBackColor = true;
+            this.button_Update.Click += new System.EventHandler(this.button_Update_Click);
             // 
             // button_NewEntry
             // 
@@ -153,6 +200,7 @@ namespace BloodPressureLogApp
             this.button_NewEntry.TabIndex = 6;
             this.button_NewEntry.Text = "Új adat";
             this.button_NewEntry.UseVisualStyleBackColor = true;
+            this.button_NewEntry.Click += new System.EventHandler(this.button_NewEntry_Click);
             // 
             // button_mutat
             // 
@@ -282,83 +330,38 @@ namespace BloodPressureLogApp
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(11, 13);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
             this.chart1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Legend = "Legend1";
-            series4.Name = "Sys";
-            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series4.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.Legend = "Legend1";
-            series5.Name = "Dia";
-            series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series5.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
-            series6.Legend = "Legend1";
-            series6.Name = "Pulse";
-            series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series6.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-            this.chart1.Series.Add(series4);
-            this.chart1.Series.Add(series5);
-            this.chart1.Series.Add(series6);
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series7.Legend = "Legend1";
+            series7.Name = "Sys";
+            series7.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series7.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series8.Legend = "Legend1";
+            series8.Name = "Dia";
+            series8.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series8.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series9.Legend = "Legend1";
+            series9.Name = "Pulse";
+            series9.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series9.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+            this.chart1.Series.Add(series7);
+            this.chart1.Series.Add(series8);
+            this.chart1.Series.Add(series9);
             this.chart1.Size = new System.Drawing.Size(781, 478);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.radioButton3);
-            this.groupBox5.Controls.Add(this.radioButton2);
-            this.groupBox5.Controls.Add(this.radioButton1);
-            this.groupBox5.Location = new System.Drawing.Point(228, 19);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(121, 75);
-            this.groupBox5.TabIndex = 13;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "groupBox5";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 19);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(83, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Összes adat";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 35);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(105, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Két dátum között";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 52);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(89, 17);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Elmúlt 30 nap";
-            this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // main
             // 
@@ -370,14 +373,14 @@ namespace BloodPressureLogApp
             this.Name = "main";
             this.Text = "Belépve";
             this.groupBox1.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }

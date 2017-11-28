@@ -379,5 +379,21 @@ namespace BloodPressureLogApp
             }          
         }
 
+        private void button_NewEntry_Click(object sender, EventArgs e)
+        {
+            AddUpdateRemove add = new AddUpdateRemove();
+            add.ShowDialog();
+
+        }
+
+        private void button_Update_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_delet_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

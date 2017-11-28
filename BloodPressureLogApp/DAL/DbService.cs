@@ -85,7 +85,7 @@ namespace BloodPressureLogApp.DAL
             }
             return false;
         }
-        public bool UpdateEntryByDateAndUserId(int user_id, DateTime date1, int sys, int dia, int pulse)
+        public bool UpdateEntryByDateAndUserId(User user, DateTime date1, int sys, int dia, int pulse)
         {
 
             var result = this.entries.SingleOrDefault(entries => entries.UserId == user_id && entries.Date == date1);
