@@ -18,7 +18,7 @@ namespace BloodPressureLogApp.DAL
         LogDbContext context;
         DbSet<User> users;
         DbSet<Entry> entries;
-        IQueryable<Entry> filterdEntries;
+       // IQueryable<Entry> filterdEntries;
         static DbService instance = null;
         public DbService()
         {
@@ -34,7 +34,6 @@ namespace BloodPressureLogApp.DAL
             }
             return instance;
         }
-
         public bool AddUser(User user)
         {
             if (this.users.Add(user).Equals(user))
@@ -59,52 +58,24 @@ namespace BloodPressureLogApp.DAL
         {
             return entries.Where(entry => entry.UserId == user.Id).OrderBy(entry => entry.Date);
         }
-        public IQueryable<Entry> GetEntriesByDateRange(DateTime date1, DateTime date2)
+        public IQueryable<Entry> GetEntryiesByDayPart(int userId, bool isAm)
         {
-            return this.entries.Where(entry => (entry.Date >= date1 && entry.Date <= date2));
+            return this.entries.Where(entry => entry.UserId == userId && entry.IsAm == isAm);
         }
-        public IQueryable<int> GetEntriesByDayPartAndDataType(int currentUserId, string dayPart, string dataType)
+        public IQueryable<Entry> GetEntriesByDateRangeAndUser(DateTime date1, DateTime date2, int userid)
         {
-
-            switch (dayPart)
-            {
-
-                case "all":
-                    filterdEntries = entries.Where(entry => entry.UserId == currentUserId);
-                    break;
-                case "am":
-                    filterdEntries = entries.Where(entry => entry.UserId == currentUserId && entry.IsAm);
-                    break;
-                case "pm":
-                    filterdEntries = entries.Where(entry => entry.UserId == currentUserId && !entry.IsAm);
-                    break;
-
-            }
-
-
-            switch (dataType)
-            {
-                case "sys":
-                    return filterdEntries.Select(entry => entry.Sys);
-                case "dia":
-                    return filterdEntries.Select(entry => entry.Dia);
-
-                case "pulse":
-                    return filterdEntries.Select(entry => entry.Pulse);
-                default: return null;
-            }
-
+            return this.entries.Where(entry => (entry.UserId == userid && entry.Date >= date1 && entry.Date <= date2));
         }
         public User GetUserByUserName(string username)
         {
-            return this.users.FirstOrDefault(user => user.UserName == username);
+            return this.users.FirstOrDefault(u => u.UserName == username);
         }
-        public bool IsUserExists(string username)
+        public bool IsUserExists(String username)
         {
-            return this.users.Any(user => user.UserName == username);
+            return this.users.Any(u => u.UserName == username);
         }
-        public bool RemoveEntryByDateTimeAndUserId(DateTime date1, int user_id)
-        { var result = entries.SingleOrDefault(entries => entries.UserId == user_id && entries.Date == date1);
+        public bool RemoveEntryByDateTimeAndUserId(DateTime date1, User user)
+        { var result = entries.SingleOrDefault(entries => entries.UserId == user.Id && entries.Date == date1);
 
             if (result != null)
             {

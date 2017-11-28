@@ -13,8 +13,6 @@ namespace BloodPressureLogApp.BAL
     {
         public XmlHandler(){}
         public string LastError;
-        
-
         public bool WriteToXml<T>(string filePath, T userData) where T : class
         {
             try

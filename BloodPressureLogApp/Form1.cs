@@ -45,7 +45,7 @@ namespace BloodPressureLogApp
             var entries = context.Entries;
             var currentUser = dbService.GetUserByUserName(tb_UserName.Text);
             dbService.UpdateEntryByDateAndUserId(2,Convert.ToDateTime("2017. 06. 27. 9:30:00"),120,60,60);
-            dbService.RemoveEntryByDateTimeAndUserId(Convert.ToDateTime("2017. 04. 25. 22:30:00"),2);
+        
             if (currentUser != null && currentUser.Password == tb_Password.Text)
             {
                 logicService.CurrentUser = currentUser.UserName;

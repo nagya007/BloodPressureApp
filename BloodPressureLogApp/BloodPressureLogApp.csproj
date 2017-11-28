@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BAL\BusinessLogicService.cs" />
+    <Compile Include="BAL\Constants.cs" />
     <Compile Include="BAL\GraficLogicService.cs" />
     <Compile Include="BAL\UserOutput.cs" />
     <Compile Include="BAL\XmlHandler.cs" />

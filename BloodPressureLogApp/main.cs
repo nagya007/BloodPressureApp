@@ -18,7 +18,9 @@ namespace BloodPressureLogApp
     public partial class main : Form
     {
         BAL.BusinessLogicService logicService = BAL.BusinessLogicService.getInstance();
+        BAL.GraficLogicService chartService = BAL.GraficLogicService.getInstance();
         DAL.DbService dbService = DAL.DbService.getInstance();
+        BAL.UserOutput userOut = new BAL.UserOutput();
         LogDbContext context = new LogDbContext();
         string dayPart;
         string dataType;
@@ -47,7 +49,7 @@ namespace BloodPressureLogApp
                         dataType = "pulse";
                         break;
                 }
-                this.label1.Text = rb.Text;
+               
                // dbService.WrireXml(context.Users, context.Entries, logicService.CurrentUser);
             }
 
@@ -78,74 +80,38 @@ namespace BloodPressureLogApp
 
             if (dateTimePicker2.Value != null)
             {
-                selectedItems = dbService.GetEntriesByDateRange(dateTimePicker1.Value, dateTimePicker2.Value);
-                if (radiobutton_Sys.Checked)
-                {
-                  
-                //    DataPoint newDatapointSys = new DataPoint();
-                //    newDatapointSys.SetValueXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date), selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Sys));
-                //    chart1.Series["Sys"].Points.Add(newDatapointSys);
-                //     sys.Points.DataBindXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date).Distinct().ToList(),selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Sys).ToList());
-
-                }
-                else if (radiobutton_Dia.Checked)
-                {
-                  
-                    // Dia.Points.DataBindXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date).Distinct().ToList(), selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Dia).ToList());
-                }
-                else if (radiobutton_Pulse.Checked)
-                {
-                  
-                    //Pulse.Points.DataBindXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date).Distinct().ToList(), selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Pulse).ToList());
-                }
-                else MessageBox.Show("Nem Választotta ki hogy mit szaretne megjelaníteni!", "Figyelmeztetés", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-            }
+                selectedItems = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value,logicService.CurrentUserId);
+             }
         }
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
          {
             if (dateTimePicker1.Value != null)
             {
-                selectedItems = dbService.GetEntriesByDateRange(dateTimePicker1.Value, dateTimePicker2.Value);
-
-                if (radiobutton_Sys.Checked)
-                {
-
-                    //      sys.Points.DataBindXY( selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry =>entry.Date).Distinct().ToList(), selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Sys).ToList());
-                }
-                else if (radiobutton_Dia.Checked)
-                {
-                    //    dia.Points.DataBindXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date).Distinct().ToList(), selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Dia).ToList());
-                }
-                else if (radiobutton_Pulse.Checked)
-                {
-                    //  pulse.Points.DataBindXY(selectedItems.Where(entry => entry.UserId==logicService.CurrentUserId).Select(entry => entry.Date).Distinct().ToList(), selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Pulse).ToList());
-                }
-                else MessageBox.Show("Nem Választotta ki hogy mit szaretne megjelaníteni!", "Figyelmeztetés", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                selectedItems = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value,logicService.CurrentUserId);
             }
         }
         private void button_mutat_Click(object sender, EventArgs e)
         {
-            DataPoint newDatapointSys = new DataPoint();
-            var graficdata = dbService.GetEntriesByDayPartAndDataType(logicService.CurrentUserId, dayPart, dataType);
+            var entries = dbService.GetEntryiesByDayPart(50, true);
+            DateTime minDate = entries.OrderBy(entry => entry.Date).First().Date;
+            DateTime maxDate = entries.OrderByDescending(entry => entry.Date).First().Date;
+
+            chart1.ChartAreas[0].AxisX.LabelStyle.Format = "yyyy-MM-dd";
+            chart1.ChartAreas[0].AxisX.Interval = 1;
+            chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Days;
+            chart1.ChartAreas[0].AxisX.IntervalOffset = 1;
+            chart1.ChartAreas[0].AxisX.Minimum = minDate.ToOADate();
+            chart1.ChartAreas[0].AxisX.Maximum = maxDate.ToOADate();
+
+            chart1.Series.Clear();
+            chart1.Series.Add(chartService.Draw(entries, BAL.Constants.SYS));
+            chart1.Series[0].ChartType = SeriesChartType.Line;
+            chart1.Series[0].Name = BAL.Constants.SYS;
+            chart1.ChartAreas[0].AxisY.Name = BAL.Constants.SYS;
+            chart1.Series[0].Color = Color.Blue;
 
 
 
-            foreach (var item in graficdata)
-            {
-                newDatapointSys.SetValueXY(Convert.ToDateTime(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date)), item);
-                chart1.Series["Sys"].Points.Add(newDatapointSys);
-            }
-
-            //newDatapointSys.SetValueXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date), graficdata.Select(entry => entry));
-            //chart1.Series["Sys"].Points.Add(newDatapointSys);
-            //foreach (var item in graficdata)
-            //{
-            //    newDatapointSys.SetValueXY(selectedItems.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Date), graficdata.Where(entry => entry.UserId == logicService.CurrentUserId).Select(entry => entry.Sys).ToList());
-            //}
-            //chart1.Series["Sys"].Points.Add(newDatapointSys);
-
-            BAL.UserOutput userOut = new BAL.UserOutput();
             userOut.User = dbService.GetUserByUserName(logicService.CurrentUser);
             userOut.AllUserData = dbService.FindAllEntriesOfUser(userOut.User).ToList();
             // string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6);
