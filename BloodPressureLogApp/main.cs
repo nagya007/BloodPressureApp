@@ -92,7 +92,7 @@ namespace BloodPressureLogApp
                 if (checkbox_Sys.Checked)
                 {
 
-                    var entriesSys = dbService.FindAllEntriesOfUser((userOut.User = dbService.GetUserByUserName(logicService.CurrentUser)));
+                    var entriesSys = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
                     DateTime minDate = entriesSys.OrderBy(entry => entry.Date).First().Date;
                     DateTime maxDate = entriesSys.OrderByDescending(entry => entry.Date).First().Date;
 
@@ -113,7 +113,7 @@ namespace BloodPressureLogApp
                 if (checkbox_Dia.Checked)
                 {
 
-                    var entriesDia = dbService.FindAllEntriesOfUser((userOut.User = dbService.GetUserByUserName(logicService.CurrentUser)));
+                    var entriesDia = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
                     DateTime minDate = entriesDia.OrderBy(entry => entry.Date).First().Date;
                     DateTime maxDate = entriesDia.OrderByDescending(entry => entry.Date).First().Date;
 
@@ -134,7 +134,7 @@ namespace BloodPressureLogApp
                 if (checkbox_Pulse.Checked)
                 {
 
-                    var entriesPulse = dbService.FindAllEntriesOfUser((userOut.User = dbService.GetUserByUserName(logicService.CurrentUser)));
+                    var entriesPulse = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
                     DateTime minDate = entriesPulse.OrderBy(entry => entry.Date).First().Date;
                     DateTime maxDate = entriesPulse.OrderByDescending(entry => entry.Date).First().Date;
 
@@ -158,7 +158,7 @@ namespace BloodPressureLogApp
                 if (checkbox_Sys.Checked)
                 {
 
-                    var entriesSys = dbService.GetEntryiesByDayPart(userOut.User = dbService.GetUserByUserName(logicService.CurrentUser),true);
+                    var entriesSys = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
                     DateTime minDate = entriesSys.OrderBy(entry => entry.Date).First().Date;
                     DateTime maxDate = entriesSys.OrderByDescending(entry => entry.Date).First().Date;
 
@@ -179,7 +179,7 @@ namespace BloodPressureLogApp
                 if (checkbox_Dia.Checked)
                 {
 
-                    var entriesDia = dbService.GetEntryiesByDayPart(userOut.User = dbService.GetUserByUserName(logicService.CurrentUser), true);
+                    var entriesDia = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
                     DateTime minDate = entriesDia.OrderBy(entry => entry.Date).First().Date;
                     DateTime maxDate = entriesDia.OrderByDescending(entry => entry.Date).First().Date;
 
@@ -200,7 +200,7 @@ namespace BloodPressureLogApp
                 if (checkbox_Pulse.Checked)
                 {
 
-                    var entriesPulse = dbService.GetEntryiesByDayPart(userOut.User = dbService.GetUserByUserName(logicService.CurrentUser), true);
+                    var entriesPulse = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
                     DateTime minDate = entriesPulse.OrderBy(entry => entry.Date).First().Date;
                     DateTime maxDate = entriesPulse.OrderByDescending(entry => entry.Date).First().Date;
 
@@ -224,7 +224,7 @@ namespace BloodPressureLogApp
                 if (checkbox_Sys.Checked)
                 {
 
-                    var entriesSys = dbService.GetEntryiesByDayPart(userOut.User = dbService.GetUserByUserName(logicService.CurrentUser), false);
+                    var entriesSys = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
                     DateTime minDate = entriesSys.OrderBy(entry => entry.Date).First().Date;
                     DateTime maxDate = entriesSys.OrderByDescending(entry => entry.Date).First().Date;
 
@@ -245,7 +245,7 @@ namespace BloodPressureLogApp
                 if (checkbox_Dia.Checked)
                 {
 
-                    var entriesDia = dbService.GetEntryiesByDayPart(userOut.User = dbService.GetUserByUserName(logicService.CurrentUser), false);
+                    var entriesDia = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
                     DateTime minDate = entriesDia.OrderBy(entry => entry.Date).First().Date;
                     DateTime maxDate = entriesDia.OrderByDescending(entry => entry.Date).First().Date;
 
@@ -266,7 +266,7 @@ namespace BloodPressureLogApp
                 if (checkbox_Pulse.Checked)
                 {
 
-                    var entriesPulse = dbService.GetEntryiesByDayPart(userOut.User = dbService.GetUserByUserName(logicService.CurrentUser), false);
+                    var entriesPulse = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
                     DateTime minDate = entriesPulse.OrderBy(entry => entry.Date).First().Date;
                     DateTime maxDate = entriesPulse.OrderByDescending(entry => entry.Date).First().Date;
 
@@ -309,21 +309,21 @@ namespace BloodPressureLogApp
                 if (checkbox_Sys.Checked)
                 {
 
-                    var entriesSys = dbService.FindAllEntriesOfUser((userOut.User = dbService.GetUserByUserName(logicService.CurrentUser)));
+                    var entriesSys = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
                     double minAllSys = logicService.GetMinEntryBySys(entriesSys);
                     MessageBox.Show($"Minimum az összes Sys alapján: {minAllSys}");
                 }
                 if (checkbox_Dia.Checked)
                 {
 
-                    var entriesDia = dbService.FindAllEntriesOfUser((userOut.User = dbService.GetUserByUserName(logicService.CurrentUser)));
+                    var entriesDia = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
                     double minAllDia = logicService.GetMinEntryByDia(entriesDia);
                     MessageBox.Show($"Minimum az összes Dia alapján: {minAllDia}");
                 }
                 if (checkbox_Pulse.Checked)
                 {
 
-                    var entriesPulse = dbService.FindAllEntriesOfUser((userOut.User = dbService.GetUserByUserName(logicService.CurrentUser)));
+                    var entriesPulse = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
                     double minAllPulse = logicService.GetMinEntryByPulse(entriesPulse);
                     MessageBox.Show($"Minimum az összes Pulse alapján: {minAllPulse}");
                 }
@@ -333,21 +333,21 @@ namespace BloodPressureLogApp
                 if (checkbox_Sys.Checked)
                 {
 
-                    var entriesSys = dbService.GetEntryiesByDayPart(userOut.User = dbService.GetUserByUserName(logicService.CurrentUser),true);
+                    var entriesSys = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
                     double minAmPSys = logicService.GetMinEntryBySys(entriesSys);
                     MessageBox.Show($"Minimum a reggeli Sys alapján: {minAmPSys}");
                 }
                 if (checkbox_Dia.Checked)
                 {
 
-                    var entriesDia = dbService.GetEntryiesByDayPart(userOut.User = dbService.GetUserByUserName(logicService.CurrentUser), true);
+                    var entriesDia = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
                     double minAmDia = logicService.GetMinEntryByDia(entriesDia);
                     MessageBox.Show($"Minimum a reggeli Dia alapján: {minAmDia}");
                 }
                 if (checkbox_Pulse.Checked)
                 {
 
-                    var entriesPulse = dbService.GetEntryiesByDayPart(userOut.User = dbService.GetUserByUserName(logicService.CurrentUser), true);
+                    var entriesPulse = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
                     double minAmPulse = logicService.GetMinEntryByPulse(entriesPulse);
                     MessageBox.Show($"Minimum a reggeli Pulse alapján: {minAmPulse}");
                 }
@@ -357,21 +357,21 @@ namespace BloodPressureLogApp
                 if (checkbox_Sys.Checked)
                 {
 
-                    var entriesSys = dbService.GetEntryiesByDayPart(userOut.User = dbService.GetUserByUserName(logicService.CurrentUser), false);
+                    var entriesSys = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
                     double minPmSys = logicService.GetMinEntryBySys(entriesSys);
                     MessageBox.Show($"Minimum az esti Sys alapján: {minPmSys}");
                 }
                 if (checkbox_Dia.Checked)
                 {
 
-                    var entriesDia = dbService.GetEntryiesByDayPart(userOut.User = dbService.GetUserByUserName(logicService.CurrentUser), false);
+                    var entriesDia = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
                     double minPmDia = logicService.GetMinEntryByDia(entriesDia);
                     MessageBox.Show($"Minimum az esti Dia alapján: {minPmDia}");
                 }
                 if (checkbox_Pulse.Checked)
                 {
 
-                    var entriesPulse = dbService.GetEntryiesByDayPart(userOut.User = dbService.GetUserByUserName(logicService.CurrentUser), false);
+                    var entriesPulse = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
                     double minPmPulse = logicService.GetMinEntryByPulse(entriesPulse);
                     MessageBox.Show($"Minimum az esti  alapján: {minPmPulse}");
 
