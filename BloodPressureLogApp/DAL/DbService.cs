@@ -62,9 +62,13 @@ namespace BloodPressureLogApp.DAL
         {
             return this.entries.Where(entry => entry.UserId == user.Id && entry.IsAm == isAm);
         }
-        public IQueryable<Entry> GetEntriesByDateRangeAndUser(DateTime date1, DateTime date2, int userid)
+        public IQueryable<Entry> GetEntryiesByDayPart2(IQueryable<Entry> entries,bool isAm)
         {
-            return this.entries.Where(entry => (entry.UserId == userid && entry.Date >= date1 && entry.Date <= date2));
+            return entries.Where(entry => entry.IsAm == isAm);
+        }
+        public IQueryable<Entry> GetEntriesByDateRangeAndUser(DateTime date1, DateTime date2, User user)
+        {
+            return this.entries.Where(entry => (entry.UserId == user.Id && entry.Date >= date1 && entry.Date <= date2));
         }
         public User GetUserByUserName(string username)
         {
@@ -88,7 +92,7 @@ namespace BloodPressureLogApp.DAL
         public bool UpdateEntryByDateAndUserId(User user, DateTime date1, int sys, int dia, int pulse)
         {
 
-            var result = this.entries.SingleOrDefault(entries => entries.UserId == user_id && entries.Date == date1);
+            var result = this.entries.SingleOrDefault(entries => entries.UserId == user.Id && entries.Date == date1);
             if (result != null)
             {
                 result.Sys = sys;

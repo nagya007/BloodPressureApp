@@ -24,31 +24,15 @@ namespace BloodPressureLogApp
         LogDbContext context = new LogDbContext();
         string dayPart;
         string dataType;
+        Series Sys = new Series();
+        Series Dia = new Series();
+        Series Pulse = new Series();
         BAL.XmlHandler xhandler = new BAL.XmlHandler();
         IQueryable<Entry> selectedItems;
         public main()
         {
             InitializeComponent();   
         }       
-        private void radioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton rb = sender as RadioButton;
-            if (rb.Checked)
-            {
-                switch (rb.Name)
-                {
-                    case "radiobutton_Sys":
-                        dataType = "sys";
-                        break;
-                    case "radiobutton_Dia":
-                        dataType = "dia";
-                        break;
-                    case "radiobutton_Pulse":
-                        dataType = "pulse";
-                        break;
-                }
-            }
-        }
         private void radioButton_CheckedChangedDayPart(object sender, EventArgs e)
         {  
             RadioButton rb = sender as RadioButton;
@@ -57,13 +41,40 @@ namespace BloodPressureLogApp
                 switch (rb.Name)
                 {
                     case "radiobutton_Day":
-                        dayPart = "all";
+                     var entriesDay=  dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
+                        Sys =chartService.Draw(entriesDay, BAL.Constants.SYS);
+                        chart1.Series["Sys"] = Sys;
+                        Sys.IsVisibleInLegend = false;
+                        Dia = chartService.Draw(entriesDay, BAL.Constants.DIA);
+                        chart1.Series["Dia"] = Dia;
+                        Dia.IsVisibleInLegend = false;
+                        Pulse= chartService.Draw(entriesDay, BAL.Constants.PULSE);
+                        chart1.Series["Pulse"] = Pulse;
+                        Pulse.IsVisibleInLegend = false;
                         break;
                     case "radiobutton_Am":
-                        dayPart = "Am";
+                        var entriesAm = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser),true);
+                         Sys = chartService.Draw(entriesAm, BAL.Constants.SYS);
+                        chart1.Series["Sys"] = Sys;
+                        Sys.IsVisibleInLegend = false;
+                         Dia = chartService.Draw(entriesAm, BAL.Constants.DIA);
+                        chart1.Series["Dia"] = Dia;
+                        Dia.IsVisibleInLegend = false;
+                         Pulse = chartService.Draw(entriesAm, BAL.Constants.PULSE);
+                        chart1.Series["Pulse"] = Pulse;
+                        Pulse.IsVisibleInLegend = false;
                         break;
                     case"radiobutton_Pm":
-                        dayPart = "Pm";
+                        var entriesPm = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
+                         Sys = chartService.Draw(entriesPm, BAL.Constants.SYS);
+                        chart1.Series["Sys"] = Sys;
+                        Sys.IsVisibleInLegend = false;
+                         Dia = chartService.Draw(entriesPm, BAL.Constants.DIA);
+                        chart1.Series["Dia"] = Dia;
+                        Dia.IsVisibleInLegend = false;
+                         Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
+                        chart1.Series["Pulse"] = Pulse;
+                        Pulse.IsVisibleInLegend = false;
                         break;
                 }
             }
@@ -74,20 +85,20 @@ namespace BloodPressureLogApp
 
             if (dateTimePicker2.Value != null)
             {
-                selectedItems = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value,logicService.CurrentUserId);
+                selectedItems = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
              }
         }
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
          {
             if (dateTimePicker1.Value != null)
             {
-                selectedItems = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value,logicService.CurrentUserId);
+                selectedItems = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
             }
         }
         private void button_mutat_Click(object sender, EventArgs e)
         {
-            chart1.Series.Clear();
-            if (dayPart == "all")
+          
+           /*/ if (dayPart == "all")
             {
                 if (checkbox_Sys.Checked)
                 {
@@ -169,19 +180,21 @@ namespace BloodPressureLogApp
                     chart1.ChartAreas[0].AxisX.Minimum = minDate.ToOADate();
                     chart1.ChartAreas[0].AxisX.Maximum = maxDate.ToOADate();
 
-
+                    chart1.Series["0"] = new Series();
                     chart1.Series.Add(chartService.Draw(entriesSys, BAL.Constants.SYS));
-                    chart1.Series[0].ChartType = SeriesChartType.Line;
-                    chart1.Series[0].Name = BAL.Constants.SYS;
+                    chart1.Series["0"].ChartType = SeriesChartType.Line;
+                    chart1.Series["0"].Name = BAL.Constants.SYS;
                     chart1.ChartAreas[0].AxisY.Name = BAL.Constants.SYS;
-                    chart1.Series[0].Color = Color.Blue;
+                    chart1.Series["0"].Color = Color.Blue;
                 }
                 if (checkbox_Dia.Checked)
                 {
 
-                    var entriesDia = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
-                    DateTime minDate = entriesDia.OrderBy(entry => entry.Date).First().Date;
-                    DateTime maxDate = entriesDia.OrderByDescending(entry => entry.Date).First().Date;
+                  //  var entriesDia = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
+                    var dateentriesdia = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
+                    var entriesDia = dbService.GetEntryiesByDayPart2(dateentriesdia,true);
+                    DateTime minDate = dateentriesdia.OrderBy(entry => entry.Date).First().Date;
+                    DateTime maxDate = dateentriesdia.OrderByDescending(entry => entry.Date).First().Date;
 
                     chart1.ChartAreas[0].AxisX.LabelStyle.Format = "yyyy-MM-dd";
                     chart1.ChartAreas[0].AxisX.Interval = 1;
@@ -190,17 +203,18 @@ namespace BloodPressureLogApp
                     chart1.ChartAreas[0].AxisX.Minimum = minDate.ToOADate();
                     chart1.ChartAreas[0].AxisX.Maximum = maxDate.ToOADate();
 
-
+                    chart1.Series["0"] = new Series();
                     chart1.Series.Add(chartService.Draw(entriesDia, BAL.Constants.DIA));
-                    chart1.Series[0].ChartType = SeriesChartType.Line;
-                    chart1.Series[0].Name = BAL.Constants.DIA;
-                    chart1.ChartAreas[0].AxisY.Name = BAL.Constants.DIA;
-                    chart1.Series[0].Color = Color.Red;
+                    chart1.Series["0"].ChartType = SeriesChartType.Line;
+                    chart1.Series["0"].Name = BAL.Constants.DIA;
+                    chart1.ChartAreas["Dia"].AxisY.Name = BAL.Constants.DIA;
+                    chart1.Series["0"].Color = Color.Red;
                 }
                 if (checkbox_Pulse.Checked)
                 {
 
                     var entriesPulse = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
+                  
                     DateTime minDate = entriesPulse.OrderBy(entry => entry.Date).First().Date;
                     DateTime maxDate = entriesPulse.OrderByDescending(entry => entry.Date).First().Date;
 
@@ -211,12 +225,12 @@ namespace BloodPressureLogApp
                     chart1.ChartAreas[0].AxisX.Minimum = minDate.ToOADate();
                     chart1.ChartAreas[0].AxisX.Maximum = maxDate.ToOADate();
 
-
+                    chart1.Series["0"] = new Series();
                     chart1.Series.Add(chartService.Draw(entriesPulse, BAL.Constants.PULSE));
-                    chart1.Series[0].ChartType = SeriesChartType.Line;
-                    chart1.Series[0].Name = BAL.Constants.PULSE;
-                    chart1.ChartAreas[0].AxisY.Name = BAL.Constants.PULSE;
-                    chart1.Series[0].Color = Color.Green;
+                    chart1.Series["0"].ChartType = SeriesChartType.Line;
+                    chart1.Series["0"].Name = BAL.Constants.PULSE;
+                    chart1.ChartAreas["0"].AxisY.Name = BAL.Constants.PULSE;
+                    chart1.Series["0"].Color = Color.Green;
                 }
             }
             if (dayPart == "Pm")
@@ -284,7 +298,7 @@ namespace BloodPressureLogApp
                     chart1.ChartAreas[0].AxisY.Name = BAL.Constants.PULSE;
                     chart1.Series[0].Color = Color.Green;
                 }
-            }
+            }/*/
         }
         private void button_XmlCreat_Click(object sender, EventArgs e)
         {
@@ -378,22 +392,32 @@ namespace BloodPressureLogApp
                 }
             }          
         }
-
         private void button_NewEntry_Click(object sender, EventArgs e)
         {
+            
             AddUpdateRemove add = new AddUpdateRemove();
             add.ShowDialog();
-
+           
+           
         }
-
         private void button_Update_Click(object sender, EventArgs e)
         {
-
+            AddUpdateRemove Update = new AddUpdateRemove();
+            Update.ShowDialog();
         }
 
         private void button_delet_Click(object sender, EventArgs e)
         {
+            AddUpdateRemove Remove = new AddUpdateRemove();
+            Remove.ShowDialog();
+        }
 
+        private void checkbox_Serise_CheckedChanged(object sender, EventArgs e)
+        {
+            if ()
+            {
+
+            }
         }
     }
 }

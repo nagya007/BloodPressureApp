@@ -166,6 +166,7 @@
             this.Controls.Add(this.combobox_Date);
             this.Name = "AddUpdateRemove";
             this.Text = "S";
+            this.Load += new System.EventHandler(this.AddUpdateRemove_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

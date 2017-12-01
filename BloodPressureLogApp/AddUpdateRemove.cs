@@ -15,12 +15,13 @@ namespace BloodPressureLogApp
         BAL.BusinessLogicService logicService;
         DAL.DbService dbService;
         BAL.UserOutput userOut = new BAL.UserOutput();
+        
         public AddUpdateRemove()
         {
             InitializeComponent();
             logicService = BAL.BusinessLogicService.getInstance();
             dbService = DAL.DbService.getInstance();
-           
+        
         }
         LogDbContext context = new LogDbContext();
         private void button_Add_Click(object sender, EventArgs e)
@@ -44,6 +45,11 @@ namespace BloodPressureLogApp
         private void button_Remove_Click(object sender, EventArgs e)
         {
             dbService.RemoveEntryByDateTimeAndUserId(Convert.ToDateTime(combobox_Date), userOut.User);
+        }
+
+        private void AddUpdateRemove_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

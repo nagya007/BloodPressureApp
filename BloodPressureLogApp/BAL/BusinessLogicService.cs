@@ -8,8 +8,16 @@ using System.Data.Entity;
 
 namespace BloodPressureLogApp.BAL
 {
-   public class BusinessLogicService 
+    public enum Procedure
+    {
+        Add,
+        Remove,
+        Update,
+    };
+    public class BusinessLogicService 
    {
+
+       
         public string CurrentUser {get;set;}
         public string CurrentPassword {get;set;}
         public int CurrentUserId { get; set; }
