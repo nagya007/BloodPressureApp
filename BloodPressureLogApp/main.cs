@@ -395,29 +395,26 @@ namespace BloodPressureLogApp
         private void button_NewEntry_Click(object sender, EventArgs e)
         {
             
-            AddUpdateRemove add = new AddUpdateRemove();
+            Add add = new Add();
             add.ShowDialog();
            
            
         }
         private void button_Update_Click(object sender, EventArgs e)
         {
-            AddUpdateRemove Update = new AddUpdateRemove();
+            UpdateEntry Update = new UpdateEntry();
             Update.ShowDialog();
         }
 
         private void button_delet_Click(object sender, EventArgs e)
         {
-            AddUpdateRemove Remove = new AddUpdateRemove();
+            UpdateEntry Remove = new UpdateEntry();
             Remove.ShowDialog();
         }
 
         private void checkbox_Serise_CheckedChanged(object sender, EventArgs e)
         {
-            if ()
-            {
-
-            }
+            
         }
     }
 }

@@ -28,5 +28,6 @@ C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPr
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.pdb
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.Migrations.Initial.resources
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.main.resources
-C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.AddUpdateRemove.resources
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.csprojResolveAssemblyReference.cache
+C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.Add.resources
+C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.UpdateEntry.resources
