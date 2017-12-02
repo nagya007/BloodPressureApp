@@ -13,6 +13,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 
 
+
 namespace BloodPressureLogApp
 {
     public partial class main : Form
@@ -24,7 +25,7 @@ namespace BloodPressureLogApp
         LogDbContext context = new LogDbContext();
         string dayPart;
         string dataType;
-        Series Sys = new Series();
+        Series Sys = new Series();     
         Series Dia = new Series();
         Series Pulse = new Series();
         BAL.XmlHandler xhandler = new BAL.XmlHandler();
@@ -32,6 +33,8 @@ namespace BloodPressureLogApp
         public main()
         {
             InitializeComponent();
+
+            Sys.Name = BAL.Constants.SYS;
             chart1.ChartAreas[0].AxisX.LabelStyle.Format = "yyyy-MM-dd";
             chart1.ChartAreas[0].AxisX.Interval = 1;
             chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Days;
@@ -84,12 +87,11 @@ namespace BloodPressureLogApp
                         RadioButton rb = sender as RadioButton;
                         if (rb.Checked)
                         {
-                             chart1.ChartAreas.Clear();
+                             chart1.Series.Clear();
                              var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
                              switch (rb.Name)
                                   {
                                     case "radiobutton_Day":
-                                   
                                     Sys = chartService.Draw(entriesDay, BAL.Constants.SYS);
                                     Dia = chartService.Draw(entriesDay, BAL.Constants.DIA);
                                     Pulse = chartService.Draw(entriesDay, BAL.Constants.PULSE);
@@ -107,7 +109,10 @@ namespace BloodPressureLogApp
                                     Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
                                     break;
                             }
-                            chart1.Series["Sys"] = Sys;
+
+                             chart1.Series["Sys"] = Sys;                            
+                             
+                
                             Sys.IsVisibleInLegend = true;
                             
                             chart1.Series["Dia"] = Dia;
