@@ -39,10 +39,11 @@ namespace BloodPressureLogApp
             chart1.ChartAreas[0].AxisX.Interval = 1;
             chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Days;
             chart1.ChartAreas[0].AxisX.IntervalOffset = 1;
-        }
-            
+            chart1.ChartAreas[0].AxisY.IntervalOffset = 1;
+        }            
         private void radioButton_CheckedChangedDayPart(object sender, EventArgs e)
-        {  
+        {
+            groupBox4.Enabled = true;
             //RadioButton rb = sender as RadioButton;
             //if (rb.Checked)
             //{
@@ -84,7 +85,7 @@ namespace BloodPressureLogApp
             //            chart1.Series["Pulse"] = Pulse;
             //            Pulse.IsVisibleInLegend = false;
             //            break;
-                        RadioButton rb = sender as RadioButton;
+            RadioButton rb = sender as RadioButton;
                         if (rb.Checked)
                         {
                              chart1.Series.Clear();
@@ -92,24 +93,27 @@ namespace BloodPressureLogApp
                              switch (rb.Name)
                                   {
                                     case "radiobutton_Day":
+                        dayPart = "all";
                                     Sys = chartService.Draw(entriesDay, BAL.Constants.SYS);
                                     Dia = chartService.Draw(entriesDay, BAL.Constants.DIA);
                                     Pulse = chartService.Draw(entriesDay, BAL.Constants.PULSE);
                                     break;
                                 case "radiobutton_Am":
+                        dayPart = "Am";
                                     var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
                                     Sys = chartService.Draw(entriesAm, BAL.Constants.SYS);
                                     Dia = chartService.Draw(entriesAm, BAL.Constants.DIA);
                                     Pulse = chartService.Draw(entriesAm, BAL.Constants.PULSE);
                                     break;
                                 case "radiobutton_Pm":
+                        dayPart = "Pm";
                                     var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
                                     Sys = chartService.Draw(entriesPm, BAL.Constants.SYS);
                                     Dia = chartService.Draw(entriesPm, BAL.Constants.DIA);
                                     Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
                                     break;
                             }
-
+                               
                                  chart1.Series["Sys"] = Sys;
                                  chart1.Series[0].Name = BAL.Constants.SYS;
                                  chart1.Series[0].Color = Color.Green;
@@ -128,6 +132,7 @@ namespace BloodPressureLogApp
                                  chart1.Series[2].ChartType = SeriesChartType.Line;
                 chart1.Series[2].BorderWidth = 3;
                 chart1.Series[2].Enabled = false;
+                
 
 
             }
@@ -135,7 +140,7 @@ namespace BloodPressureLogApp
         }
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            groupBox4.Enabled =true;
+         
             groupBox3.Enabled = true;
             button_Min.Enabled = true;
             button_Max.Enabled = true;
@@ -148,7 +153,7 @@ namespace BloodPressureLogApp
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
          {
 
-            groupBox4.Enabled = true;
+            
             groupBox3.Enabled = true;
             button_Min.Enabled = true;
             button_Max.Enabled = true;
@@ -414,27 +419,25 @@ namespace BloodPressureLogApp
         }
         private void button_Min_Click(object sender, EventArgs e)
         {
-          if (dayPart == "all")
+            double x = Math.
+            var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
+            var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
+            var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
+            if (dayPart == "all")
             {
                 if (checkbox_Sys.Checked)
                 {
-
-                    var entriesSys = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
-                    double minAllSys = logicService.GetMinEntryBySys(entriesSys);
+                    double minAllSys = logicService.GetMinEntryBySys(entriesDay);
                     MessageBox.Show($"Minimum az összes Sys alapján: {minAllSys}");
                 }
                 if (checkbox_Dia.Checked)
                 {
-
-                    var entriesDia = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
-                    double minAllDia = logicService.GetMinEntryByDia(entriesDia);
+                    double minAllDia = logicService.GetMinEntryByDia(entriesDay);
                     MessageBox.Show($"Minimum az összes Dia alapján: {minAllDia}");
                 }
                 if (checkbox_Pulse.Checked)
                 {
-
-                    var entriesPulse = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
-                    double minAllPulse = logicService.GetMinEntryByPulse(entriesPulse);
+                    double minAllPulse = logicService.GetMinEntryByPulse(entriesDay);
                     MessageBox.Show($"Minimum az összes Pulse alapján: {minAllPulse}");
                 }
             }
@@ -442,23 +445,18 @@ namespace BloodPressureLogApp
             {
                 if (checkbox_Sys.Checked)
                 {
-
-                    var entriesSys = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
-                    double minAmPSys = logicService.GetMinEntryBySys(entriesSys);
+                    
+                    double minAmPSys = logicService.GetMinEntryBySys(entriesAm);
                     MessageBox.Show($"Minimum a reggeli Sys alapján: {minAmPSys}");
                 }
                 if (checkbox_Dia.Checked)
                 {
-
-                    var entriesDia = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
-                    double minAmDia = logicService.GetMinEntryByDia(entriesDia);
+                    double minAmDia = logicService.GetMinEntryByDia(entriesAm);
                     MessageBox.Show($"Minimum a reggeli Dia alapján: {minAmDia}");
                 }
                 if (checkbox_Pulse.Checked)
                 {
-
-                    var entriesPulse = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
-                    double minAmPulse = logicService.GetMinEntryByPulse(entriesPulse);
+                    double minAmPulse = logicService.GetMinEntryByPulse(entriesAm);
                     MessageBox.Show($"Minimum a reggeli Pulse alapján: {minAmPulse}");
                 }
             }
@@ -466,25 +464,18 @@ namespace BloodPressureLogApp
             {
                 if (checkbox_Sys.Checked)
                 {
-
-                    var entriesSys = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
-                    double minPmSys = logicService.GetMinEntryBySys(entriesSys);
+                    double minPmSys = logicService.GetMinEntryBySys(entriesPm);
                     MessageBox.Show($"Minimum az esti Sys alapján: {minPmSys}");
                 }
                 if (checkbox_Dia.Checked)
                 {
-
-                    var entriesDia = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
-                    double minPmDia = logicService.GetMinEntryByDia(entriesDia);
+                    double minPmDia = logicService.GetMinEntryByDia(entriesPm);
                     MessageBox.Show($"Minimum az esti Dia alapján: {minPmDia}");
                 }
                 if (checkbox_Pulse.Checked)
                 {
-
-                    var entriesPulse = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
-                    double minPmPulse = logicService.GetMinEntryByPulse(entriesPulse);
+                    double minPmPulse = logicService.GetMinEntryByPulse(entriesPm);
                     MessageBox.Show($"Minimum az esti  alapján: {minPmPulse}");
-
                 }
             }          
         }

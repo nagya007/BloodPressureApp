@@ -51,6 +51,7 @@ namespace BloodPressureLogApp
                 logicService.CurrentUserId = currentUser.Id;
                 main Log = new main();
                 Log.ShowDialog();
+                this.Hide();
 
             }
             else {
