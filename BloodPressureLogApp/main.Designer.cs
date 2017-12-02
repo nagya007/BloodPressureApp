@@ -88,6 +88,7 @@ namespace BloodPressureLogApp
             this.button_Avg.TabIndex = 12;
             this.button_Avg.Text = "Átlag";
             this.button_Avg.UseVisualStyleBackColor = true;
+            this.button_Avg.Click += new System.EventHandler(this.button_Avg_Click);
             // 
             // button_Max
             // 
@@ -97,6 +98,7 @@ namespace BloodPressureLogApp
             this.button_Max.TabIndex = 11;
             this.button_Max.Text = "Maximum";
             this.button_Max.UseVisualStyleBackColor = true;
+            this.button_Max.Click += new System.EventHandler(this.button_Max_Click);
             // 
             // button_Min
             // 

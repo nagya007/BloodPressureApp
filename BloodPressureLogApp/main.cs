@@ -419,7 +419,7 @@ namespace BloodPressureLogApp
         }
         private void button_Min_Click(object sender, EventArgs e)
         {
-            double x = Math.
+            
             var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
             var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
             var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
@@ -533,6 +533,126 @@ namespace BloodPressureLogApp
             button_Max.Enabled = false;
             button_Avg.Enabled = false;
 
+        }
+        private void button_Max_Click(object sender, EventArgs e)
+        {
+            var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
+            var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
+            var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
+            if (dayPart == "all")
+            {
+                if (checkbox_Sys.Checked)
+                {
+                    double maxAllSys = logicService.GetMaxEntryBySys(entriesDay);
+                    MessageBox.Show($"Maximum az összes Sys alapján: {maxAllSys}");
+                }
+                if (checkbox_Dia.Checked)
+                {
+                    double maxAllDia = logicService.GetMaxEntryByDia(entriesDay);
+                    MessageBox.Show($"Maximum az összes Dia alapján: {maxAllDia}");
+                }
+                if (checkbox_Pulse.Checked)
+                {
+                    double maxAllPulse = logicService.GetMaxEntryByPulse(entriesDay);
+                    MessageBox.Show($"Maximum az összes Pulse alapján: {maxAllPulse}");
+                }
+            }
+            if (dayPart == "Am")
+            {
+                if (checkbox_Sys.Checked)
+                {
+                    double maxAmPSys = logicService.GetMaxEntryBySys(entriesAm);
+                    MessageBox.Show($"Maximum a reggeli Sys alapján: {maxAmPSys}");
+                }
+                if (checkbox_Dia.Checked)
+                {
+                    double maxAmDia = logicService.GetMaxEntryByDia(entriesAm);
+                    MessageBox.Show($"Maximum a reggeli Dia alapján: {maxAmDia}");
+                }
+                if (checkbox_Pulse.Checked)
+                {
+                    double maxAmPulse = logicService.GetMaxEntryByPulse(entriesAm);
+                    MessageBox.Show($"Maximum a reggeli Pulse alapján: {maxAmPulse}");
+                }
+            }
+            if (dayPart == "Pm")
+            {
+                if (checkbox_Sys.Checked)
+                {
+                    double maxPmSys = logicService.GetMaxEntryBySys(entriesPm);
+                    MessageBox.Show($"Maximum az esti Sys alapján: {maxPmSys}");
+                }
+                if (checkbox_Dia.Checked)
+                {
+                    double maxPmDia = logicService.GetMaxEntryByDia(entriesPm);
+                    MessageBox.Show($"Maximum az esti Dia alapján: {maxPmDia}");
+                }
+                if (checkbox_Pulse.Checked)
+                {
+                    double maxPmPulse = logicService.GetMaxEntryByPulse(entriesPm);
+                    MessageBox.Show($"Maximum az esti  alapján: {maxPmPulse}");
+                }
+            }
+        }
+        private void button_Avg_Click(object sender, EventArgs e)
+        {
+            var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
+            var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
+            var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
+            if (dayPart == "all")
+            {
+                if (checkbox_Sys.Checked)
+                {
+                    double avgAllSys = logicService.GetAvgEntryBySys(entriesDay);
+                    MessageBox.Show($"Átlag az összes Sys alapján: {avgAllSys}");
+                }
+                if (checkbox_Dia.Checked)
+                {
+                    double avgAllDia = logicService.GetAvgEntryByDia(entriesDay);
+                    MessageBox.Show($"Átlag az összes Dia alapján: {avgAllDia}");
+                }
+                if (checkbox_Pulse.Checked)
+                {
+                    double avgAllPulse = logicService.GetAvgEntryByPulse(entriesDay);
+                    MessageBox.Show($"Átlag az összes Pulse alapján: {avgAllPulse}");
+                }
+            }
+            if (dayPart == "Am")
+            {
+                if (checkbox_Sys.Checked)
+                {
+                    double avgAmPSys = logicService.GetAvgEntryBySys(entriesAm);
+                    MessageBox.Show($"Átlag a reggeli Sys alapján: {avgAmPSys}");
+                }
+                if (checkbox_Dia.Checked)
+                {
+                    double avgAmDia = logicService.GetAvgEntryByDia(entriesAm);
+                    MessageBox.Show($"Átlag a reggeli Dia alapján: {avgAmDia}");
+                }
+                if (checkbox_Pulse.Checked)
+                {
+                    double avgAmPulse = logicService.GetAvgEntryByPulse(entriesAm);
+                    MessageBox.Show($"Átlag a reggeli Pulse alapján: {avgAmPulse}");
+                }
+            }
+            if (dayPart == "Pm")
+            {
+                if (checkbox_Sys.Checked)
+                {
+                    double avgPmSys = logicService.GetAvgEntryBySys(entriesPm);
+                    MessageBox.Show($"Átlag az esti Sys alapján: {avgPmSys}");
+                }
+                if (checkbox_Dia.Checked)
+                {
+                    double avgPmDia = logicService.GetAvgEntryByDia(entriesPm);
+                    MessageBox.Show($"Átlag az esti Dia alapján: {avgPmDia}");
+                }
+                if (checkbox_Pulse.Checked)
+                {
+                    double avgPmPulse = logicService.GetAvgEntryByPulse(entriesPm);
+                    MessageBox.Show($"Átlag az esti  alapján: {avgPmPulse}");
+                }
+            }
         }
     }
 }
