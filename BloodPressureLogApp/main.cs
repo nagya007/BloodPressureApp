@@ -110,23 +110,36 @@ namespace BloodPressureLogApp
                                     break;
                             }
 
-                             chart1.Series["Sys"] = Sys;                            
-                             
-                
-                            Sys.IsVisibleInLegend = true;
-                            
-                            chart1.Series["Dia"] = Dia;
-                            Dia.IsVisibleInLegend = true;
-                            chart1.Series["Pulse"] = Pulse;
-                            Pulse.IsVisibleInLegend = true;
-                
+                                 chart1.Series["Sys"] = Sys;
+                                 chart1.Series[0].Name = BAL.Constants.SYS;
+                                 chart1.Series[0].Color = Color.Green;
+                                 chart1.Series[0].ChartType = SeriesChartType.Line;
+                                 chart1.Series[0].BorderWidth = 3;                                 
+                                 chart1.Series[0].Enabled = false;
+                                 chart1.Series["Dia"] = Dia;
+                                 chart1.Series[1].Name = BAL.Constants.DIA;
+                                 chart1.Series[1].Color = Color.Red;
+                                 chart1.Series[1].ChartType = SeriesChartType.Line;
+                chart1.Series[1].BorderWidth = 3;
+                chart1.Series[1].Enabled = false;
+                                 chart1.Series["Pulse"] = Pulse;
+                                 chart1.Series[2].Name = BAL.Constants.PULSE;
+                                 chart1.Series[2].Color = Color.Blue;
+                                 chart1.Series[2].ChartType = SeriesChartType.Line;
+                chart1.Series[2].BorderWidth = 3;
+                chart1.Series[2].Enabled = false;
 
-                       }
+
+            }
 
         }
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-
+            groupBox4.Enabled =true;
+            groupBox3.Enabled = true;
+            button_Min.Enabled = true;
+            button_Max.Enabled = true;
+            button_Avg.Enabled = true;
             if (dateTimePicker2.Value != null)
             {
                 selectedItems = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
@@ -134,6 +147,12 @@ namespace BloodPressureLogApp
         }
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
          {
+
+            groupBox4.Enabled = true;
+            groupBox3.Enabled = true;
+            button_Min.Enabled = true;
+            button_Max.Enabled = true;
+            button_Avg.Enabled = true;
             if (dateTimePicker1.Value != null)
             {
                 selectedItems = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
@@ -489,7 +508,40 @@ namespace BloodPressureLogApp
         }
         private void checkbox_Serise_CheckedChanged(object sender, EventArgs e)
         {
-            
+            if (checkbox_Sys.Checked)
+            {
+                chart1.Series[0].Enabled = true;
+
+            }
+            else
+            {
+                chart1.Series[0].Enabled = false;
+            }
+            if (checkbox_Dia.Checked)
+            {
+                chart1.Series[1].Enabled = true;
+            }
+            else
+            {
+                chart1.Series[1].Enabled = false;
+            }
+            if (checkbox_Pulse.Checked)
+            {
+                chart1.Series[2].Enabled = true;
+            }
+            else
+            {
+                chart1.Series[2].Enabled = false;
+            }
+        }
+        private void main_Load(object sender, EventArgs e)
+        {
+            groupBox4.Enabled = false;
+            groupBox3.Enabled = false;
+            button_Min.Enabled = false;
+            button_Max.Enabled = false;
+            button_Avg.Enabled = false;
+
         }
     }
 }

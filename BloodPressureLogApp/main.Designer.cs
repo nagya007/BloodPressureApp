@@ -29,10 +29,10 @@ namespace BloodPressureLogApp
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
+            this.button_Avg = new System.Windows.Forms.Button();
             this.button_Max = new System.Windows.Forms.Button();
             this.button_Min = new System.Windows.Forms.Button();
             this.button_XmlCreat = new System.Windows.Forms.Button();
@@ -61,7 +61,7 @@ namespace BloodPressureLogApp
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button7);
+            this.groupBox1.Controls.Add(this.button_Avg);
             this.groupBox1.Controls.Add(this.button_Max);
             this.groupBox1.Controls.Add(this.button_Min);
             this.groupBox1.Controls.Add(this.button_XmlCreat);
@@ -80,14 +80,14 @@ namespace BloodPressureLogApp
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // button7
+            // button_Avg
             // 
-            this.button7.Location = new System.Drawing.Point(227, 303);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 12;
-            this.button7.Text = "Átlag";
-            this.button7.UseVisualStyleBackColor = true;
+            this.button_Avg.Location = new System.Drawing.Point(227, 303);
+            this.button_Avg.Name = "button_Avg";
+            this.button_Avg.Size = new System.Drawing.Size(75, 23);
+            this.button_Avg.TabIndex = 12;
+            this.button_Avg.Text = "Átlag";
+            this.button_Avg.UseVisualStyleBackColor = true;
             // 
             // button_Max
             // 
@@ -179,7 +179,7 @@ namespace BloodPressureLogApp
             this.checkbox_Pulse.TabIndex = 2;
             this.checkbox_Pulse.Text = "Pulse";
             this.checkbox_Pulse.UseVisualStyleBackColor = true;
-            this.checkbox_Pulse.CheckedChanged += new System.EventHandler(checkbox_Serise_CheckedChanged);
+            this.checkbox_Pulse.CheckedChanged += new System.EventHandler(this.checkbox_Serise_CheckedChanged);
             // 
             // checkbox_Dia
             // 
@@ -190,7 +190,7 @@ namespace BloodPressureLogApp
             this.checkbox_Dia.TabIndex = 1;
             this.checkbox_Dia.Text = "Dia";
             this.checkbox_Dia.UseVisualStyleBackColor = true;
-            this.checkbox_Dia.CheckedChanged += new System.EventHandler(checkbox_Serise_CheckedChanged);
+            this.checkbox_Dia.CheckedChanged += new System.EventHandler(this.checkbox_Serise_CheckedChanged);
             // 
             // checkbox_Sys
             // 
@@ -201,7 +201,7 @@ namespace BloodPressureLogApp
             this.checkbox_Sys.TabIndex = 0;
             this.checkbox_Sys.Text = "Sys";
             this.checkbox_Sys.UseVisualStyleBackColor = true;
-            this.checkbox_Sys.CheckedChanged += new System.EventHandler(checkbox_Serise_CheckedChanged);
+            this.checkbox_Sys.CheckedChanged += new System.EventHandler(this.checkbox_Serise_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -279,10 +279,10 @@ namespace BloodPressureLogApp
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(11, 13);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
@@ -300,6 +300,7 @@ namespace BloodPressureLogApp
             this.Controls.Add(this.groupBox1);
             this.Name = "main";
             this.Text = "Belépve";
+            this.Load += new System.EventHandler(this.main_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -324,7 +325,7 @@ namespace BloodPressureLogApp
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button_mutat;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button_Avg;
         private System.Windows.Forms.Button button_Max;
         private System.Windows.Forms.Button button_Min;
         private System.Windows.Forms.Button button_XmlCreat;
