@@ -44,5 +44,6 @@ namespace BloodPressureLogApp.BAL
             }
             return series;
         }
+        public 
     }
 }

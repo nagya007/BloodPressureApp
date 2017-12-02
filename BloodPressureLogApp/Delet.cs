@@ -10,22 +10,21 @@ using System.Windows.Forms;
 
 namespace BloodPressureLogApp
 {
-    public partial class UpdateEntry : Form
+    public partial class Delet : Form
     {
-
         BAL.BusinessLogicService logicService;
         DAL.DbService dbService;
-     
-        public UpdateEntry()
+
+        public Delet()
         {
             InitializeComponent();
             logicService = BAL.BusinessLogicService.getInstance();
             dbService = DAL.DbService.getInstance();
         }
 
-        private void UpdateEntry_Load(object sender, EventArgs e)
+        private void Delet_Load(object sender, EventArgs e)
         {
-          var allEntry=  dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
+            var allEntry = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
             foreach (var entry in allEntry)
             {
                 combobox_Date.Items.Add(entry.Date);
@@ -40,9 +39,9 @@ namespace BloodPressureLogApp
             textbox_Pulse.Text = entry.Pulse.ToString();
         }
 
-        private void button_Save_Click(object sender, EventArgs e)
+        private void button_Delet_Click(object sender, EventArgs e)
         {
-            dbService.UpdateEntryByDateAndUserId(dbService.GetUserByUserName(logicService.CurrentUser), Convert.ToDateTime(combobox_Date.Text), int.Parse(textbox_Sys.Text), int.Parse(textbox_Dia.Text), int.Parse(textbox_Pulse.Text));
+            dbService.RemoveEntryByDateTimeAndUserId(Convert.ToDateTime(combobox_Date.Text), dbService.GetUserByUserName(logicService.CurrentUser));
             this.Close();
         }
     }

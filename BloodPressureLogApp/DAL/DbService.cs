@@ -70,6 +70,10 @@ namespace BloodPressureLogApp.DAL
         {
             return this.entries.Where(entry => (entry.UserId == user.Id && entry.Date >= date1 && entry.Date <= date2));
         }
+        public Entry GetEntriesByDateAndUser(DateTime date1, User user)
+        {
+            return this.entries.First(entry => (entry.UserId == user.Id && entry.Date == date1));
+        }
         public User GetUserByUserName(string username)
         {
             return this.users.FirstOrDefault(u => u.UserName == username);
@@ -79,7 +83,7 @@ namespace BloodPressureLogApp.DAL
             return this.users.Any(u => u.UserName == username);
         }
         public bool RemoveEntryByDateTimeAndUserId(DateTime date1, User user)
-        { var result = entries.SingleOrDefault(entries => entries.UserId == user.Id && entries.Date == date1);
+        { var result = this.entries.SingleOrDefault(entries => entries.UserId == user.Id && entries.Date == date1);
 
             if (result != null)
             {
