@@ -10,7 +10,6 @@ c:\users\adam\documents\visual studio 2017\Projects\BloodPressureLogApp\BloodPre
 c:\users\adam\documents\visual studio 2017\Projects\BloodPressureLogApp\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.exe
 c:\users\adam\documents\visual studio 2017\Projects\BloodPressureLogApp\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.pdb
 c:\users\adam\documents\visual studio 2017\Projects\BloodPressureLogApp\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.Fr_belep.resources
-C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.csprojResolveAssemblyReference.cache
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.Fr_belep.resources
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.fr_Reg.resources
 C:\Users\Adam\Documents\Visual Studio 2017\Projects\BloodPressureLogApp1\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.Properties.Resources.resources

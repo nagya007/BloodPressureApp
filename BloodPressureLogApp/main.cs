@@ -40,49 +40,83 @@ namespace BloodPressureLogApp
             
         private void radioButton_CheckedChangedDayPart(object sender, EventArgs e)
         {  
-            RadioButton rb = sender as RadioButton;
-            if (rb.Checked)
-            {
-                switch (rb.Name)
-                {
-                    case "radiobutton_Day":
-                     var entriesDay=  dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
-                        Sys =chartService.Draw(entriesDay, BAL.Constants.SYS);
-                        chart1.Series["Sys"] = Sys;
-                        Sys.IsVisibleInLegend = false;
-                        Dia = chartService.Draw(entriesDay, BAL.Constants.DIA);
-                        chart1.Series["Dia"] = Dia;
-                        Dia.IsVisibleInLegend = false;
-                        Pulse= chartService.Draw(entriesDay, BAL.Constants.PULSE);
-                        chart1.Series["Pulse"] = Pulse;
-                        Pulse.IsVisibleInLegend = false;
-                        break;
-                    case "radiobutton_Am":
-                        var entriesAm = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser),true);
-                         Sys = chartService.Draw(entriesAm, BAL.Constants.SYS);
-                        chart1.Series["Sys"] = Sys;
-                        Sys.IsVisibleInLegend = false;
-                         Dia = chartService.Draw(entriesAm, BAL.Constants.DIA);
-                        chart1.Series["Dia"] = Dia;
-                        Dia.IsVisibleInLegend = false;
-                         Pulse = chartService.Draw(entriesAm, BAL.Constants.PULSE);
-                        chart1.Series["Pulse"] = Pulse;
-                        Pulse.IsVisibleInLegend = false;
-                        break;
-                    case"radiobutton_Pm":
-                        var entriesPm = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
-                         Sys = chartService.Draw(entriesPm, BAL.Constants.SYS);
-                        chart1.Series["Sys"] = Sys;
-                        Sys.IsVisibleInLegend = false;
-                         Dia = chartService.Draw(entriesPm, BAL.Constants.DIA);
-                        chart1.Series["Dia"] = Dia;
-                        Dia.IsVisibleInLegend = false;
-                         Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
-                        chart1.Series["Pulse"] = Pulse;
-                        Pulse.IsVisibleInLegend = false;
-                        break;
-                }
-            }
+            //RadioButton rb = sender as RadioButton;
+            //if (rb.Checked)
+            //{
+            //    switch (rb.Name)
+            //    {
+            //        case "radiobutton_Day":
+            //         var entriesDay=  dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
+            //            Sys =chartService.Draw(entriesDay, BAL.Constants.SYS);
+            //            chart1.Series["Sys"] = Sys;
+            //            Sys.IsVisibleInLegend = false;
+            //            Dia = chartService.Draw(entriesDay, BAL.Constants.DIA);
+            //            chart1.Series["Dia"] = Dia;
+            //            Dia.IsVisibleInLegend = false;
+            //            Pulse= chartService.Draw(entriesDay, BAL.Constants.PULSE);
+            //            chart1.Series["Pulse"] = Pulse;
+            //            Pulse.IsVisibleInLegend = false;
+            //            break;
+            //        case "radiobutton_Am":
+            //            var entriesAm = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser),true);
+            //             Sys = chartService.Draw(entriesAm, BAL.Constants.SYS);
+            //            chart1.Series["Sys"] = Sys;
+            //            Sys.IsVisibleInLegend = false;
+            //             Dia = chartService.Draw(entriesAm, BAL.Constants.DIA);
+            //            chart1.Series["Dia"] = Dia;
+            //            Dia.IsVisibleInLegend = false;
+            //             Pulse = chartService.Draw(entriesAm, BAL.Constants.PULSE);
+            //            chart1.Series["Pulse"] = Pulse;
+            //            Pulse.IsVisibleInLegend = false;
+            //            break;
+            //        case"radiobutton_Pm":
+            //            var entriesPm = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
+            //             Sys = chartService.Draw(entriesPm, BAL.Constants.SYS);
+            //            chart1.Series["Sys"] = Sys;
+            //            Sys.IsVisibleInLegend = false;
+            //             Dia = chartService.Draw(entriesPm, BAL.Constants.DIA);
+            //            chart1.Series["Dia"] = Dia;
+            //            Dia.IsVisibleInLegend = false;
+            //             Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
+            //            chart1.Series["Pulse"] = Pulse;
+            //            Pulse.IsVisibleInLegend = false;
+            //            break;
+                        RadioButton rb = sender as RadioButton;
+                        if (rb.Checked)
+                        {
+                             chart1.ChartAreas.Clear();
+                             var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
+                             switch (rb.Name)
+                                  {
+                                    case "radiobutton_Day":
+                                   
+                                    Sys = chartService.Draw(entriesDay, BAL.Constants.SYS);
+                                    Dia = chartService.Draw(entriesDay, BAL.Constants.DIA);
+                                    Pulse = chartService.Draw(entriesDay, BAL.Constants.PULSE);
+                                    break;
+                                case "radiobutton_Am":
+                                    var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
+                                    Sys = chartService.Draw(entriesAm, BAL.Constants.SYS);
+                                    Dia = chartService.Draw(entriesAm, BAL.Constants.DIA);
+                                    Pulse = chartService.Draw(entriesAm, BAL.Constants.PULSE);
+                                    break;
+                                case "radiobutton_Pm":
+                                    var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
+                                    Sys = chartService.Draw(entriesPm, BAL.Constants.SYS);
+                                    Dia = chartService.Draw(entriesPm, BAL.Constants.DIA);
+                                    Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
+                                    break;
+                            }
+                            chart1.Series["Sys"] = Sys;
+                            Sys.IsVisibleInLegend = true;
+                            
+                            chart1.Series["Dia"] = Dia;
+                            Dia.IsVisibleInLegend = true;
+                            chart1.Series["Pulse"] = Pulse;
+                            Pulse.IsVisibleInLegend = true;
+                
+
+                       }
 
         }
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -103,31 +137,36 @@ namespace BloodPressureLogApp
         private void button_mutat_Click(object sender, EventArgs e)
         {
 
-            if (checkbox_Sys.Checked)
-            {
-                IQueryable<Entry> entriesSys;
-                if (dayPart == "all")
-                {
-                    entriesSys = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
-                }
-                else if (dayPart == "Am")
-                {
-                    entriesSys = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
-                }
-                else
-                {
-                    entriesSys = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
-                }
-                DateTime minDate = entriesSys.OrderBy(entry => entry.Date).First().Date;
-                DateTime maxDate = entriesSys.OrderByDescending(entry => entry.Date).First().Date;
+            //var enririesdata = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
+            //var daypartsentriesAm = logicService.GetEntriesByDayPart(enririesdata,true);
+            //var daypartsentriesPm = logicService.GetEntriesByDayPart(enririesdata, false);
+           
+            
+            //if (checkbox_Sys.Checked)
+            //{
+            //    IQueryable<Entry> entriesSys;
+            //    if (dayPart == "all")
+            //    {
+            //        entriesSys = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
+            //    }
+            //    else if (dayPart == "Am")
+            //    {
+            //        entriesSys = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
+            //    }
+            //    else
+            //    {
+            //        entriesSys = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
+            //    }
+            //    DateTime minDate = entriesSys.OrderBy(entry => entry.Date).First().Date;
+            //    DateTime maxDate = entriesSys.OrderByDescending(entry => entry.Date).First().Date;
 
 
-                chart1.Series.Add(chartService.Draw(entriesSys, BAL.Constants.SYS));
-                chart1.Series["Sys"].ChartType = SeriesChartType.Line;
-                chart1.Series["Sys"].Name = BAL.Constants.SYS;
-                chart1.ChartAreas["Sys"].AxisY.Name = BAL.Constants.SYS;
-                chart1.Series["Sys"].Color = Color.Blue;
-            }
+            //    chart1.Series.Add(chartService.Draw(entriesSys, BAL.Constants.SYS));
+            //    chart1.Series["Sys"].ChartType = SeriesChartType.Line;
+            //    chart1.Series["Sys"].Name = BAL.Constants.SYS;
+            //    chart1.ChartAreas["Sys"].AxisY.Name = BAL.Constants.SYS;
+            //    chart1.Series["Sys"].Color = Color.Blue;
+            //}
 
             // chart1.ChartAreas[0].AxisX.Minimum = minDate.ToOADate();
             //chart1.ChartAreas[0].AxisX.Maximum = maxDate.ToOADate();

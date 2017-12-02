@@ -85,7 +85,8 @@ namespace BloodPressureLogApp.BAL
         public IQueryable<Entry> GetEntriesByDayPart(IQueryable<Entry> rangeEntries, bool isAm)
         {
             return rangeEntries.Where(entry => entry.IsAm == isAm);
-        }        
+        }
+      
 
 
 

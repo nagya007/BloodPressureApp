@@ -62,6 +62,7 @@ namespace BloodPressureLogApp.DAL
         {
             return this.entries.Where(entry => entry.UserId == user.Id && entry.IsAm == isAm);
         }
+       
         public IQueryable<Entry> GetEntryiesByDayPart2(IQueryable<Entry> entries,bool isAm)
         {
             return entries.Where(entry => entry.IsAm == isAm);
