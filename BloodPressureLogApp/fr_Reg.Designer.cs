@@ -99,6 +99,7 @@
             // 
             // bt_Back
             // 
+            this.bt_Back.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_Back.Location = new System.Drawing.Point(43, 251);
             this.bt_Back.Name = "bt_Back";
             this.bt_Back.Size = new System.Drawing.Size(75, 23);
@@ -109,6 +110,7 @@
             // 
             // bt_Save
             // 
+            this.bt_Save.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_Save.Location = new System.Drawing.Point(202, 251);
             this.bt_Save.Name = "bt_Save";
             this.bt_Save.Size = new System.Drawing.Size(75, 23);
@@ -126,6 +128,7 @@
             // 
             // fr_Reg
             // 
+            this.AcceptButton = this.bt_Save;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(338, 310);

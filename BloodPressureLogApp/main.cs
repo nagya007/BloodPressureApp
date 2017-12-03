@@ -24,7 +24,7 @@ namespace BloodPressureLogApp
         BAL.UserOutput userOut = new BAL.UserOutput();
         LogDbContext context = new LogDbContext();
         string dayPart;
-        //string dataType;
+        string dataType;
         Series Sys = new Series();     
         Series Dia = new Series();
         Series Pulse = new Series();
@@ -71,24 +71,7 @@ namespace BloodPressureLogApp
                     Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
                     break;
                 }
-                chart1.Series["Sys"] = Sys;
-                chart1.Series[0].Name = BAL.Constants.SYS;
-                chart1.Series[0].Color = Color.Green;
-                chart1.Series[0].ChartType = SeriesChartType.Line;
-                chart1.Series[0].BorderWidth = 3;                                 
-                chart1.Series[0].Enabled = false;
-                chart1.Series["Dia"] = Dia;
-                chart1.Series[1].Name = BAL.Constants.DIA;
-                chart1.Series[1].Color = Color.Red;
-                chart1.Series[1].ChartType = SeriesChartType.Line;
-                chart1.Series[1].BorderWidth = 3;
-                chart1.Series[1].Enabled = false;
-                chart1.Series["Pulse"] = Pulse;
-                chart1.Series[2].Name = BAL.Constants.PULSE;
-                chart1.Series[2].Color = Color.Blue;
-                chart1.Series[2].ChartType = SeriesChartType.Line;
-                chart1.Series[2].BorderWidth = 3;
-                chart1.Series[2].Enabled = false;
+               
             }
 
         }
@@ -119,9 +102,38 @@ namespace BloodPressureLogApp
         }
         private void button_mutat_Click(object sender, EventArgs e)
         {
-          
-            chart1.Series["Pulse"] = Pulse;
-          
+            switch (dataType)
+            {
+                case "Sys":
+                    chart1.Series["Sys"] = Sys;
+                    chart1.Series[0].Name = BAL.Constants.SYS;
+                    chart1.Series[0].Color = Color.Green;
+                    chart1.Series[0].ChartType = SeriesChartType.Line;
+                    chart1.Series[0].BorderWidth = 3;
+                   
+                    break;
+                case "Dia":
+                    chart1.Series["Dia"] = Dia;
+                    chart1.Series[1].Name = BAL.Constants.DIA;
+                    chart1.Series[1].Color = Color.Red;
+                    chart1.Series[1].ChartType = SeriesChartType.Line;
+                    chart1.Series[1].BorderWidth = 3;
+                  
+                    break;
+                case "Pulse":
+                    chart1.Series["Pulse"] = Pulse;
+                    chart1.Series[2].Name = BAL.Constants.PULSE;
+                    chart1.Series[2].Color = Color.Blue;
+                    chart1.Series[2].ChartType = SeriesChartType.Line;
+                    chart1.Series[2].BorderWidth = 3;
+                 
+                    break;
+
+            }
+           
+            
+            
+
         }
         private void button_XmlCreat_Click(object sender, EventArgs e)
         {
@@ -220,29 +232,17 @@ namespace BloodPressureLogApp
         {
             if (checkbox_Sys.Checked)
             {
-                chart1.Series[0].Enabled = true;
-
-            }
-            else
-            {
-                chart1.Series[0].Enabled = false;
+                dataType = "Sys";
             }
             if (checkbox_Dia.Checked)
             {
-                chart1.Series[1].Enabled = true;
-            }
-            else
-            {
-                chart1.Series[1].Enabled = false;
+                dataType = "Dia";
             }
             if (checkbox_Pulse.Checked)
             {
-                chart1.Series[2].Enabled = true;
+                dataType = "Pulse";
             }
-            else
-            {
-                chart1.Series[2].Enabled = false;
-            }
+            
         }
         private void main_Load(object sender, EventArgs e)
         {
