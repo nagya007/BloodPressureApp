@@ -29,8 +29,8 @@ namespace BloodPressureLogApp
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button_Avg = new System.Windows.Forms.Button();
             this.button_Max = new System.Windows.Forms.Button();
@@ -75,14 +75,13 @@ namespace BloodPressureLogApp
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Location = new System.Drawing.Point(796, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(351, 497);
+            this.groupBox1.Size = new System.Drawing.Size(262, 497);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
             // 
             // button_Avg
             // 
-            this.button_Avg.Location = new System.Drawing.Point(227, 303);
+            this.button_Avg.Location = new System.Drawing.Point(179, 303);
             this.button_Avg.Name = "button_Avg";
             this.button_Avg.Size = new System.Drawing.Size(75, 23);
             this.button_Avg.TabIndex = 12;
@@ -92,7 +91,7 @@ namespace BloodPressureLogApp
             // 
             // button_Max
             // 
-            this.button_Max.Location = new System.Drawing.Point(227, 274);
+            this.button_Max.Location = new System.Drawing.Point(179, 274);
             this.button_Max.Name = "button_Max";
             this.button_Max.Size = new System.Drawing.Size(75, 23);
             this.button_Max.TabIndex = 11;
@@ -102,7 +101,7 @@ namespace BloodPressureLogApp
             // 
             // button_Min
             // 
-            this.button_Min.Location = new System.Drawing.Point(225, 245);
+            this.button_Min.Location = new System.Drawing.Point(179, 245);
             this.button_Min.Name = "button_Min";
             this.button_Min.Size = new System.Drawing.Size(75, 23);
             this.button_Min.TabIndex = 10;
@@ -152,7 +151,7 @@ namespace BloodPressureLogApp
             // 
             // button_mutat
             // 
-            this.button_mutat.Location = new System.Drawing.Point(225, 216);
+            this.button_mutat.Location = new System.Drawing.Point(179, 217);
             this.button_mutat.Name = "button_mutat";
             this.button_mutat.Size = new System.Drawing.Size(75, 22);
             this.button_mutat.TabIndex = 4;
@@ -167,10 +166,10 @@ namespace BloodPressureLogApp
             this.groupBox4.Controls.Add(this.checkbox_Sys);
             this.groupBox4.Location = new System.Drawing.Point(149, 91);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(151, 119);
+            this.groupBox4.Size = new System.Drawing.Size(105, 108);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "groupBox4";
+            this.groupBox4.Text = "Válasszon adatot:";
             // 
             // checkbox_Pulse
             // 
@@ -212,15 +211,15 @@ namespace BloodPressureLogApp
             this.groupBox3.Controls.Add(this.radiobutton_Day);
             this.groupBox3.Location = new System.Drawing.Point(21, 91);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(122, 119);
+            this.groupBox3.Size = new System.Drawing.Size(107, 108);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "groupBox3";
+            this.groupBox3.Text = "Válasszon napszakot:";
             // 
             // radiobutton_Pm
             // 
             this.radiobutton_Pm.AutoSize = true;
-            this.radiobutton_Pm.Location = new System.Drawing.Point(7, 68);
+            this.radiobutton_Pm.Location = new System.Drawing.Point(7, 80);
             this.radiobutton_Pm.Name = "radiobutton_Pm";
             this.radiobutton_Pm.Size = new System.Drawing.Size(42, 17);
             this.radiobutton_Pm.TabIndex = 2;
@@ -232,7 +231,7 @@ namespace BloodPressureLogApp
             // radiobutton_Am
             // 
             this.radiobutton_Am.AutoSize = true;
-            this.radiobutton_Am.Location = new System.Drawing.Point(8, 44);
+            this.radiobutton_Am.Location = new System.Drawing.Point(7, 57);
             this.radiobutton_Am.Name = "radiobutton_Am";
             this.radiobutton_Am.Size = new System.Drawing.Size(61, 17);
             this.radiobutton_Am.TabIndex = 1;
@@ -244,7 +243,7 @@ namespace BloodPressureLogApp
             // radiobutton_Day
             // 
             this.radiobutton_Day.AutoSize = true;
-            this.radiobutton_Day.Location = new System.Drawing.Point(7, 20);
+            this.radiobutton_Day.Location = new System.Drawing.Point(7, 34);
             this.radiobutton_Day.Name = "radiobutton_Day";
             this.radiobutton_Day.Size = new System.Drawing.Size(72, 17);
             this.radiobutton_Day.TabIndex = 0;
@@ -277,14 +276,13 @@ namespace BloodPressureLogApp
             this.groupBox2.Size = new System.Drawing.Size(798, 497);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(11, 13);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
@@ -297,7 +295,7 @@ namespace BloodPressureLogApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1157, 518);
+            this.ClientSize = new System.Drawing.Size(1065, 503);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "main";

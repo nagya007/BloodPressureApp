@@ -54,7 +54,7 @@
             this.button_Add.Name = "button_Add";
             this.button_Add.Size = new System.Drawing.Size(75, 23);
             this.button_Add.TabIndex = 2;
-            this.button_Add.Text = "Add";
+            this.button_Add.Text = "Hozzáad";
             this.button_Add.UseVisualStyleBackColor = true;
             this.button_Add.Click += new System.EventHandler(this.button_Add_Click);
             // 
@@ -64,6 +64,7 @@
             this.textbox_Sys.Name = "textbox_Sys";
             this.textbox_Sys.Size = new System.Drawing.Size(178, 20);
             this.textbox_Sys.TabIndex = 4;
+            this.textbox_Sys.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbox_Sys_KeyPress);
             // 
             // textbox_Dia
             // 
@@ -71,6 +72,7 @@
             this.textbox_Dia.Name = "textbox_Dia";
             this.textbox_Dia.Size = new System.Drawing.Size(178, 20);
             this.textbox_Dia.TabIndex = 5;
+            this.textbox_Dia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbox_Dia_KeyPress);
             // 
             // textbox_Pulse
             // 
@@ -78,6 +80,7 @@
             this.textbox_Pulse.Name = "textbox_Pulse";
             this.textbox_Pulse.Size = new System.Drawing.Size(178, 20);
             this.textbox_Pulse.TabIndex = 6;
+            this.textbox_Pulse.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbox_Pulse_KeyPress);
             // 
             // label3
             // 
@@ -120,7 +123,7 @@
             this.Controls.Add(this.button_Add);
             this.Controls.Add(this.button_Back);
             this.Name = "Add";
-            this.Text = "S";
+            this.Text = "Új adat";
             this.ResumeLayout(false);
             this.PerformLayout();
 

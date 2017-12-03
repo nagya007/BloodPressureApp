@@ -86,24 +86,24 @@ namespace BloodPressureLogApp.BAL
         {
             return rangeEntries.Where(entry => entry.IsAm == isAm);
         }
-        public IQueryable<Entry> Get(IQueryable<Entry> entris)
-        {
-            var OrdersByCustomer = from so in db.SalesOrders
-                                   group so by so.CustomerId into TotaledOrders
-                                   select new
-                                   {
-                                       CustomerId = TotaledOrders.Key,
-                                       TotaledValue = TotaledOrders.Sum(s => s.TotalValue),
-                                       Orders = TotaledOrders.ToList()
-                                   };
+        //public IQueryable<Entry> Get(IQueryable<Entry> entris)
+        //{
+        //    var OrdersByCustomer = from so in db.SalesOrders
+        //                           group so by so.CustomerId into TotaledOrders
+        //                           select new
+        //                           {
+        //                               CustomerId = TotaledOrders.Key,
+        //                               TotaledValue = TotaledOrders.Sum(s => s.TotalValue),
+        //                               Orders = TotaledOrders.ToList()
+        //                           };
 
 
-        }
-        public List<double> GetSysDistribution(IQueryable<Entry> entries)
-        {
-            var distValues = entries.GroupBy(e => e.Sys);
-            var dist = distValues.Count(e => e.Sys);
-        }
+        //}
+        ////public List<double> GetSysDistribution(IQueryable<Entry> entries)
+        //{
+        //    var distValues = entries.GroupBy(e => e.Sys);
+        //    var dist = distValues.Count(e => e.Sys);
+        //}
 
 
 

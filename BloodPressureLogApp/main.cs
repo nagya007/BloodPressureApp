@@ -24,7 +24,7 @@ namespace BloodPressureLogApp
         BAL.UserOutput userOut = new BAL.UserOutput();
         LogDbContext context = new LogDbContext();
         string dayPart;
-        string dataType;
+        //string dataType;
         Series Sys = new Series();     
         Series Dia = new Series();
         Series Pulse = new Series();
@@ -33,7 +33,6 @@ namespace BloodPressureLogApp
         public main()
         {
             InitializeComponent();
-
             Sys.Name = BAL.Constants.SYS;
             chart1.ChartAreas[0].AxisX.LabelStyle.Format = "yyyy-MM-dd";
             chart1.ChartAreas[0].AxisX.Interval = 1;
@@ -43,98 +42,53 @@ namespace BloodPressureLogApp
         }            
         private void radioButton_CheckedChangedDayPart(object sender, EventArgs e)
         {
-            groupBox4.Enabled = true;
-            //RadioButton rb = sender as RadioButton;
-            //if (rb.Checked)
-            //{
-            //    switch (rb.Name)
-            //    {
-            //        case "radiobutton_Day":
-            //         var entriesDay=  dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
-            //            Sys =chartService.Draw(entriesDay, BAL.Constants.SYS);
-            //            chart1.Series["Sys"] = Sys;
-            //            Sys.IsVisibleInLegend = false;
-            //            Dia = chartService.Draw(entriesDay, BAL.Constants.DIA);
-            //            chart1.Series["Dia"] = Dia;
-            //            Dia.IsVisibleInLegend = false;
-            //            Pulse= chartService.Draw(entriesDay, BAL.Constants.PULSE);
-            //            chart1.Series["Pulse"] = Pulse;
-            //            Pulse.IsVisibleInLegend = false;
-            //            break;
-            //        case "radiobutton_Am":
-            //            var entriesAm = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser),true);
-            //             Sys = chartService.Draw(entriesAm, BAL.Constants.SYS);
-            //            chart1.Series["Sys"] = Sys;
-            //            Sys.IsVisibleInLegend = false;
-            //             Dia = chartService.Draw(entriesAm, BAL.Constants.DIA);
-            //            chart1.Series["Dia"] = Dia;
-            //            Dia.IsVisibleInLegend = false;
-            //             Pulse = chartService.Draw(entriesAm, BAL.Constants.PULSE);
-            //            chart1.Series["Pulse"] = Pulse;
-            //            Pulse.IsVisibleInLegend = false;
-            //            break;
-            //        case"radiobutton_Pm":
-            //            var entriesPm = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
-            //             Sys = chartService.Draw(entriesPm, BAL.Constants.SYS);
-            //            chart1.Series["Sys"] = Sys;
-            //            Sys.IsVisibleInLegend = false;
-            //             Dia = chartService.Draw(entriesPm, BAL.Constants.DIA);
-            //            chart1.Series["Dia"] = Dia;
-            //            Dia.IsVisibleInLegend = false;
-            //             Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
-            //            chart1.Series["Pulse"] = Pulse;
-            //            Pulse.IsVisibleInLegend = false;
-            //            break;
+            groupBox4.Enabled = true;            
             RadioButton rb = sender as RadioButton;
-                        if (rb.Checked)
-                        {
-                             chart1.Series.Clear();
-                             var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
-                             switch (rb.Name)
-                                  {
-                                    case "radiobutton_Day":
-                        dayPart = "all";
-                                    Sys = chartService.Draw(entriesDay, BAL.Constants.SYS);
-                                    Dia = chartService.Draw(entriesDay, BAL.Constants.DIA);
-                                    Pulse = chartService.Draw(entriesDay, BAL.Constants.PULSE);
-                                    break;
-                                case "radiobutton_Am":
-                        dayPart = "Am";
-                                    var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
-                                    Sys = chartService.Draw(entriesAm, BAL.Constants.SYS);
-                                    Dia = chartService.Draw(entriesAm, BAL.Constants.DIA);
-                                    Pulse = chartService.Draw(entriesAm, BAL.Constants.PULSE);
-                                    break;
-                                case "radiobutton_Pm":
-                        dayPart = "Pm";
-                                    var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
-                                    Sys = chartService.Draw(entriesPm, BAL.Constants.SYS);
-                                    Dia = chartService.Draw(entriesPm, BAL.Constants.DIA);
-                                    Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
-                                    break;
-                            }
-                               
-                                 chart1.Series["Sys"] = Sys;
-                                 chart1.Series[0].Name = BAL.Constants.SYS;
-                                 chart1.Series[0].Color = Color.Green;
-                                 chart1.Series[0].ChartType = SeriesChartType.Line;
-                                 chart1.Series[0].BorderWidth = 3;                                 
-                                 chart1.Series[0].Enabled = false;
-                                 chart1.Series["Dia"] = Dia;
-                                 chart1.Series[1].Name = BAL.Constants.DIA;
-                                 chart1.Series[1].Color = Color.Red;
-                                 chart1.Series[1].ChartType = SeriesChartType.Line;
+            if (rb.Checked)
+            {
+                chart1.Series.Clear();
+                var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
+                switch (rb.Name)
+                {
+                    case "radiobutton_Day":
+                    dayPart = "all";
+                    Sys = chartService.Draw(entriesDay, BAL.Constants.SYS);
+                    Dia = chartService.Draw(entriesDay, BAL.Constants.DIA);
+                    Pulse = chartService.Draw(entriesDay, BAL.Constants.PULSE);
+                    break;
+                    case "radiobutton_Am":
+                    dayPart = "Am";
+                    var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
+                    Sys = chartService.Draw(entriesAm, BAL.Constants.SYS);
+                    Dia = chartService.Draw(entriesAm, BAL.Constants.DIA);
+                    Pulse = chartService.Draw(entriesAm, BAL.Constants.PULSE);
+                    break;
+                    case "radiobutton_Pm":
+                    dayPart = "Pm";
+                    var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
+                    Sys = chartService.Draw(entriesPm, BAL.Constants.SYS);
+                    Dia = chartService.Draw(entriesPm, BAL.Constants.DIA);
+                    Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
+                    break;
+                }
+                chart1.Series["Sys"] = Sys;
+                chart1.Series[0].Name = BAL.Constants.SYS;
+                chart1.Series[0].Color = Color.Green;
+                chart1.Series[0].ChartType = SeriesChartType.Line;
+                chart1.Series[0].BorderWidth = 3;                                 
+                chart1.Series[0].Enabled = false;
+                chart1.Series["Dia"] = Dia;
+                chart1.Series[1].Name = BAL.Constants.DIA;
+                chart1.Series[1].Color = Color.Red;
+                chart1.Series[1].ChartType = SeriesChartType.Line;
                 chart1.Series[1].BorderWidth = 3;
                 chart1.Series[1].Enabled = false;
-                                 chart1.Series["Pulse"] = Pulse;
-                                 chart1.Series[2].Name = BAL.Constants.PULSE;
-                                 chart1.Series[2].Color = Color.Blue;
-                                 chart1.Series[2].ChartType = SeriesChartType.Line;
+                chart1.Series["Pulse"] = Pulse;
+                chart1.Series[2].Name = BAL.Constants.PULSE;
+                chart1.Series[2].Color = Color.Blue;
+                chart1.Series[2].ChartType = SeriesChartType.Line;
                 chart1.Series[2].BorderWidth = 3;
                 chart1.Series[2].Enabled = false;
-                
-
-
             }
 
         }
@@ -165,241 +119,9 @@ namespace BloodPressureLogApp
         }
         private void button_mutat_Click(object sender, EventArgs e)
         {
-
-            //var enririesdata = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
-            //var daypartsentriesAm = logicService.GetEntriesByDayPart(enririesdata,true);
-            //var daypartsentriesPm = logicService.GetEntriesByDayPart(enririesdata, false);
-           
-            
-            //if (checkbox_Sys.Checked)
-            //{
-            //    IQueryable<Entry> entriesSys;
-            //    if (dayPart == "all")
-            //    {
-            //        entriesSys = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
-            //    }
-            //    else if (dayPart == "Am")
-            //    {
-            //        entriesSys = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
-            //    }
-            //    else
-            //    {
-            //        entriesSys = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
-            //    }
-            //    DateTime minDate = entriesSys.OrderBy(entry => entry.Date).First().Date;
-            //    DateTime maxDate = entriesSys.OrderByDescending(entry => entry.Date).First().Date;
-
-
-            //    chart1.Series.Add(chartService.Draw(entriesSys, BAL.Constants.SYS));
-            //    chart1.Series["Sys"].ChartType = SeriesChartType.Line;
-            //    chart1.Series["Sys"].Name = BAL.Constants.SYS;
-            //    chart1.ChartAreas["Sys"].AxisY.Name = BAL.Constants.SYS;
-            //    chart1.Series["Sys"].Color = Color.Blue;
-            //}
-
-            // chart1.ChartAreas[0].AxisX.Minimum = minDate.ToOADate();
-            //chart1.ChartAreas[0].AxisX.Maximum = maxDate.ToOADate();
-            /*/ if (dayPart == "all")
-             {
-                 if (checkbox_Sys.Checked)
-                 {
-
-                     var entriesSys = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
-                     DateTime minDate = entriesSys.OrderBy(entry => entry.Date).First().Date;
-                     DateTime maxDate = entriesSys.OrderByDescending(entry => entry.Date).First().Date;
-
-                     chart1.ChartAreas[0].AxisX.LabelStyle.Format = "yyyy-MM-dd";
-                     chart1.ChartAreas[0].AxisX.Interval = 1;
-                     chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Days;
-                     chart1.ChartAreas[0].AxisX.IntervalOffset = 1;
-                     chart1.ChartAreas[0].AxisX.Minimum = minDate.ToOADate();
-                     chart1.ChartAreas[0].AxisX.Maximum = maxDate.ToOADate();
-
-
-                     chart1.Series.Add(chartService.Draw(entriesSys, BAL.Constants.SYS));
-                     chart1.Series[0].ChartType = SeriesChartType.Line;
-                     chart1.Series[0].Name = BAL.Constants.SYS;
-                     chart1.ChartAreas[0].AxisY.Name = BAL.Constants.SYS;
-                     chart1.Series[0].Color = Color.Blue;
-                 }
-                 if (checkbox_Dia.Checked)
-                 {
-
-                     var entriesDia = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
-                     DateTime minDate = entriesDia.OrderBy(entry => entry.Date).First().Date;
-                     DateTime maxDate = entriesDia.OrderByDescending(entry => entry.Date).First().Date;
-
-                     chart1.ChartAreas[0].AxisX.LabelStyle.Format = "yyyy-MM-dd";
-                     chart1.ChartAreas[0].AxisX.Interval = 1;
-                     chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Days;
-                     chart1.ChartAreas[0].AxisX.IntervalOffset = 1;
-                     chart1.ChartAreas[0].AxisX.Minimum = minDate.ToOADate();
-                     chart1.ChartAreas[0].AxisX.Maximum = maxDate.ToOADate();
-
-
-                     chart1.Series.Add(chartService.Draw(entriesDia, BAL.Constants.DIA));
-                     chart1.Series[0].ChartType = SeriesChartType.Line;
-                     chart1.Series[0].Name = BAL.Constants.DIA;
-                     chart1.ChartAreas[0].AxisY.Name = BAL.Constants.DIA;
-                     chart1.Series[0].Color = Color.Red;
-                 }
-                 if (checkbox_Pulse.Checked)
-                 {
-
-                     var entriesPulse = dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
-                     DateTime minDate = entriesPulse.OrderBy(entry => entry.Date).First().Date;
-                     DateTime maxDate = entriesPulse.OrderByDescending(entry => entry.Date).First().Date;
-
-                     chart1.ChartAreas[0].AxisX.LabelStyle.Format = "yyyy-MM-dd";
-                     chart1.ChartAreas[0].AxisX.Interval = 1;
-                     chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Days;
-                     chart1.ChartAreas[0].AxisX.IntervalOffset = 1;
-                     chart1.ChartAreas[0].AxisX.Minimum = minDate.ToOADate();
-                     chart1.ChartAreas[0].AxisX.Maximum = maxDate.ToOADate();
-
-
-                     chart1.Series.Add(chartService.Draw(entriesPulse, BAL.Constants.PULSE));
-                     chart1.Series[0].ChartType = SeriesChartType.Line;
-                     chart1.Series[0].Name = BAL.Constants.PULSE;
-                     chart1.ChartAreas[0].AxisY.Name = BAL.Constants.PULSE;
-                     chart1.Series[0].Color = Color.Green;
-                 }
-             }
-             if (dayPart == "Am")
-             {
-                 if (checkbox_Sys.Checked)
-                 {
-
-                     var entriesSys = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
-                     DateTime minDate = entriesSys.OrderBy(entry => entry.Date).First().Date;
-                     DateTime maxDate = entriesSys.OrderByDescending(entry => entry.Date).First().Date;
-
-                     chart1.ChartAreas[0].AxisX.LabelStyle.Format = "yyyy-MM-dd";
-                     chart1.ChartAreas[0].AxisX.Interval = 1;
-                     chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Days;
-                     chart1.ChartAreas[0].AxisX.IntervalOffset = 1;
-                     chart1.ChartAreas[0].AxisX.Minimum = minDate.ToOADate();
-                     chart1.ChartAreas[0].AxisX.Maximum = maxDate.ToOADate();
-
-                     chart1.Series["0"] = new Series();
-                     chart1.Series.Add(chartService.Draw(entriesSys, BAL.Constants.SYS));
-                     chart1.Series["0"].ChartType = SeriesChartType.Line;
-                     chart1.Series["0"].Name = BAL.Constants.SYS;
-                     chart1.ChartAreas[0].AxisY.Name = BAL.Constants.SYS;
-                     chart1.Series["0"].Color = Color.Blue;
-                 }
-                 if (checkbox_Dia.Checked)
-                 {
-
-                   //  var entriesDia = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
-                     var dateentriesdia = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
-                     var entriesDia = dbService.GetEntryiesByDayPart2(dateentriesdia,true);
-                     DateTime minDate = dateentriesdia.OrderBy(entry => entry.Date).First().Date;
-                     DateTime maxDate = dateentriesdia.OrderByDescending(entry => entry.Date).First().Date;
-
-                     chart1.ChartAreas[0].AxisX.LabelStyle.Format = "yyyy-MM-dd";
-                     chart1.ChartAreas[0].AxisX.Interval = 1;
-                     chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Days;
-                     chart1.ChartAreas[0].AxisX.IntervalOffset = 1;
-                     chart1.ChartAreas[0].AxisX.Minimum = minDate.ToOADate();
-                     chart1.ChartAreas[0].AxisX.Maximum = maxDate.ToOADate();
-
-                     chart1.Series["0"] = new Series();
-                     chart1.Series.Add(chartService.Draw(entriesDia, BAL.Constants.DIA));
-                     chart1.Series["0"].ChartType = SeriesChartType.Line;
-                     chart1.Series["0"].Name = BAL.Constants.DIA;
-                     chart1.ChartAreas["Dia"].AxisY.Name = BAL.Constants.DIA;
-                     chart1.Series["0"].Color = Color.Red;
-                 }
-                 if (checkbox_Pulse.Checked)
-                 {
-
-                     var entriesPulse = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), true);
-
-                     DateTime minDate = entriesPulse.OrderBy(entry => entry.Date).First().Date;
-                     DateTime maxDate = entriesPulse.OrderByDescending(entry => entry.Date).First().Date;
-
-                     chart1.ChartAreas[0].AxisX.LabelStyle.Format = "yyyy-MM-dd";
-                     chart1.ChartAreas[0].AxisX.Interval = 1;
-                     chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Days;
-                     chart1.ChartAreas[0].AxisX.IntervalOffset = 1;
-                     chart1.ChartAreas[0].AxisX.Minimum = minDate.ToOADate();
-                     chart1.ChartAreas[0].AxisX.Maximum = maxDate.ToOADate();
-
-                     chart1.Series["0"] = new Series();
-                     chart1.Series.Add(chartService.Draw(entriesPulse, BAL.Constants.PULSE));
-                     chart1.Series["0"].ChartType = SeriesChartType.Line;
-                     chart1.Series["0"].Name = BAL.Constants.PULSE;
-                     chart1.ChartAreas["0"].AxisY.Name = BAL.Constants.PULSE;
-                     chart1.Series["0"].Color = Color.Green;
-                 }
-             }
-             if (dayPart == "Pm")
-             {
-                 if (checkbox_Sys.Checked)
-                 {
-
-                     var entriesSys = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
-                     DateTime minDate = entriesSys.OrderBy(entry => entry.Date).First().Date;
-                     DateTime maxDate = entriesSys.OrderByDescending(entry => entry.Date).First().Date;
-
-                     chart1.ChartAreas[0].AxisX.LabelStyle.Format = "yyyy-MM-dd";
-                     chart1.ChartAreas[0].AxisX.Interval = 1;
-                     chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Days;
-                     chart1.ChartAreas[0].AxisX.IntervalOffset = 1;
-                     chart1.ChartAreas[0].AxisX.Minimum = minDate.ToOADate();
-                     chart1.ChartAreas[0].AxisX.Maximum = maxDate.ToOADate();
-
-
-                     chart1.Series.Add(chartService.Draw(entriesSys, BAL.Constants.SYS));
-                     chart1.Series[0].ChartType = SeriesChartType.Line;
-                     chart1.Series[0].Name = BAL.Constants.SYS;
-                     chart1.ChartAreas[0].AxisY.Name = BAL.Constants.SYS;
-                     chart1.Series[0].Color = Color.Blue;
-                 }
-                 if (checkbox_Dia.Checked)
-                 {
-
-                     var entriesDia = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
-                     DateTime minDate = entriesDia.OrderBy(entry => entry.Date).First().Date;
-                     DateTime maxDate = entriesDia.OrderByDescending(entry => entry.Date).First().Date;
-
-                     chart1.ChartAreas[0].AxisX.LabelStyle.Format = "yyyy-MM-dd";
-                     chart1.ChartAreas[0].AxisX.Interval = 1;
-                     chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Days;
-                     chart1.ChartAreas[0].AxisX.IntervalOffset = 1;
-                     chart1.ChartAreas[0].AxisX.Minimum = minDate.ToOADate();
-                     chart1.ChartAreas[0].AxisX.Maximum = maxDate.ToOADate();
-
-
-                     chart1.Series.Add(chartService.Draw(entriesDia, BAL.Constants.DIA));
-                     chart1.Series[0].ChartType = SeriesChartType.Line;
-                     chart1.Series[0].Name = BAL.Constants.DIA;
-                     chart1.ChartAreas[0].AxisY.Name = BAL.Constants.DIA;
-                     chart1.Series[0].Color = Color.Red;
-                 }
-                 if (checkbox_Pulse.Checked)
-                 {
-
-                     var entriesPulse = dbService.GetEntryiesByDayPart(dbService.GetUserByUserName(logicService.CurrentUser), false);
-                     DateTime minDate = entriesPulse.OrderBy(entry => entry.Date).First().Date;
-                     DateTime maxDate = entriesPulse.OrderByDescending(entry => entry.Date).First().Date;
-
-                     chart1.ChartAreas[0].AxisX.LabelStyle.Format = "yyyy-MM-dd";
-                     chart1.ChartAreas[0].AxisX.Interval = 1;
-                     chart1.ChartAreas[0].AxisX.IntervalType = DateTimeIntervalType.Days;
-                     chart1.ChartAreas[0].AxisX.IntervalOffset = 1;
-                     chart1.ChartAreas[0].AxisX.Minimum = minDate.ToOADate();
-                     chart1.ChartAreas[0].AxisX.Maximum = maxDate.ToOADate();
-
-
-                     chart1.Series.Add(chartService.Draw(entriesPulse, BAL.Constants.PULSE));
-                     chart1.Series[0].ChartType = SeriesChartType.Line;
-                     chart1.Series[0].Name = BAL.Constants.PULSE;
-                     chart1.ChartAreas[0].AxisY.Name = BAL.Constants.PULSE;
-                     chart1.Series[0].Color = Color.Green;
-                 }
-             }/*/
+          
+            chart1.Series["Pulse"] = Pulse;
+          
         }
         private void button_XmlCreat_Click(object sender, EventArgs e)
         {
@@ -481,11 +203,8 @@ namespace BloodPressureLogApp
         }
         private void button_NewEntry_Click(object sender, EventArgs e)
         {
-            
             Add add = new Add();
-            add.ShowDialog();
-           
-           
+            add.ShowDialog();      
         }
         private void button_Update_Click(object sender, EventArgs e)
         {
@@ -532,7 +251,6 @@ namespace BloodPressureLogApp
             button_Min.Enabled = false;
             button_Max.Enabled = false;
             button_Avg.Enabled = false;
-
         }
         private void button_Max_Click(object sender, EventArgs e)
         {

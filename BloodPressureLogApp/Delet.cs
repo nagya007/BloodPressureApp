@@ -44,5 +44,14 @@ namespace BloodPressureLogApp
             dbService.RemoveEntryByDateTimeAndUserId(Convert.ToDateTime(combobox_Date.Text), dbService.GetUserByUserName(logicService.CurrentUser));
             this.Close();
         }
+
+        private void button_Back_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Ha visszalép nem lesz törölve az adat!", "Visszalépés!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            else { }
+        }
     }
 }
