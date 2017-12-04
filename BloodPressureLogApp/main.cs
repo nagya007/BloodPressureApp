@@ -24,7 +24,10 @@ namespace BloodPressureLogApp
         BAL.UserOutput userOut = new BAL.UserOutput();
         LogDbContext context = new LogDbContext();
         string dayPart;
-        string dataType;
+        //string dataType;
+        Boolean sysOn;
+        Boolean diaOn;
+        Boolean pulseOn;
         Series Sys = new Series();     
         Series Dia = new Series();
         Series Pulse = new Series();
@@ -85,7 +88,7 @@ namespace BloodPressureLogApp
             if (dateTimePicker2.Value != null)
             {
                 selectedItems = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
-             }
+            }
         }
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
          {
@@ -102,38 +105,31 @@ namespace BloodPressureLogApp
         }
         private void button_mutat_Click(object sender, EventArgs e)
         {
-            switch (dataType)
+            chart1.Series.Clear();
+            if (sysOn)
             {
-                case "Sys":
-                    chart1.Series["Sys"] = Sys;
-                    chart1.Series[0].Name = BAL.Constants.SYS;
-                    chart1.Series[0].Color = Color.Green;
-                    chart1.Series[0].ChartType = SeriesChartType.Line;
-                    chart1.Series[0].BorderWidth = 3;
-                   
-                    break;
-                case "Dia":
-                    chart1.Series["Dia"] = Dia;
-                    chart1.Series[1].Name = BAL.Constants.DIA;
-                    chart1.Series[1].Color = Color.Red;
-                    chart1.Series[1].ChartType = SeriesChartType.Line;
-                    chart1.Series[1].BorderWidth = 3;
-                  
-                    break;
-                case "Pulse":
-                    chart1.Series["Pulse"] = Pulse;
-                    chart1.Series[2].Name = BAL.Constants.PULSE;
-                    chart1.Series[2].Color = Color.Blue;
-                    chart1.Series[2].ChartType = SeriesChartType.Line;
-                    chart1.Series[2].BorderWidth = 3;
-                 
-                    break;
-
+                Sys.Name = BAL.Constants.SYS;
+                Sys.Color = Color.Green;
+                Sys.ChartType = SeriesChartType.Line;
+                Sys.BorderWidth = 3;
+                chart1.Series.Add(Sys);
             }
-           
-            
-            
-
+            if (diaOn)
+            {
+                Dia.Name = BAL.Constants.DIA;
+                Dia.Color = Color.Red;
+                Dia.ChartType = SeriesChartType.Line;
+                Dia.BorderWidth = 3;
+                chart1.Series.Add(Dia);
+            }
+            if (pulseOn)
+            {
+                Pulse.Name = BAL.Constants.PULSE;
+                Pulse.Color = Color.Blue;
+                Pulse.ChartType = SeriesChartType.Line;
+                Pulse.BorderWidth = 3;
+                chart1.Series.Add(Pulse);
+            }
         }
         private void button_XmlCreat_Click(object sender, EventArgs e)
         {
@@ -209,7 +205,7 @@ namespace BloodPressureLogApp
                 if (checkbox_Pulse.Checked)
                 {
                     double minPmPulse = logicService.GetMinEntryByPulse(entriesPm);
-                    MessageBox.Show($"Minimum az esti  alapján: {minPmPulse}");
+                    MessageBox.Show($"Minimum az esti Pulse alapján: {minPmPulse}");
                 }
             }          
         }
@@ -230,19 +226,9 @@ namespace BloodPressureLogApp
         }
         private void checkbox_Serise_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkbox_Sys.Checked)
-            {
-                dataType = "Sys";
-            }
-            if (checkbox_Dia.Checked)
-            {
-                dataType = "Dia";
-            }
-            if (checkbox_Pulse.Checked)
-            {
-                dataType = "Pulse";
-            }
-            
+            sysOn = checkbox_Sys.Checked;
+            diaOn = checkbox_Dia.Checked;
+            pulseOn = checkbox_Pulse.Checked;                    
         }
         private void main_Load(object sender, EventArgs e)
         {
@@ -308,7 +294,7 @@ namespace BloodPressureLogApp
                 if (checkbox_Pulse.Checked)
                 {
                     double maxPmPulse = logicService.GetMaxEntryByPulse(entriesPm);
-                    MessageBox.Show($"Maximum az esti  alapján: {maxPmPulse}");
+                    MessageBox.Show($"Maximum az esti Pulse alapján: {maxPmPulse}");
                 }
             }
         }
@@ -368,7 +354,7 @@ namespace BloodPressureLogApp
                 if (checkbox_Pulse.Checked)
                 {
                     double avgPmPulse = logicService.GetAvgEntryByPulse(entriesPm);
-                    MessageBox.Show($"Átlag az esti  alapján: {avgPmPulse}");
+                    MessageBox.Show($"Átlag az esti Pulse alapján: {avgPmPulse}");
                 }
             }
         }

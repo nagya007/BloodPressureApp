@@ -81,21 +81,21 @@
             this.tb_Name.Location = new System.Drawing.Point(115, 41);
             this.tb_Name.Name = "tb_Name";
             this.tb_Name.Size = new System.Drawing.Size(200, 20);
-            this.tb_Name.TabIndex = 4;
+            this.tb_Name.TabIndex = 1;
             // 
             // tb_PhoneNumber
             // 
             this.tb_PhoneNumber.Location = new System.Drawing.Point(115, 122);
             this.tb_PhoneNumber.Name = "tb_PhoneNumber";
             this.tb_PhoneNumber.Size = new System.Drawing.Size(200, 20);
-            this.tb_PhoneNumber.TabIndex = 5;
+            this.tb_PhoneNumber.TabIndex = 3;
             // 
             // tb_Addres
             // 
             this.tb_Addres.Location = new System.Drawing.Point(115, 82);
             this.tb_Addres.Name = "tb_Addres";
             this.tb_Addres.Size = new System.Drawing.Size(200, 20);
-            this.tb_Addres.TabIndex = 6;
+            this.tb_Addres.TabIndex = 2;
             // 
             // bt_Back
             // 
@@ -103,7 +103,7 @@
             this.bt_Back.Location = new System.Drawing.Point(43, 251);
             this.bt_Back.Name = "bt_Back";
             this.bt_Back.Size = new System.Drawing.Size(75, 23);
-            this.bt_Back.TabIndex = 8;
+            this.bt_Back.TabIndex = 6;
             this.bt_Back.Text = "Vissza";
             this.bt_Back.UseVisualStyleBackColor = true;
             this.bt_Back.Click += new System.EventHandler(this.bt_Back_Click);
@@ -114,7 +114,7 @@
             this.bt_Save.Location = new System.Drawing.Point(202, 251);
             this.bt_Save.Name = "bt_Save";
             this.bt_Save.Size = new System.Drawing.Size(75, 23);
-            this.bt_Save.TabIndex = 9;
+            this.bt_Save.TabIndex = 5;
             this.bt_Save.Text = "Mentés";
             this.bt_Save.UseVisualStyleBackColor = true;
             this.bt_Save.Click += new System.EventHandler(this.bt_Save_Click);
@@ -124,7 +124,7 @@
             this.dtp_BirhDate.Location = new System.Drawing.Point(115, 167);
             this.dtp_BirhDate.Name = "dtp_BirhDate";
             this.dtp_BirhDate.Size = new System.Drawing.Size(200, 20);
-            this.dtp_BirhDate.TabIndex = 10;
+            this.dtp_BirhDate.TabIndex = 4;
             // 
             // fr_Reg
             // 
