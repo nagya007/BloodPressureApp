@@ -26,18 +26,25 @@ namespace BloodPressureLogApp
         LogDbContext context = new LogDbContext();        
         private void bt_Reg_Click(object sender, EventArgs e)
         {
-            if (!dbService.IsUserExists(tb_UserName.Text))
+            if (!String.IsNullOrEmpty(tb_UserName.Text)&& !String.IsNullOrEmpty(tb_Password.Text))
             {
-                logicService.CurrentUser = tb_UserName.Text;
-                logicService.CurrentPassword = tb_Password.Text;
-              
-                fr_Reg Reg = new fr_Reg();
-                Reg.ShowDialog();
+                if (!dbService.IsUserExists(tb_UserName.Text))
+                {
+                    logicService.CurrentUser = tb_UserName.Text;
+                    logicService.CurrentPassword = tb_Password.Text;
+                    fr_Reg Reg = new fr_Reg();
+                    Reg.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Már regisztrált felhasználónév válasszon másikat vagy jelentkezzen be!", "Már regisztrált", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
-                MessageBox.Show("Már regisztrált felhasználónév válasszon másikat vagy jelentkezzen be!", "Már regisztrált", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Nem maradhat üresen mező!","Nem töltött ki minden adatot!",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
+           
         }
         private void bt_LogIn_Click(object sender, EventArgs e)
         {

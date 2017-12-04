@@ -26,15 +26,18 @@ namespace BloodPressureLogApp
         LogDbContext context = new LogDbContext();
         private void button_Add_Click(object sender, EventArgs e)
         {
-            Entry newEntry = new Entry();
-            newEntry.Date = DateTime.Now;
-            newEntry.Sys =int.Parse(textbox_Sys.Text);
-            newEntry.Dia = int.Parse(textbox_Dia.Text);
-            newEntry.Pulse = int.Parse(textbox_Pulse.Text);
-            newEntry.UserId = logicService.CurrentUserId;
-            newEntry.IsAm = logicService.IsAm(DateTime.Now);
-            dbService.AddEntry(newEntry);
-            this.Close();
+            if (!String.IsNullOrEmpty(textbox_Sys.Text)&& !String.IsNullOrEmpty(textbox_Dia.Text)&& !String.IsNullOrEmpty(textbox_Pulse.Text))
+            {
+                Entry newEntry = new Entry();
+                newEntry.Date = DateTime.Now;
+                newEntry.Sys = int.Parse(textbox_Sys.Text);
+                newEntry.Dia = int.Parse(textbox_Dia.Text);
+                newEntry.Pulse = int.Parse(textbox_Pulse.Text);
+                newEntry.UserId = logicService.CurrentUserId;
+                newEntry.IsAm = logicService.IsAm(DateTime.Now);
+                dbService.AddEntry(newEntry);
+                this.Close();
+            }           
         }
 
         private void button_Back_Click(object sender, EventArgs e)

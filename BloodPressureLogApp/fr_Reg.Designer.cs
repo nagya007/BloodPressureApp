@@ -46,7 +46,7 @@
             this.label1.Location = new System.Drawing.Point(40, 41);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 10;
             this.label1.Text = "Név:";
             // 
             // label2
@@ -55,7 +55,7 @@
             this.label2.Location = new System.Drawing.Point(40, 122);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 13);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 8;
             this.label2.Text = "Telefonszám";
             // 
             // label3
@@ -64,7 +64,7 @@
             this.label3.Location = new System.Drawing.Point(40, 82);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(26, 13);
-            this.label3.TabIndex = 2;
+            this.label3.TabIndex = 9;
             this.label3.Text = "Cím";
             // 
             // label4
@@ -73,7 +73,7 @@
             this.label4.Location = new System.Drawing.Point(40, 167);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 13);
-            this.label4.TabIndex = 3;
+            this.label4.TabIndex = 7;
             this.label4.Text = "Születésnap";
             // 
             // tb_Name
@@ -131,7 +131,7 @@
             this.AcceptButton = this.bt_Save;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(338, 310);
+            this.ClientSize = new System.Drawing.Size(352, 305);
             this.Controls.Add(this.dtp_BirhDate);
             this.Controls.Add(this.bt_Save);
             this.Controls.Add(this.bt_Back);

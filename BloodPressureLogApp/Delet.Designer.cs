@@ -78,7 +78,7 @@
             this.button_Back.Location = new System.Drawing.Point(54, 207);
             this.button_Back.Name = "button_Back";
             this.button_Back.Size = new System.Drawing.Size(75, 23);
-            this.button_Back.TabIndex = 4;
+            this.button_Back.TabIndex = 5;
             this.button_Back.Text = "Vissza";
             this.button_Back.UseVisualStyleBackColor = true;
             this.button_Back.Click += new System.EventHandler(this.button_Back_Click);
@@ -88,7 +88,7 @@
             this.button_Delet.Location = new System.Drawing.Point(239, 207);
             this.button_Delet.Name = "button_Delet";
             this.button_Delet.Size = new System.Drawing.Size(75, 23);
-            this.button_Delet.TabIndex = 5;
+            this.button_Delet.TabIndex = 4;
             this.button_Delet.Text = "Törlés";
             this.button_Delet.UseVisualStyleBackColor = true;
             this.button_Delet.Click += new System.EventHandler(this.button_Delet_Click);

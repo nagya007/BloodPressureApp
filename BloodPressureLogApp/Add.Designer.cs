@@ -43,7 +43,7 @@
             this.button_Back.Location = new System.Drawing.Point(17, 241);
             this.button_Back.Name = "button_Back";
             this.button_Back.Size = new System.Drawing.Size(75, 23);
-            this.button_Back.TabIndex = 1;
+            this.button_Back.TabIndex = 5;
             this.button_Back.Text = "Vissza";
             this.button_Back.UseVisualStyleBackColor = true;
             this.button_Back.Click += new System.EventHandler(this.button_Back_Click);
@@ -53,7 +53,7 @@
             this.button_Add.Location = new System.Drawing.Point(236, 241);
             this.button_Add.Name = "button_Add";
             this.button_Add.Size = new System.Drawing.Size(75, 23);
-            this.button_Add.TabIndex = 2;
+            this.button_Add.TabIndex = 4;
             this.button_Add.Text = "Hozzáad";
             this.button_Add.UseVisualStyleBackColor = true;
             this.button_Add.Click += new System.EventHandler(this.button_Add_Click);
@@ -63,7 +63,7 @@
             this.textbox_Sys.Location = new System.Drawing.Point(98, 83);
             this.textbox_Sys.Name = "textbox_Sys";
             this.textbox_Sys.Size = new System.Drawing.Size(178, 20);
-            this.textbox_Sys.TabIndex = 4;
+            this.textbox_Sys.TabIndex = 1;
             this.textbox_Sys.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbox_Sys_KeyPress);
             // 
             // textbox_Dia
@@ -71,7 +71,7 @@
             this.textbox_Dia.Location = new System.Drawing.Point(98, 132);
             this.textbox_Dia.Name = "textbox_Dia";
             this.textbox_Dia.Size = new System.Drawing.Size(178, 20);
-            this.textbox_Dia.TabIndex = 5;
+            this.textbox_Dia.TabIndex = 2;
             this.textbox_Dia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbox_Dia_KeyPress);
             // 
             // textbox_Pulse
@@ -79,7 +79,7 @@
             this.textbox_Pulse.Location = new System.Drawing.Point(98, 180);
             this.textbox_Pulse.Name = "textbox_Pulse";
             this.textbox_Pulse.Size = new System.Drawing.Size(178, 20);
-            this.textbox_Pulse.TabIndex = 6;
+            this.textbox_Pulse.TabIndex = 3;
             this.textbox_Pulse.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbox_Pulse_KeyPress);
             // 
             // label3

@@ -80,7 +80,7 @@
             this.button_Back.Location = new System.Drawing.Point(46, 221);
             this.button_Back.Name = "button_Back";
             this.button_Back.Size = new System.Drawing.Size(75, 23);
-            this.button_Back.TabIndex = 4;
+            this.button_Back.TabIndex = 5;
             this.button_Back.Text = "Vissza";
             this.button_Back.UseVisualStyleBackColor = true;
             this.button_Back.Click += new System.EventHandler(this.button_Back_Click);
@@ -90,7 +90,7 @@
             this.button_Save.Location = new System.Drawing.Point(238, 221);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(75, 23);
-            this.button_Save.TabIndex = 5;
+            this.button_Save.TabIndex = 4;
             this.button_Save.Text = "Mentés";
             this.button_Save.UseVisualStyleBackColor = true;
             this.button_Save.Click += new System.EventHandler(this.button_Save_Click);

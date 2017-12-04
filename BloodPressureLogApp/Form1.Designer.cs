@@ -59,7 +59,7 @@
             this.tb_UserName.Location = new System.Drawing.Point(97, 24);
             this.tb_UserName.Name = "tb_UserName";
             this.tb_UserName.Size = new System.Drawing.Size(168, 20);
-            this.tb_UserName.TabIndex = 2;
+            this.tb_UserName.TabIndex = 1;
             // 
             // tb_Password
             // 
@@ -67,7 +67,7 @@
             this.tb_Password.Name = "tb_Password";
             this.tb_Password.PasswordChar = '*';
             this.tb_Password.Size = new System.Drawing.Size(168, 20);
-            this.tb_Password.TabIndex = 3;
+            this.tb_Password.TabIndex = 2;
             // 
             // bt_Reg
             // 
@@ -84,7 +84,7 @@
             this.bt_LogIn.Location = new System.Drawing.Point(190, 145);
             this.bt_LogIn.Name = "bt_LogIn";
             this.bt_LogIn.Size = new System.Drawing.Size(75, 23);
-            this.bt_LogIn.TabIndex = 5;
+            this.bt_LogIn.TabIndex = 3;
             this.bt_LogIn.Text = "Belépés";
             this.bt_LogIn.UseVisualStyleBackColor = true;
             this.bt_LogIn.Click += new System.EventHandler(this.bt_LogIn_Click);
