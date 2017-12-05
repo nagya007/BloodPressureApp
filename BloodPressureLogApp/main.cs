@@ -31,6 +31,9 @@ namespace BloodPressureLogApp
         Series Sys = new Series();     
         Series Dia = new Series();
         Series Pulse = new Series();
+        Series DistributionSys = new Series();
+        Series DistributionDia = new Series();
+        Series DistributionPulse = new Series();
         BAL.XmlHandler xhandler = new BAL.XmlHandler();
         IQueryable<Entry> selectedItems;
         public main()
@@ -49,6 +52,7 @@ namespace BloodPressureLogApp
             RadioButton rb = sender as RadioButton;
             if (rb.Checked)
             {
+                chart2.Series.Clear();
                 chart1.Series.Clear();
                 var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
                 switch (rb.Name)
@@ -58,6 +62,12 @@ namespace BloodPressureLogApp
                     Sys = chartService.Draw(entriesDay, BAL.Constants.SYS);
                     Dia = chartService.Draw(entriesDay, BAL.Constants.DIA);
                     Pulse = chartService.Draw(entriesDay, BAL.Constants.PULSE);
+                    var dictsys = logicService.GetDistributionMapSys(entriesDay);
+                    DistributionSys = chartService.DrawDistribution(dictsys);
+                    var dictdia = logicService.GetDistributionMapSys(entriesDay);
+                    DistributionDia = chartService.DrawDistribution(dictdia);
+                    var dictpulse = logicService.GetDistributionMapSys(entriesDay);
+                    DistributionSys = chartService.DrawDistribution(dictpulse);
                     break;
                     case "radiobutton_Am":
                     dayPart = "Am";
@@ -65,6 +75,12 @@ namespace BloodPressureLogApp
                     Sys = chartService.Draw(entriesAm, BAL.Constants.SYS);
                     Dia = chartService.Draw(entriesAm, BAL.Constants.DIA);
                     Pulse = chartService.Draw(entriesAm, BAL.Constants.PULSE);
+                    var dictsysam = logicService.GetDistributionMapSys(entriesAm);
+                    DistributionSys = chartService.DrawDistribution(dictsysam);
+                    var dictdiaam = logicService.GetDistributionMapSys(entriesAm);
+                    DistributionDia = chartService.DrawDistribution(dictdiaam);
+                    var dictpulseam = logicService.GetDistributionMapSys(entriesAm);
+                    DistributionSys = chartService.DrawDistribution(dictpulseam);
                     break;
                     case "radiobutton_Pm":
                     dayPart = "Pm";
@@ -72,9 +88,14 @@ namespace BloodPressureLogApp
                     Sys = chartService.Draw(entriesPm, BAL.Constants.SYS);
                     Dia = chartService.Draw(entriesPm, BAL.Constants.DIA);
                     Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
+                    var dictsyspm = logicService.GetDistributionMapSys(entriesPm);
+                    DistributionSys = chartService.DrawDistribution(dictsyspm);
+                    var dictdiapm = logicService.GetDistributionMapSys(entriesPm);
+                    DistributionDia = chartService.DrawDistribution(dictdiapm);
+                    var dictpulsepm = logicService.GetDistributionMapSys(entriesPm);
+                    DistributionSys = chartService.DrawDistribution(dictpulsepm);
                     break;
-                }
-               
+                }               
             }
 
         }
@@ -106,6 +127,8 @@ namespace BloodPressureLogApp
         private void button_mutat_Click(object sender, EventArgs e)
         {
             chart1.Series.Clear();
+            chart1.Visible = true;
+            chart2.Visible = false;
             if (sysOn)
             {
                 Sys.Name = BAL.Constants.SYS;
@@ -356,6 +379,37 @@ namespace BloodPressureLogApp
                     double avgPmPulse = logicService.GetAvgEntryByPulse(entriesPm);
                     MessageBox.Show($"Átlag az esti Pulse alapján: {avgPmPulse}");
                 }
+            }
+        }
+        private void button_Distribution_Sys_Click(object sender, EventArgs e)
+        {
+            chart2.Series.Clear();
+            chart1.Series.Clear();
+            chart1.Visible = false;
+            chart2.Visible = true;
+            if (sysOn)
+            {
+                DistributionSys.Name = BAL.Constants.DistributionSys;
+                DistributionSys.Color = Color.Red;
+                DistributionSys.ChartType = SeriesChartType.Point;
+                DistributionSys.LabelBorderWidth = 3;
+                chart2.Series.Add(DistributionSys);
+            }
+            if (diaOn)
+            {
+                DistributionDia.Name = BAL.Constants.DistributionDia;
+                DistributionDia.Color = Color.Green;
+                DistributionDia.ChartType = SeriesChartType.Point;
+                DistributionDia.LabelBorderWidth = 3;
+                chart2.Series.Add(DistributionDia);
+            }
+            if (pulseOn)
+            {
+                DistributionPulse.Name = BAL.Constants.DistributionPulse;
+                DistributionPulse.Color = Color.LightSteelBlue;
+                DistributionPulse.ChartType = SeriesChartType.Point;
+                DistributionPulse.LabelBorderWidth = 3;
+                chart2.Series.Add(DistributionPulse);
             }
         }
     }

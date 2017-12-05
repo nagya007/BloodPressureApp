@@ -19,7 +19,6 @@ namespace BloodPressureLogApp.BAL
             }
             return instance;
         }
-
         public Series Draw(IQueryable<Entry> entries, string type)
         {
             var series = new Series();
@@ -56,7 +55,16 @@ namespace BloodPressureLogApp.BAL
             return series;         
 
         }
-
-
-    }
+        public Series DrawDistribution(Dictionary<int, int> entries)
+        {
+            var series = new Series();
+            foreach (var entry in entries)
+            {
+                DataPoint dataPoint = new DataPoint();
+                dataPoint.SetValueXY(entry.Key, entry.Value);
+                series.Points.Add(dataPoint);
+            }
+            return series;
+        }
+ }
 }

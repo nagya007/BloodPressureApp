@@ -11,5 +11,8 @@ namespace BloodPressureLogApp.BAL
         public const string SYS = "sys";
         public const string DIA = "dia";
         public const string PULSE = "pulse";
+        public const string DistributionSys = "DistributionSys";
+        public const string DistributionDia = "DistributionDia";
+        public const string DistributionPulse = "DistributionPulse";
     }
 }

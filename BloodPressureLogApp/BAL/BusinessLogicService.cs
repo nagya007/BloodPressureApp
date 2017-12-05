@@ -89,6 +89,7 @@ namespace BloodPressureLogApp.BAL
         public Dictionary<int,int> GetDistributionMapSys(IQueryable<Entry> entry)
         {
             Dictionary<int, int> counter = new Dictionary<int,int>();
+            Dictionary<int, int> returndict = new Dictionary<int, int>();
             int count = 0;
             foreach (var item in entry)
             {
@@ -101,20 +102,21 @@ namespace BloodPressureLogApp.BAL
                     counter.Add(item.Sys, 1);
                 }
             }
-            foreach (var item in counter)
+            foreach (var item in counter.Values)
             {
-              count += item.Value;
+              count += item;
             }
-            foreach (var item in counter)
+            foreach(KeyValuePair<int, int> item in counter)
             {
-                var ertek = counter[item.Value];
-                counter[item.Value] = ertek/count;
+               var ertek = item.Value;
+                 returndict.Add(item.Key,ertek/count);
             }
             return counter;
         }
-        public Dictionary<int, int> GetDistributionMapDia(IQueryable<Entry> entry)
+        public Dictionary<int,int> GetDistributionMapDia(IQueryable<Entry> entry)
         {
             Dictionary<int, int> counter = new Dictionary<int, int>();
+            Dictionary<int, int> returndict = new Dictionary<int, int>();
             int count = 0;
             foreach (var item in entry)
             {
@@ -127,20 +129,21 @@ namespace BloodPressureLogApp.BAL
                     counter.Add(item.Dia, 1);
                 }
             }
-            foreach (var item in counter)
+            foreach (var item in counter.Values)
             {
-                count += item.Value;
+                count += item;
             }
-            foreach (var item in counter)
+            foreach (KeyValuePair<int, int> item in counter)
             {
-                var ertek = counter[item.Value];
-                counter[item.Value] = ertek / count;
+                var ertek = item.Value;
+                returndict.Add(item.Key, ertek / count);
             }
             return counter;
         }
-        public Dictionary<int, int> GetDistributionMapPulse(IQueryable<Entry> entry)
+        public Dictionary<int,int> GetDistributionMapPulse(IQueryable<Entry> entry)
         {
             Dictionary<int, int> counter = new Dictionary<int, int>();
+            Dictionary<int, int> returndict = new Dictionary<int, int>();
             int count = 0;
             foreach (var item in entry)
             {
@@ -153,14 +156,14 @@ namespace BloodPressureLogApp.BAL
                     counter.Add(item.Pulse, 1);
                 }
             }
-            foreach (var item in counter)
+            foreach (var item in counter.Values)
             {
-                count += item.Value;
+                count += item;
             }
-            foreach (var item in counter)
+            foreach (KeyValuePair<int, int> item in counter)
             {
-                var ertek = counter[item.Value];
-                counter[item.Value] = ertek / count;
+                var ertek = item.Value;
+                returndict.Add(item.Key, ertek / count);
             }
             return counter;
         }
