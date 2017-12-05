@@ -44,6 +44,19 @@ namespace BloodPressureLogApp.BAL
             }
             return series;
         }
-        
+        public Series DrawCorrelation(IQueryable<Entry> entries)
+        {
+            var series = new Series();
+            foreach (var entry in entries.OrderByDescending(entry => entry.Date))
+            {
+                DataPoint dataPoint = new DataPoint();
+                dataPoint.SetValueXY(entry.Sys, entry.Dia);
+                series.Points.Add(dataPoint);
+            }
+            return series;         
+
+        }
+
+
     }
 }
