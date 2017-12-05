@@ -31,9 +31,13 @@ namespace BloodPressureLogApp
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button_Correlation = new System.Windows.Forms.Button();
+            this.button_Distribution_Sys = new System.Windows.Forms.Button();
             this.button_Avg = new System.Windows.Forms.Button();
             this.button_Max = new System.Windows.Forms.Button();
             this.button_Min = new System.Windows.Forms.Button();
@@ -53,25 +57,21 @@ namespace BloodPressureLogApp
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button_Distribution_Sys = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.button_Correlation);
             this.groupBox1.Controls.Add(this.button_Distribution_Sys);
             this.groupBox1.Controls.Add(this.button_Avg);
             this.groupBox1.Controls.Add(this.button_Max);
@@ -90,6 +90,44 @@ namespace BloodPressureLogApp
             this.groupBox1.Size = new System.Drawing.Size(262, 497);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(179, 419);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 16;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(179, 390);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button_Correlation
+            // 
+            this.button_Correlation.Location = new System.Drawing.Point(179, 361);
+            this.button_Correlation.Name = "button_Correlation";
+            this.button_Correlation.Size = new System.Drawing.Size(75, 23);
+            this.button_Correlation.TabIndex = 14;
+            this.button_Correlation.Text = "Korreláció";
+            this.button_Correlation.UseVisualStyleBackColor = true;
+            this.button_Correlation.Click += new System.EventHandler(this.button_Correlation_Click);
+            // 
+            // button_Distribution_Sys
+            // 
+            this.button_Distribution_Sys.Location = new System.Drawing.Point(179, 332);
+            this.button_Distribution_Sys.Name = "button_Distribution_Sys";
+            this.button_Distribution_Sys.Size = new System.Drawing.Size(75, 23);
+            this.button_Distribution_Sys.TabIndex = 13;
+            this.button_Distribution_Sys.Text = "Eloszlás Sys";
+            this.button_Distribution_Sys.UseVisualStyleBackColor = true;
+            this.button_Distribution_Sys.Click += new System.EventHandler(this.button_Distribution_Sys_Click);
             // 
             // button_Avg
             // 
@@ -290,12 +328,24 @@ namespace BloodPressureLogApp
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             // 
-            // chart1
+            // chart2
             // 
             chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
+            this.chart2.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            this.chart2.Legends.Add(legend3);
+            this.chart2.Location = new System.Drawing.Point(10, 13);
+            this.chart2.Name = "chart2";
+            this.chart2.Size = new System.Drawing.Size(782, 478);
+            this.chart2.TabIndex = 1;
+            this.chart2.Text = "chart2";
+            // 
+            // chart1
+            // 
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
             this.chart1.Location = new System.Drawing.Point(11, 13);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
@@ -303,55 +353,6 @@ namespace BloodPressureLogApp
             this.chart1.Size = new System.Drawing.Size(781, 478);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
-            // 
-            // button_Distribution_Sys
-            // 
-            this.button_Distribution_Sys.Location = new System.Drawing.Point(179, 332);
-            this.button_Distribution_Sys.Name = "button_Distribution_Sys";
-            this.button_Distribution_Sys.Size = new System.Drawing.Size(75, 23);
-            this.button_Distribution_Sys.TabIndex = 13;
-            this.button_Distribution_Sys.Text = "Eloszlás Sys";
-            this.button_Distribution_Sys.UseVisualStyleBackColor = true;
-            this.button_Distribution_Sys.Click += new System.EventHandler(this.button_Distribution_Sys_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(179, 361);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(179, 390);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 15;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(179, 419);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 16;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // chart2
-            // 
-            chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart2.Legends.Add(legend2);
-            this.chart2.Location = new System.Drawing.Point(10, 13);
-            this.chart2.Name = "chart2";
-            this.chart2.Size = new System.Drawing.Size(782, 478);
-            this.chart2.TabIndex = 1;
-            this.chart2.Text = "chart2";
             // 
             // main
             // 
@@ -369,8 +370,8 @@ namespace BloodPressureLogApp
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -400,7 +401,7 @@ namespace BloodPressureLogApp
         private System.Windows.Forms.CheckBox checkbox_Sys;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button_Correlation;
         private System.Windows.Forms.Button button_Distribution_Sys;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
     }

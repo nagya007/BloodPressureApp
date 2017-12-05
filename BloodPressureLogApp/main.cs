@@ -31,6 +31,7 @@ namespace BloodPressureLogApp
         Series Sys = new Series();     
         Series Dia = new Series();
         Series Pulse = new Series();
+        Series Correlation = new Series();
         Series DistributionSys = new Series();
         Series DistributionDia = new Series();
         Series DistributionPulse = new Series();
@@ -67,7 +68,7 @@ namespace BloodPressureLogApp
                     var dictdia = logicService.GetDistributionMapDia(entriesDay);
                     DistributionDia = chartService.DrawDistribution(dictdia);
                     var dictpulse = logicService.GetDistributionMapPulse(entriesDay);
-                    DistributionSys = chartService.DrawDistribution(dictpulse);
+                    DistributionPulse = chartService.DrawDistribution(dictpulse);
                     break;
                     case "radiobutton_Am":
                     dayPart = "Am";
@@ -80,7 +81,7 @@ namespace BloodPressureLogApp
                     var dictdiaam = logicService.GetDistributionMapDia(entriesAm);
                     DistributionDia = chartService.DrawDistribution(dictdiaam);
                     var dictpulseam = logicService.GetDistributionMapPulse(entriesAm);
-                    DistributionSys = chartService.DrawDistribution(dictpulseam);
+                    DistributionPulse = chartService.DrawDistribution(dictpulseam);
                     break;
                     case "radiobutton_Pm":
                     dayPart = "Pm";
@@ -93,7 +94,7 @@ namespace BloodPressureLogApp
                     var dictdiapm = logicService.GetDistributionMapDia(entriesPm);
                     DistributionDia = chartService.DrawDistribution(dictdiapm);
                     var dictpulsepm = logicService.GetDistributionMapPulse(entriesPm);
-                    DistributionSys = chartService.DrawDistribution(dictpulsepm);
+                    DistributionPulse = chartService.DrawDistribution(dictpulsepm);
                     break;
                 }               
             }
@@ -106,6 +107,7 @@ namespace BloodPressureLogApp
             button_Min.Enabled = true;
             button_Max.Enabled = true;
             button_Avg.Enabled = true;
+            button_Distribution_Sys.Enabled = true;
             if (dateTimePicker2.Value != null)
             {
                 selectedItems = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
@@ -119,6 +121,7 @@ namespace BloodPressureLogApp
             button_Min.Enabled = true;
             button_Max.Enabled = true;
             button_Avg.Enabled = true;
+            button_Distribution_Sys.Enabled = true;
             if (dateTimePicker1.Value != null)
             {
                 selectedItems = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
@@ -261,6 +264,7 @@ namespace BloodPressureLogApp
             button_Max.Enabled = false;
             button_Avg.Enabled = false;
             button_mutat.Enabled = false;
+            button_Distribution_Sys.Enabled = false;
         }
         private void button_Max_Click(object sender, EventArgs e)
         {
@@ -412,6 +416,11 @@ namespace BloodPressureLogApp
                 DistributionPulse.LabelBorderWidth = 3;
                 chart2.Series.Add(DistributionPulse);
             }
+        }
+
+        private void button_Correlation_Click(object sender, EventArgs e)
+        {
+            var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
         }
     }
 }
