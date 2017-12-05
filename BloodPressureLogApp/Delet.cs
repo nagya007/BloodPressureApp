@@ -41,8 +41,11 @@ namespace BloodPressureLogApp
 
         private void button_Delet_Click(object sender, EventArgs e)
         {
-            dbService.RemoveEntryByDateTimeAndUserId(Convert.ToDateTime(combobox_Date.Text), dbService.GetUserByUserName(logicService.CurrentUser));
-            this.Close();
+            if (!String.IsNullOrEmpty(textbox_Sys.Text) && !String.IsNullOrEmpty(textbox_Dia.Text) && !String.IsNullOrEmpty(textbox_Pulse.Text))
+            {
+                dbService.RemoveEntryByDateTimeAndUserId(Convert.ToDateTime(combobox_Date.Text), dbService.GetUserByUserName(logicService.CurrentUser));
+                this.Close();
+            }
         }
 
         private void button_Back_Click(object sender, EventArgs e)

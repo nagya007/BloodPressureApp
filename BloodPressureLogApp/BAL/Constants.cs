@@ -14,5 +14,6 @@ namespace BloodPressureLogApp.BAL
         public const string DistributionSys = "DistributionSys";
         public const string DistributionDia = "DistributionDia";
         public const string DistributionPulse = "DistributionPulse";
+        public const string Correracio = "Kolleráció";
     }
 }

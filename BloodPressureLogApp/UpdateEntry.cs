@@ -41,9 +41,11 @@ namespace BloodPressureLogApp
         }
 
         private void button_Save_Click(object sender, EventArgs e)
-        {
-            dbService.UpdateEntryByDateAndUserId(dbService.GetUserByUserName(logicService.CurrentUser), Convert.ToDateTime(combobox_Date.Text), int.Parse(textbox_Sys.Text), int.Parse(textbox_Dia.Text), int.Parse(textbox_Pulse.Text));
-            this.Close();
+        {  if (!String.IsNullOrEmpty(textbox_Sys.Text) && !String.IsNullOrEmpty(textbox_Dia.Text) && !String.IsNullOrEmpty(textbox_Pulse.Text) && !String.IsNullOrEmpty(combobox_Date.Text))
+            {
+                dbService.UpdateEntryByDateAndUserId(dbService.GetUserByUserName(logicService.CurrentUser), Convert.ToDateTime(combobox_Date.Text), int.Parse(textbox_Sys.Text), int.Parse(textbox_Dia.Text), int.Parse(textbox_Pulse.Text));
+                this.Close();
+            }
         }
 
         private void button_Back_Click(object sender, EventArgs e)

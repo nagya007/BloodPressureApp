@@ -31,12 +31,11 @@ namespace BloodPressureLogApp
         Series Sys = new Series();     
         Series Dia = new Series();
         Series Pulse = new Series();
-        Series Correlation = new Series();
         Series DistributionSys = new Series();
         Series DistributionDia = new Series();
         Series DistributionPulse = new Series();
+        Series Correlation = new Series();
         BAL.XmlHandler xhandler = new BAL.XmlHandler();
-        IQueryable<Entry> selectedItems;
         public main()
         {
             InitializeComponent();
@@ -53,49 +52,17 @@ namespace BloodPressureLogApp
             RadioButton rb = sender as RadioButton;
             if (rb.Checked)
             {
-                chart2.Series.Clear();
-                chart1.Series.Clear();
-                var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
                 switch (rb.Name)
                 {
                     case "radiobutton_Day":
-                    dayPart = "all";
-                    Sys = chartService.Draw(entriesDay, BAL.Constants.SYS);
-                    Dia = chartService.Draw(entriesDay, BAL.Constants.DIA);
-                    Pulse = chartService.Draw(entriesDay, BAL.Constants.PULSE);
-                    var dictsys = logicService.GetDistributionMapSys(entriesDay);
-                    DistributionSys = chartService.DrawDistribution(dictsys);
-                    var dictdia = logicService.GetDistributionMapDia(entriesDay);
-                    DistributionDia = chartService.DrawDistribution(dictdia);
-                    var dictpulse = logicService.GetDistributionMapPulse(entriesDay);
-                    DistributionPulse = chartService.DrawDistribution(dictpulse);
-                    break;
+                        dayPart = "all";
+                        break;
                     case "radiobutton_Am":
-                    dayPart = "Am";
-                    var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
-                    Sys = chartService.Draw(entriesAm, BAL.Constants.SYS);
-                    Dia = chartService.Draw(entriesAm, BAL.Constants.DIA);
-                    Pulse = chartService.Draw(entriesAm, BAL.Constants.PULSE);
-                    var dictsysam = logicService.GetDistributionMapSys(entriesAm);
-                    DistributionSys = chartService.DrawDistribution(dictsysam);
-                    var dictdiaam = logicService.GetDistributionMapDia(entriesAm);
-                    DistributionDia = chartService.DrawDistribution(dictdiaam);
-                    var dictpulseam = logicService.GetDistributionMapPulse(entriesAm);
-                    DistributionPulse = chartService.DrawDistribution(dictpulseam);
-                    break;
+                        dayPart = "Am";
+                        break;
                     case "radiobutton_Pm":
-                    dayPart = "Pm";
-                    var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
-                    Sys = chartService.Draw(entriesPm, BAL.Constants.SYS);
-                    Dia = chartService.Draw(entriesPm, BAL.Constants.DIA);
-                    Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
-                    var dictsyspm = logicService.GetDistributionMapSys(entriesPm);
-                    DistributionSys = chartService.DrawDistribution(dictsyspm);
-                    var dictdiapm = logicService.GetDistributionMapDia(entriesPm);
-                    DistributionDia = chartService.DrawDistribution(dictdiapm);
-                    var dictpulsepm = logicService.GetDistributionMapPulse(entriesPm);
-                    DistributionPulse = chartService.DrawDistribution(dictpulsepm);
-                    break;
+                        dayPart = "Pm";
+                        break;
                 }               
             }
 
@@ -107,11 +74,7 @@ namespace BloodPressureLogApp
             button_Min.Enabled = true;
             button_Max.Enabled = true;
             button_Avg.Enabled = true;
-            button_Distribution_Sys.Enabled = true;
-            if (dateTimePicker2.Value != null)
-            {
-                selectedItems = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
-            }
+
         }
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
          {
@@ -121,17 +84,37 @@ namespace BloodPressureLogApp
             button_Min.Enabled = true;
             button_Max.Enabled = true;
             button_Avg.Enabled = true;
-            button_Distribution_Sys.Enabled = true;
-            if (dateTimePicker1.Value != null)
-            {
-                selectedItems = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
-            }
         }
         private void button_mutat_Click(object sender, EventArgs e)
         {
-            chart1.Series.Clear();
             chart1.Visible = true;
             chart2.Visible = false;
+            chart3.Visible = false;
+            chart3.Series.Clear();
+            chart2.Series.Clear();
+            chart1.Series.Clear();
+            var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
+            switch (dayPart)
+            {
+                case "all":
+                    Sys = chartService.Draw(entriesDay, BAL.Constants.SYS);
+                    Dia = chartService.Draw(entriesDay, BAL.Constants.DIA);
+                    Pulse = chartService.Draw(entriesDay, BAL.Constants.PULSE);
+                    break;
+                case "Am":
+                    var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
+                    Sys = chartService.Draw(entriesAm, BAL.Constants.SYS);
+                    Dia = chartService.Draw(entriesAm, BAL.Constants.DIA);
+                    Pulse = chartService.Draw(entriesAm, BAL.Constants.PULSE);
+                    break;
+                case "Pm":
+                    var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
+                    Sys = chartService.Draw(entriesPm, BAL.Constants.SYS);
+                    Dia = chartService.Draw(entriesPm, BAL.Constants.DIA);
+                    Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
+                    break;
+            }
+
             if (sysOn)
             {
                 Sys.Name = BAL.Constants.SYS;
@@ -264,7 +247,6 @@ namespace BloodPressureLogApp
             button_Max.Enabled = false;
             button_Avg.Enabled = false;
             button_mutat.Enabled = false;
-            button_Distribution_Sys.Enabled = false;
         }
         private void button_Max_Click(object sender, EventArgs e)
         {
@@ -390,8 +372,41 @@ namespace BloodPressureLogApp
         {
             chart2.Series.Clear();
             chart1.Series.Clear();
+            chart3.Series.Clear();
             chart1.Visible = false;
             chart2.Visible = true;
+            chart3.Visible = false;
+            var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
+            switch (dayPart)
+            {
+                case "all":
+                    var dictsys = logicService.GetDistributionMapSys(entriesDay);
+                    DistributionSys = chartService.DrawDistribution(dictsys);
+                    var dictdia = logicService.GetDistributionMapDia(entriesDay);
+                    DistributionDia = chartService.DrawDistribution(dictdia);
+                    var dictpulse = logicService.GetDistributionMapPulse(entriesDay);
+                    DistributionPulse = chartService.DrawDistribution(dictpulse);
+                    break;
+                case "Am":
+                    var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
+                    var dictsysam = logicService.GetDistributionMapSys(entriesAm);
+                    DistributionSys = chartService.DrawDistribution(dictsysam);
+                    var dictdiaam = logicService.GetDistributionMapDia(entriesAm);
+                    DistributionDia = chartService.DrawDistribution(dictdiaam);
+                    var dictpulseam = logicService.GetDistributionMapPulse(entriesAm);
+                    DistributionPulse = chartService.DrawDistribution(dictpulseam);
+                    break;
+                case "Pm":
+                    var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
+                    var dictsyspm = logicService.GetDistributionMapSys(entriesPm);
+                    DistributionSys = chartService.DrawDistribution(dictsyspm);
+                    var dictdiapm = logicService.GetDistributionMapDia(entriesPm);
+                    DistributionDia = chartService.DrawDistribution(dictdiapm);
+                    var dictpulsepm = logicService.GetDistributionMapPulse(entriesPm);
+                    DistributionPulse = chartService.DrawDistribution(dictpulsepm);
+                    break;
+            }
+
             if (sysOn)
             {
                 DistributionSys.Name = BAL.Constants.DistributionSys;
@@ -420,7 +435,34 @@ namespace BloodPressureLogApp
 
         private void button_Correlation_Click(object sender, EventArgs e)
         {
+            chart2.Series.Clear();
+            chart1.Series.Clear();
+            chart3.Series.Clear();
+            chart1.Visible = false;
+            chart2.Visible = false;
+            chart3.Visible = true;
             var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
+            switch (dayPart)
+            {
+                case "all":
+                   Correlation= chartService.DrawCorrelation(entriesDay);
+                    break;
+                case "Am":
+                    var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
+                    Correlation = chartService.DrawCorrelation(entriesAm);
+                    break;
+                case "Pm":
+                    var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
+                    Correlation = chartService.DrawCorrelation(entriesPm);
+                    break;
+            }
+            Correlation.Name = BAL.Constants.Correracio;
+            Correlation.Color = Color.Red;
+            Correlation.ChartType = SeriesChartType.Point;
+            Correlation.LabelBorderWidth = 3;
+            chart3.Series.Add(Correlation);
+
+
         }
     }
 }
