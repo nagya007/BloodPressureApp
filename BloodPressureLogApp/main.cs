@@ -64,9 +64,9 @@ namespace BloodPressureLogApp
                     Pulse = chartService.Draw(entriesDay, BAL.Constants.PULSE);
                     var dictsys = logicService.GetDistributionMapSys(entriesDay);
                     DistributionSys = chartService.DrawDistribution(dictsys);
-                    var dictdia = logicService.GetDistributionMapSys(entriesDay);
+                    var dictdia = logicService.GetDistributionMapDia(entriesDay);
                     DistributionDia = chartService.DrawDistribution(dictdia);
-                    var dictpulse = logicService.GetDistributionMapSys(entriesDay);
+                    var dictpulse = logicService.GetDistributionMapPulse(entriesDay);
                     DistributionSys = chartService.DrawDistribution(dictpulse);
                     break;
                     case "radiobutton_Am":
@@ -77,9 +77,9 @@ namespace BloodPressureLogApp
                     Pulse = chartService.Draw(entriesAm, BAL.Constants.PULSE);
                     var dictsysam = logicService.GetDistributionMapSys(entriesAm);
                     DistributionSys = chartService.DrawDistribution(dictsysam);
-                    var dictdiaam = logicService.GetDistributionMapSys(entriesAm);
+                    var dictdiaam = logicService.GetDistributionMapDia(entriesAm);
                     DistributionDia = chartService.DrawDistribution(dictdiaam);
-                    var dictpulseam = logicService.GetDistributionMapSys(entriesAm);
+                    var dictpulseam = logicService.GetDistributionMapPulse(entriesAm);
                     DistributionSys = chartService.DrawDistribution(dictpulseam);
                     break;
                     case "radiobutton_Pm":
@@ -90,9 +90,9 @@ namespace BloodPressureLogApp
                     Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
                     var dictsyspm = logicService.GetDistributionMapSys(entriesPm);
                     DistributionSys = chartService.DrawDistribution(dictsyspm);
-                    var dictdiapm = logicService.GetDistributionMapSys(entriesPm);
+                    var dictdiapm = logicService.GetDistributionMapDia(entriesPm);
                     DistributionDia = chartService.DrawDistribution(dictdiapm);
-                    var dictpulsepm = logicService.GetDistributionMapSys(entriesPm);
+                    var dictpulsepm = logicService.GetDistributionMapPulse(entriesPm);
                     DistributionSys = chartService.DrawDistribution(dictpulsepm);
                     break;
                 }               
@@ -101,7 +101,7 @@ namespace BloodPressureLogApp
         }
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-         
+            button_mutat.Enabled = true;
             groupBox3.Enabled = true;
             button_Min.Enabled = true;
             button_Max.Enabled = true;
@@ -114,7 +114,7 @@ namespace BloodPressureLogApp
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
          {
 
-            
+            button_mutat.Enabled = true;
             groupBox3.Enabled = true;
             button_Min.Enabled = true;
             button_Max.Enabled = true;
@@ -254,12 +254,13 @@ namespace BloodPressureLogApp
             pulseOn = checkbox_Pulse.Checked;                    
         }
         private void main_Load(object sender, EventArgs e)
-        {
+        { 
             groupBox4.Enabled = false;
             groupBox3.Enabled = false;
             button_Min.Enabled = false;
             button_Max.Enabled = false;
             button_Avg.Enabled = false;
+            button_mutat.Enabled = false;
         }
         private void button_Max_Click(object sender, EventArgs e)
         {
@@ -406,7 +407,7 @@ namespace BloodPressureLogApp
             if (pulseOn)
             {
                 DistributionPulse.Name = BAL.Constants.DistributionPulse;
-                DistributionPulse.Color = Color.LightSteelBlue;
+                DistributionPulse.Color = Color.Blue;
                 DistributionPulse.ChartType = SeriesChartType.Point;
                 DistributionPulse.LabelBorderWidth = 3;
                 chart2.Series.Add(DistributionPulse);
