@@ -85,7 +85,7 @@ namespace BloodPressureLogApp
             button_Avg.Enabled = true;
         }
         private void button_mutat_Click(object sender, EventArgs e)
-        {
+        { 
             chart1.Visible = true;
             chart2.Visible = false;
             chart3.Visible = false;
@@ -93,51 +93,59 @@ namespace BloodPressureLogApp
             chart2.Series.Clear();
             chart1.Series.Clear();
             var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
-            switch (dayPart)
+            if (entriesDay!=null)
             {
-                case "all":
-                    Sys = chartService.Draw(entriesDay, BAL.Constants.SYS);
-                    Dia = chartService.Draw(entriesDay, BAL.Constants.DIA);
-                    Pulse = chartService.Draw(entriesDay, BAL.Constants.PULSE);
-                    break;
-                case "Am":
-                    var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
-                    Sys = chartService.Draw(entriesAm, BAL.Constants.SYS);
-                    Dia = chartService.Draw(entriesAm, BAL.Constants.DIA);
-                    Pulse = chartService.Draw(entriesAm, BAL.Constants.PULSE);
-                    break;
-                case "Pm":
-                    var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
-                    Sys = chartService.Draw(entriesPm, BAL.Constants.SYS);
-                    Dia = chartService.Draw(entriesPm, BAL.Constants.DIA);
-                    Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
-                    break;
-            }
+                switch (dayPart)
+                {
+                    case "all":
+                        Sys = chartService.Draw(entriesDay, BAL.Constants.SYS);
+                        Dia = chartService.Draw(entriesDay, BAL.Constants.DIA);
+                        Pulse = chartService.Draw(entriesDay, BAL.Constants.PULSE);
+                        break;
+                    case "Am":
+                        var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
+                        Sys = chartService.Draw(entriesAm, BAL.Constants.SYS);
+                        Dia = chartService.Draw(entriesAm, BAL.Constants.DIA);
+                        Pulse = chartService.Draw(entriesAm, BAL.Constants.PULSE);
+                        break;
+                    case "Pm":
+                        var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
+                        Sys = chartService.Draw(entriesPm, BAL.Constants.SYS);
+                        Dia = chartService.Draw(entriesPm, BAL.Constants.DIA);
+                        Pulse = chartService.Draw(entriesPm, BAL.Constants.PULSE);
+                        break;
+                }
 
-            if (sysOn)
-            {
-                Sys.Name = BAL.Constants.SYS;
-                Sys.Color = Color.Green;
-                Sys.ChartType = SeriesChartType.Line;
-                Sys.BorderWidth = 3;
-                chart1.Series.Add(Sys);
+                if (sysOn)
+                {
+                    Sys.Name = BAL.Constants.SYS;
+                    Sys.Color = Color.Green;
+                    Sys.ChartType = SeriesChartType.Line;
+                    Sys.BorderWidth = 3;
+                    chart1.Series.Add(Sys);
+                }
+                if (diaOn)
+                {
+                    Dia.Name = BAL.Constants.DIA;
+                    Dia.Color = Color.Red;
+                    Dia.ChartType = SeriesChartType.Line;
+                    Dia.BorderWidth = 3;
+                    chart1.Series.Add(Dia);
+                }
+                if (pulseOn)
+                {
+                    Pulse.Name = BAL.Constants.PULSE;
+                    Pulse.Color = Color.Blue;
+                    Pulse.ChartType = SeriesChartType.Line;
+                    Pulse.BorderWidth = 3;
+                    chart1.Series.Add(Pulse);
+                }
+                if(!sysOn && !diaOn && !pulseOn)
+                {
+                    MessageBox.Show("A kiválasztott időintervallumban nincs adat!");
+                }
             }
-            if (diaOn)
-            {
-                Dia.Name = BAL.Constants.DIA;
-                Dia.Color = Color.Red;
-                Dia.ChartType = SeriesChartType.Line;
-                Dia.BorderWidth = 3;
-                chart1.Series.Add(Dia);
-            }
-            if (pulseOn)
-            {
-                Pulse.Name = BAL.Constants.PULSE;
-                Pulse.Color = Color.Blue;
-                Pulse.ChartType = SeriesChartType.Line;
-                Pulse.BorderWidth = 3;
-                chart1.Series.Add(Pulse);
-            }
+           
         }
         private void button_XmlCreat_Click(object sender, EventArgs e)
         {
@@ -161,61 +169,69 @@ namespace BloodPressureLogApp
             var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
             var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
             var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
-            if (dayPart == "all")
+            if (entriesDay.Any())
             {
-                if (checkbox_Sys.Checked)
+                if (dayPart == "all")
                 {
-                    double minAllSys = logicService.GetMinEntryBySys(entriesDay);
-                    MessageBox.Show($"Minimum az összes Sys alapján: {minAllSys}");
+                    if (checkbox_Sys.Checked)
+                    {
+                        double minAllSys = logicService.GetMinEntryBySys(entriesDay);
+                        MessageBox.Show($"Minimum az összes Sys alapján: {minAllSys}");
+                    }
+                    if (checkbox_Dia.Checked)
+                    {
+                        double minAllDia = logicService.GetMinEntryByDia(entriesDay);
+                        MessageBox.Show($"Minimum az összes Dia alapján: {minAllDia}");
+                    }
+                    if (checkbox_Pulse.Checked)
+                    {
+                        double minAllPulse = logicService.GetMinEntryByPulse(entriesDay);
+                        MessageBox.Show($"Minimum az összes Pulse alapján: {minAllPulse}");
+                    }
                 }
-                if (checkbox_Dia.Checked)
+                if (dayPart == "Am")
                 {
-                    double minAllDia = logicService.GetMinEntryByDia(entriesDay);
-                    MessageBox.Show($"Minimum az összes Dia alapján: {minAllDia}");
+                    if (checkbox_Sys.Checked)
+                    {
+
+                        double minAmPSys = logicService.GetMinEntryBySys(entriesAm);
+                        MessageBox.Show($"Minimum a reggeli Sys alapján: {minAmPSys}");
+                    }
+                    if (checkbox_Dia.Checked)
+                    {
+                        double minAmDia = logicService.GetMinEntryByDia(entriesAm);
+                        MessageBox.Show($"Minimum a reggeli Dia alapján: {minAmDia}");
+                    }
+                    if (checkbox_Pulse.Checked)
+                    {
+                        double minAmPulse = logicService.GetMinEntryByPulse(entriesAm);
+                        MessageBox.Show($"Minimum a reggeli Pulse alapján: {minAmPulse}");
+                    }
                 }
-                if (checkbox_Pulse.Checked)
+                if (dayPart == "Pm")
                 {
-                    double minAllPulse = logicService.GetMinEntryByPulse(entriesDay);
-                    MessageBox.Show($"Minimum az összes Pulse alapján: {minAllPulse}");
+                    if (checkbox_Sys.Checked)
+                    {
+                        double minPmSys = logicService.GetMinEntryBySys(entriesPm);
+                        MessageBox.Show($"Minimum az esti Sys alapján: {minPmSys}");
+                    }
+                    if (checkbox_Dia.Checked)
+                    {
+                        double minPmDia = logicService.GetMinEntryByDia(entriesPm);
+                        MessageBox.Show($"Minimum az esti Dia alapján: {minPmDia}");
+                    }
+                    if (checkbox_Pulse.Checked)
+                    {
+                        double minPmPulse = logicService.GetMinEntryByPulse(entriesPm);
+                        MessageBox.Show($"Minimum az esti Pulse alapján: {minPmPulse}");
+                    }
                 }
             }
-            if (dayPart == "Am")
+            else
             {
-                if (checkbox_Sys.Checked)
-                {
-                    
-                    double minAmPSys = logicService.GetMinEntryBySys(entriesAm);
-                    MessageBox.Show($"Minimum a reggeli Sys alapján: {minAmPSys}");
-                }
-                if (checkbox_Dia.Checked)
-                {
-                    double minAmDia = logicService.GetMinEntryByDia(entriesAm);
-                    MessageBox.Show($"Minimum a reggeli Dia alapján: {minAmDia}");
-                }
-                if (checkbox_Pulse.Checked)
-                {
-                    double minAmPulse = logicService.GetMinEntryByPulse(entriesAm);
-                    MessageBox.Show($"Minimum a reggeli Pulse alapján: {minAmPulse}");
-                }
+                MessageBox.Show("A kiválasztott időintervallumban nincs adat!");
             }
-            if (dayPart == "Pm")
-            {
-                if (checkbox_Sys.Checked)
-                {
-                    double minPmSys = logicService.GetMinEntryBySys(entriesPm);
-                    MessageBox.Show($"Minimum az esti Sys alapján: {minPmSys}");
-                }
-                if (checkbox_Dia.Checked)
-                {
-                    double minPmDia = logicService.GetMinEntryByDia(entriesPm);
-                    MessageBox.Show($"Minimum az esti Dia alapján: {minPmDia}");
-                }
-                if (checkbox_Pulse.Checked)
-                {
-                    double minPmPulse = logicService.GetMinEntryByPulse(entriesPm);
-                    MessageBox.Show($"Minimum az esti Pulse alapján: {minPmPulse}");
-                }
-            }          
+           
         }
         private void button_NewEntry_Click(object sender, EventArgs e)
         {
@@ -252,119 +268,134 @@ namespace BloodPressureLogApp
             var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
             var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
             var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
-            if (dayPart == "all")
+            if (entriesDay.Any())
             {
-                if (checkbox_Sys.Checked)
+                if (dayPart == "all")
                 {
-                    double maxAllSys = logicService.GetMaxEntryBySys(entriesDay);
-                    MessageBox.Show($"Maximum az összes Sys alapján: {maxAllSys}");
+                    if (checkbox_Sys.Checked)
+                    {
+                        double maxAllSys = logicService.GetMaxEntryBySys(entriesDay);
+                        MessageBox.Show($"Maximum az összes Sys alapján: {maxAllSys}");
+                    }
+                    if (checkbox_Dia.Checked)
+                    {
+                        double maxAllDia = logicService.GetMaxEntryByDia(entriesDay);
+                        MessageBox.Show($"Maximum az összes Dia alapján: {maxAllDia}");
+                    }
+                    if (checkbox_Pulse.Checked)
+                    {
+                        double maxAllPulse = logicService.GetMaxEntryByPulse(entriesDay);
+                        MessageBox.Show($"Maximum az összes Pulse alapján: {maxAllPulse}");
+                    }
                 }
-                if (checkbox_Dia.Checked)
+                else if (dayPart == "Am")
                 {
-                    double maxAllDia = logicService.GetMaxEntryByDia(entriesDay);
-                    MessageBox.Show($"Maximum az összes Dia alapján: {maxAllDia}");
+                    if (checkbox_Sys.Checked)
+                    {
+                        double maxAmPSys = logicService.GetMaxEntryBySys(entriesAm);
+                        MessageBox.Show($"Maximum a reggeli Sys alapján: {maxAmPSys}");
+                    }
+                    if (checkbox_Dia.Checked)
+                    {
+                        double maxAmDia = logicService.GetMaxEntryByDia(entriesAm);
+                        MessageBox.Show($"Maximum a reggeli Dia alapján: {maxAmDia}");
+                    }
+                    if (checkbox_Pulse.Checked)
+                    {
+                        double maxAmPulse = logicService.GetMaxEntryByPulse(entriesAm);
+                        MessageBox.Show($"Maximum a reggeli Pulse alapján: {maxAmPulse}");
+                    }
                 }
-                if (checkbox_Pulse.Checked)
+                else if (dayPart == "Pm")
                 {
-                    double maxAllPulse = logicService.GetMaxEntryByPulse(entriesDay);
-                    MessageBox.Show($"Maximum az összes Pulse alapján: {maxAllPulse}");
+                    if (checkbox_Sys.Checked)
+                    {
+                        double maxPmSys = logicService.GetMaxEntryBySys(entriesPm);
+                        MessageBox.Show($"Maximum az esti Sys alapján: {maxPmSys}");
+                    }
+                    if (checkbox_Dia.Checked)
+                    {
+                        double maxPmDia = logicService.GetMaxEntryByDia(entriesPm);
+                        MessageBox.Show($"Maximum az esti Dia alapján: {maxPmDia}");
+                    }
+                    if (checkbox_Pulse.Checked)
+                    {
+                        double maxPmPulse = logicService.GetMaxEntryByPulse(entriesPm);
+                        MessageBox.Show($"Maximum az esti Pulse alapján: {maxPmPulse}");
+                    }
                 }
             }
-            if (dayPart == "Am")
+            else
             {
-                if (checkbox_Sys.Checked)
-                {
-                    double maxAmPSys = logicService.GetMaxEntryBySys(entriesAm);
-                    MessageBox.Show($"Maximum a reggeli Sys alapján: {maxAmPSys}");
-                }
-                if (checkbox_Dia.Checked)
-                {
-                    double maxAmDia = logicService.GetMaxEntryByDia(entriesAm);
-                    MessageBox.Show($"Maximum a reggeli Dia alapján: {maxAmDia}");
-                }
-                if (checkbox_Pulse.Checked)
-                {
-                    double maxAmPulse = logicService.GetMaxEntryByPulse(entriesAm);
-                    MessageBox.Show($"Maximum a reggeli Pulse alapján: {maxAmPulse}");
-                }
+                MessageBox.Show("A kiválasztott időintervallumban nincs adat!");
             }
-            if (dayPart == "Pm")
-            {
-                if (checkbox_Sys.Checked)
-                {
-                    double maxPmSys = logicService.GetMaxEntryBySys(entriesPm);
-                    MessageBox.Show($"Maximum az esti Sys alapján: {maxPmSys}");
-                }
-                if (checkbox_Dia.Checked)
-                {
-                    double maxPmDia = logicService.GetMaxEntryByDia(entriesPm);
-                    MessageBox.Show($"Maximum az esti Dia alapján: {maxPmDia}");
-                }
-                if (checkbox_Pulse.Checked)
-                {
-                    double maxPmPulse = logicService.GetMaxEntryByPulse(entriesPm);
-                    MessageBox.Show($"Maximum az esti Pulse alapján: {maxPmPulse}");
-                }
-            }
+           
         }
         private void button_Avg_Click(object sender, EventArgs e)
         {
             var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
             var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
             var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
-            if (dayPart == "all")
+            if (entriesDay.Any())
             {
-                if (checkbox_Sys.Checked)
+                if (dayPart == "all")
                 {
-                    double avgAllSys = logicService.GetAvgEntryBySys(entriesDay);
-                    MessageBox.Show($"Átlag az összes Sys alapján: {avgAllSys}");
+                    if (checkbox_Sys.Checked)
+                    {
+                        double avgAllSys = logicService.GetAvgEntryBySys(entriesDay);
+                        MessageBox.Show($"Átlag az összes Sys alapján: {avgAllSys}");
+                    }
+                    if (checkbox_Dia.Checked)
+                    {
+                        double avgAllDia = logicService.GetAvgEntryByDia(entriesDay);
+                        MessageBox.Show($"Átlag az összes Dia alapján: {avgAllDia}");
+                    }
+                    if (checkbox_Pulse.Checked)
+                    {
+                        double avgAllPulse = logicService.GetAvgEntryByPulse(entriesDay);
+                        MessageBox.Show($"Átlag az összes Pulse alapján: {avgAllPulse}");
+                    }
                 }
-                if (checkbox_Dia.Checked)
+                else if (dayPart == "Am")
                 {
-                    double avgAllDia = logicService.GetAvgEntryByDia(entriesDay);
-                    MessageBox.Show($"Átlag az összes Dia alapján: {avgAllDia}");
+                    if (checkbox_Sys.Checked)
+                    {
+                        double avgAmPSys = logicService.GetAvgEntryBySys(entriesAm);
+                        MessageBox.Show($"Átlag a reggeli Sys alapján: {avgAmPSys}");
+                    }
+                    if (checkbox_Dia.Checked)
+                    {
+                        double avgAmDia = logicService.GetAvgEntryByDia(entriesAm);
+                        MessageBox.Show($"Átlag a reggeli Dia alapján: {avgAmDia}");
+                    }
+                    if (checkbox_Pulse.Checked)
+                    {
+                        double avgAmPulse = logicService.GetAvgEntryByPulse(entriesAm);
+                        MessageBox.Show($"Átlag a reggeli Pulse alapján: {avgAmPulse}");
+                    }
                 }
-                if (checkbox_Pulse.Checked)
+                else if (dayPart == "Pm")
                 {
-                    double avgAllPulse = logicService.GetAvgEntryByPulse(entriesDay);
-                    MessageBox.Show($"Átlag az összes Pulse alapján: {avgAllPulse}");
+                    if (checkbox_Sys.Checked)
+                    {
+                        double avgPmSys = logicService.GetAvgEntryBySys(entriesPm);
+                        MessageBox.Show($"Átlag az esti Sys alapján: {avgPmSys}");
+                    }
+                    if (checkbox_Dia.Checked)
+                    {
+                        double avgPmDia = logicService.GetAvgEntryByDia(entriesPm);
+                        MessageBox.Show($"Átlag az esti Dia alapján: {avgPmDia}");
+                    }
+                    if (checkbox_Pulse.Checked)
+                    {
+                        double avgPmPulse = logicService.GetAvgEntryByPulse(entriesPm);
+                        MessageBox.Show($"Átlag az esti Pulse alapján: {avgPmPulse}");
+                    }
                 }
             }
-            if (dayPart == "Am")
+            else
             {
-                if (checkbox_Sys.Checked)
-                {
-                    double avgAmPSys = logicService.GetAvgEntryBySys(entriesAm);
-                    MessageBox.Show($"Átlag a reggeli Sys alapján: {avgAmPSys}");
-                }
-                if (checkbox_Dia.Checked)
-                {
-                    double avgAmDia = logicService.GetAvgEntryByDia(entriesAm);
-                    MessageBox.Show($"Átlag a reggeli Dia alapján: {avgAmDia}");
-                }
-                if (checkbox_Pulse.Checked)
-                {
-                    double avgAmPulse = logicService.GetAvgEntryByPulse(entriesAm);
-                    MessageBox.Show($"Átlag a reggeli Pulse alapján: {avgAmPulse}");
-                }
-            }
-            if (dayPart == "Pm")
-            {
-                if (checkbox_Sys.Checked)
-                {
-                    double avgPmSys = logicService.GetAvgEntryBySys(entriesPm);
-                    MessageBox.Show($"Átlag az esti Sys alapján: {avgPmSys}");
-                }
-                if (checkbox_Dia.Checked)
-                {
-                    double avgPmDia = logicService.GetAvgEntryByDia(entriesPm);
-                    MessageBox.Show($"Átlag az esti Dia alapján: {avgPmDia}");
-                }
-                if (checkbox_Pulse.Checked)
-                {
-                    double avgPmPulse = logicService.GetAvgEntryByPulse(entriesPm);
-                    MessageBox.Show($"Átlag az esti Pulse alapján: {avgPmPulse}");
-                }
+                MessageBox.Show("A kiválasztott időintervallumban nincs adat!");
             }
         }
         private void button_Distribution_Sys_Click(object sender, EventArgs e)
@@ -376,60 +407,68 @@ namespace BloodPressureLogApp
             chart2.Visible = true;
             chart3.Visible = false;
             var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
-            switch (dayPart)
+            if (entriesDay.Any())
             {
-                case "all":
-                    var dictsys = logicService.GetDistributionMapSys(entriesDay);
-                    DistributionSys = chartService.DrawDistribution(dictsys);
-                    var dictdia = logicService.GetDistributionMapDia(entriesDay);
-                    DistributionDia = chartService.DrawDistribution(dictdia);
-                    var dictpulse = logicService.GetDistributionMapPulse(entriesDay);
-                    DistributionPulse = chartService.DrawDistribution(dictpulse);
-                    break;
-                case "Am":
-                    var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
-                    var dictsysam = logicService.GetDistributionMapSys(entriesAm);
-                    DistributionSys = chartService.DrawDistribution(dictsysam);
-                    var dictdiaam = logicService.GetDistributionMapDia(entriesAm);
-                    DistributionDia = chartService.DrawDistribution(dictdiaam);
-                    var dictpulseam = logicService.GetDistributionMapPulse(entriesAm);
-                    DistributionPulse = chartService.DrawDistribution(dictpulseam);
-                    break;
-                case "Pm":
-                    var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
-                    var dictsyspm = logicService.GetDistributionMapSys(entriesPm);
-                    DistributionSys = chartService.DrawDistribution(dictsyspm);
-                    var dictdiapm = logicService.GetDistributionMapDia(entriesPm);
-                    DistributionDia = chartService.DrawDistribution(dictdiapm);
-                    var dictpulsepm = logicService.GetDistributionMapPulse(entriesPm);
-                    DistributionPulse = chartService.DrawDistribution(dictpulsepm);
-                    break;
+                switch (dayPart)
+                {
+                    case "all":
+                        var dictsys = logicService.GetDistributionMapSys(entriesDay);
+                        DistributionSys = chartService.DrawDistribution(dictsys);
+                        var dictdia = logicService.GetDistributionMapDia(entriesDay);
+                        DistributionDia = chartService.DrawDistribution(dictdia);
+                        var dictpulse = logicService.GetDistributionMapPulse(entriesDay);
+                        DistributionPulse = chartService.DrawDistribution(dictpulse);
+                        break;
+                    case "Am":
+                        var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
+                        var dictsysam = logicService.GetDistributionMapSys(entriesAm);
+                        DistributionSys = chartService.DrawDistribution(dictsysam);
+                        var dictdiaam = logicService.GetDistributionMapDia(entriesAm);
+                        DistributionDia = chartService.DrawDistribution(dictdiaam);
+                        var dictpulseam = logicService.GetDistributionMapPulse(entriesAm);
+                        DistributionPulse = chartService.DrawDistribution(dictpulseam);
+                        break;
+                    case "Pm":
+                        var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
+                        var dictsyspm = logicService.GetDistributionMapSys(entriesPm);
+                        DistributionSys = chartService.DrawDistribution(dictsyspm);
+                        var dictdiapm = logicService.GetDistributionMapDia(entriesPm);
+                        DistributionDia = chartService.DrawDistribution(dictdiapm);
+                        var dictpulsepm = logicService.GetDistributionMapPulse(entriesPm);
+                        DistributionPulse = chartService.DrawDistribution(dictpulsepm);
+                        break;
+                }
+
+                if (sysOn)
+                {
+                    DistributionSys.Name = BAL.Constants.DistributionSys;
+                    DistributionSys.Color = Color.Red;
+                    DistributionSys.ChartType = SeriesChartType.Point;
+                    DistributionSys.LabelBorderWidth = 3;
+                    chart2.Series.Add(DistributionSys);
+                }
+                if (diaOn)
+                {
+                    DistributionDia.Name = BAL.Constants.DistributionDia;
+                    DistributionDia.Color = Color.Green;
+                    DistributionDia.ChartType = SeriesChartType.Point;
+                    DistributionDia.LabelBorderWidth = 3;
+                    chart2.Series.Add(DistributionDia);
+                }
+                if (pulseOn)
+                {
+                    DistributionPulse.Name = BAL.Constants.DistributionPulse;
+                    DistributionPulse.Color = Color.Blue;
+                    DistributionPulse.ChartType = SeriesChartType.Point;
+                    DistributionPulse.LabelBorderWidth = 3;
+                    chart2.Series.Add(DistributionPulse);
+                }
+            }
+            else
+            {
+                MessageBox.Show("A kiválasztott időintervallumban nincs adat!");
             }
 
-            if (sysOn)
-            {
-                DistributionSys.Name = BAL.Constants.DistributionSys;
-                DistributionSys.Color = Color.Red;
-                DistributionSys.ChartType = SeriesChartType.Point;
-                DistributionSys.LabelBorderWidth = 3;
-                chart2.Series.Add(DistributionSys);
-            }
-            if (diaOn)
-            {
-                DistributionDia.Name = BAL.Constants.DistributionDia;
-                DistributionDia.Color = Color.Green;
-                DistributionDia.ChartType = SeriesChartType.Point;
-                DistributionDia.LabelBorderWidth = 3;
-                chart2.Series.Add(DistributionDia);
-            }
-            if (pulseOn)
-            {
-                DistributionPulse.Name = BAL.Constants.DistributionPulse;
-                DistributionPulse.Color = Color.Blue;
-                DistributionPulse.ChartType = SeriesChartType.Point;
-                DistributionPulse.LabelBorderWidth = 3;
-                chart2.Series.Add(DistributionPulse);
-            }
         }
 
         private void button_Correlation_Click(object sender, EventArgs e)
@@ -441,27 +480,34 @@ namespace BloodPressureLogApp
             chart2.Visible = false;
             chart3.Visible = true;
             var entriesDay = dbService.GetEntriesByDateRangeAndUser(dateTimePicker1.Value, dateTimePicker2.Value, dbService.GetUserByUserName(logicService.CurrentUser));
-            switch (dayPart)
+            if (entriesDay.Any())
             {
-                case "all":
-                   Correlation= chartService.DrawCorrelation(entriesDay);
-                    break;
-                case "Am":
-                    var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
-                    Correlation = chartService.DrawCorrelation(entriesAm);
-                    break;
-                case "Pm":
-                    var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
-                    Correlation = chartService.DrawCorrelation(entriesPm);
-                    break;
+                switch (dayPart)
+                {
+                    case "all":
+                        Correlation = chartService.DrawCorrelation(entriesDay);
+                        break;
+                    case "Am":
+                        var entriesAm = logicService.GetEntriesByDayPart(entriesDay, true);
+                        Correlation = chartService.DrawCorrelation(entriesAm);
+                        break;
+                    case "Pm":
+                        var entriesPm = logicService.GetEntriesByDayPart(entriesDay, false);
+                        Correlation = chartService.DrawCorrelation(entriesPm);
+                        break;
+                }
+                Correlation.Name = BAL.Constants.Correracio;
+                Correlation.Color = Color.Red;
+                Correlation.ChartType = SeriesChartType.Point;
+                Correlation.LabelBorderWidth = 3;
+                chart3.Series.Add(Correlation);
+
             }
-            Correlation.Name = BAL.Constants.Correracio;
-            Correlation.Color = Color.Red;
-            Correlation.ChartType = SeriesChartType.Point;
-            Correlation.LabelBorderWidth = 3;
-            chart3.Series.Add(Correlation);
-
-
+            else
+            {
+                MessageBox.Show("A kiválasztott időintervallumban nincs adat!");
+            }
         }
-    }
+       
+}
 }

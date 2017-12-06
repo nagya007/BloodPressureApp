@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<UserOutput>
+  <user>
+    <username>mark</username>
+    <name>K Mark</name>
+    <phonenumber>+306095848488</phonenumber>
+    <birthdate>1990-01-31</birthdate>
+    <adress>2555 Itt Utca 2</adress>
+  </user>
+  <entries>
+    <entry>
+      <date>2017-12-06 23:38:47</date>
+      <sys>200</sys>
+      <dia>200</dia>
+      <pulse>200</pulse>
+    </entry>
+  </entries>
+</UserOutput>

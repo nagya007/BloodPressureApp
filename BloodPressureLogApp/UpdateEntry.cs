@@ -26,10 +26,18 @@ namespace BloodPressureLogApp
         private void UpdateEntry_Load(object sender, EventArgs e)
         {
           var allEntry=  dbService.FindAllEntriesOfUser(dbService.GetUserByUserName(logicService.CurrentUser));
-            foreach (var entry in allEntry)
+            if (allEntry.Any())
             {
-                combobox_Date.Items.Add(entry.Date);
+                foreach (var entry in allEntry)
+                {
+                    combobox_Date.Items.Add(entry.Date);
+                }
             }
+            else
+            {
+                MessageBox.Show("A kiválasztott időintervallumban nincs adat!");
+            }
+            
         }
 
         private void combobox_Date_SelectedIndexChanged(object sender, EventArgs e)
@@ -41,9 +49,16 @@ namespace BloodPressureLogApp
         }
 
         private void button_Save_Click(object sender, EventArgs e)
-        {  if (!String.IsNullOrEmpty(textbox_Sys.Text) && !String.IsNullOrEmpty(textbox_Dia.Text) && !String.IsNullOrEmpty(textbox_Pulse.Text) && !String.IsNullOrEmpty(combobox_Date.Text))
+        {
+            if (!String.IsNullOrEmpty(textbox_Sys.Text) && !String.IsNullOrEmpty(textbox_Dia.Text) && !String.IsNullOrEmpty(textbox_Pulse.Text) && !String.IsNullOrEmpty(combobox_Date.Text))
             {
-                dbService.UpdateEntryByDateAndUserId(dbService.GetUserByUserName(logicService.CurrentUser), Convert.ToDateTime(combobox_Date.SelectedItem), int.Parse(textbox_Sys.Text), int.Parse(textbox_Dia.Text), int.Parse(textbox_Pulse.Text));
+                dbService.UpdateEntryByDateAndUserId(
+                    dbService.GetUserByUserName(logicService.CurrentUser),
+                    Convert.ToDateTime(combobox_Date.SelectedItem),
+                    int.Parse(textbox_Sys.Text),
+                    int.Parse(textbox_Dia.Text),
+                    int.Parse(textbox_Pulse.Text)
+                );
                 this.Close();
             }
             else
