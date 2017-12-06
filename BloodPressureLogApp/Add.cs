@@ -29,7 +29,8 @@ namespace BloodPressureLogApp
             if (!String.IsNullOrEmpty(textbox_Sys.Text)&& !String.IsNullOrEmpty(textbox_Dia.Text)&& !String.IsNullOrEmpty(textbox_Pulse.Text))
             {
                 Entry newEntry = new Entry();
-                newEntry.Date = DateTime.Now;
+                string date = DateTime.Now.ToString();
+                newEntry.Date = Convert.ToDateTime(date);
                 newEntry.Sys = int.Parse(textbox_Sys.Text);
                 newEntry.Dia = int.Parse(textbox_Dia.Text);
                 newEntry.Pulse = int.Parse(textbox_Pulse.Text);

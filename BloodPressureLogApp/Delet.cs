@@ -33,7 +33,7 @@ namespace BloodPressureLogApp
 
         private void combobox_Date_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var entry = dbService.GetEntriesByDateAndUser(Convert.ToDateTime(combobox_Date.Text), dbService.GetUserByUserName(logicService.CurrentUser));
+            var entry = dbService.GetEntriesByDateAndUser(Convert.ToDateTime(combobox_Date.SelectedItem), dbService.GetUserByUserName(logicService.CurrentUser));
             textbox_Sys.Text = entry.Sys.ToString();
             textbox_Dia.Text = entry.Dia.ToString();
             textbox_Pulse.Text = entry.Pulse.ToString();
@@ -43,7 +43,7 @@ namespace BloodPressureLogApp
         {
             if (!String.IsNullOrEmpty(textbox_Sys.Text) && !String.IsNullOrEmpty(textbox_Dia.Text) && !String.IsNullOrEmpty(textbox_Pulse.Text))
             {
-                dbService.RemoveEntryByDateTimeAndUserId(Convert.ToDateTime(combobox_Date.Text), dbService.GetUserByUserName(logicService.CurrentUser));
+                dbService.RemoveEntryByDateTimeAndUserId(Convert.ToDateTime(combobox_Date.SelectedItem), dbService.GetUserByUserName(logicService.CurrentUser));
                 this.Close();
             }
             else
