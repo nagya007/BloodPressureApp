@@ -51,7 +51,7 @@ namespace BloodPressureLogApp
             var users = context.Users;
             var entries = context.Entries;
             var currentUser = dbService.GetUserByUserName(tb_UserName.Text);
-            if (currentUser != null && currentUser.Password == tb_Password.Text)
+            if (currentUser != null && currentUser.Password == logicService.GetPasswordHash(tb_Password.Text))
             {
                 logicService.CurrentUser = currentUser.UserName;
                 logicService.CurrentPassword = currentUser.Password;

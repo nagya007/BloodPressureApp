@@ -46,6 +46,10 @@ namespace BloodPressureLogApp
                 dbService.UpdateEntryByDateAndUserId(dbService.GetUserByUserName(logicService.CurrentUser), Convert.ToDateTime(combobox_Date.Text), int.Parse(textbox_Sys.Text), int.Parse(textbox_Dia.Text), int.Parse(textbox_Pulse.Text));
                 this.Close();
             }
+            else
+            {
+                MessageBox.Show("Valamelyik mező üresen maradt!", "Hiányos adat!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void button_Back_Click(object sender, EventArgs e)

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Remoting.Contexts;
-using System.Data.Entity;
+using System.Security.Cryptography;
 
 namespace BloodPressureLogApp.BAL
 {
@@ -22,8 +20,13 @@ namespace BloodPressureLogApp.BAL
         public string CurrentPassword {get;set;}
         public int CurrentUserId { get; set; }
         static BusinessLogicService instance = null;
+        static HMACSHA256 hmacSHA256 { get; set; }
+
         public static BusinessLogicService getInstance()
         {
+            hmacSHA256 = new HMACSHA256(Encoding.UTF8.GetBytes("JagerMeister"));
+          
+
             if (instance == null)
             {
                 instance = new BusinessLogicService();
@@ -32,7 +35,7 @@ namespace BloodPressureLogApp.BAL
         }
         public string GetPasswordHash(string password)
         {
-            return password + "1";
+            return Encoding.UTF8.GetString(hmacSHA256.ComputeHash(Encoding.UTF8.GetBytes(password)));
         }       
         public double GetAvgEntryByDia(IQueryable<Entry>avgEntries)
         {

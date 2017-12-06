@@ -34,6 +34,10 @@ namespace BloodPressureLogApp
                 dbService.AddUser(newUser);
                 this.Close();
             }
+            else
+            {
+                MessageBox.Show("Valamelyik mező üresen maradt!", "Hiányos adat!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void bt_Back_Click(object sender, EventArgs e)
         {

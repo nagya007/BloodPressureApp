@@ -4,6 +4,8 @@ namespace BloodPressureLogApp.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using System.Text;
+    using System.Security.Cryptography;
 
     internal sealed class Configuration : DbMigrationsConfiguration<BloodPressureLogApp.LogDbContext>
     {
@@ -14,6 +16,7 @@ namespace BloodPressureLogApp.Migrations
 
         protected override void Seed(BloodPressureLogApp.LogDbContext context)
         {
+            var hmacSHA256 = new HMACSHA256(Encoding.UTF8.GetBytes("JagerMeister"));
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -25,22 +28,22 @@ namespace BloodPressureLogApp.Migrations
                      
                      UserName = "valaki01",
                      Name = "Toth Valaki01",
-                     Password = "pass123",
+                     Password = Encoding.UTF8.GetString(hmacSHA256.ComputeHash(Encoding.UTF8.GetBytes("pass123"))),
                      Adress = "Varos, utca 1",
                      PhoneNumber = "+36703999999",
                      BirthDate = Convert.ToDateTime("1990-09-09")
                  },
-                new User() { UserName = "kisp",   Name = "Kis Péter", Password = "hetzh", Adress = "Úri", PhoneNumber = "0630597563", BirthDate = Convert.ToDateTime("1996-07-06")},
-                new User() { UserName = "nagye",  Name = "Nagy Endre", Password = "geriog", Adress = "Eger", PhoneNumber = "06308489635", BirthDate = Convert.ToDateTime("1996-07-06") },
-                new User() { UserName = "kovacsa",  Name = "Kovács András", Password = "egrge", Adress = "Gyömrõ", PhoneNumber = "0630", BirthDate = Convert.ToDateTime("1996-07-06") },
-                new User() { UserName = "tothz",  Name = "Tóth Zoltán", Password = "egrgre", Adress = "Pest", PhoneNumber = "0630785391", BirthDate = Convert.ToDateTime("1996-07-06") },
-                new User() { UserName = "tothka",   Name = "Tóth Zoltán", Password = "egrgre", Adress = "Pest", PhoneNumber = "06301875632", BirthDate = Convert.ToDateTime("1996-07-06") },
-                new User() { UserName = "szantok",   Name = "Szántó Kincsõ", Password = "reger", Adress = "Buda", PhoneNumber = "063011557799", BirthDate = Convert.ToDateTime("1996-07-06") },
-                new User() { UserName = "kissb",   Name = "Kiss Bence", Password = "erqgrg", Adress = "Dunaújváros", PhoneNumber = "06305369715", BirthDate = Convert.ToDateTime("1996-07-06") },
-                new User() { UserName = "nandorfiv", Name = "Nándorfi Viktória", Password = "lioépjhz", Adress = "Szentlõrickáta", PhoneNumber = "0630", BirthDate = Convert.ToDateTime("1996-07-06") },
-                new User() { UserName = "nagyb",  Name = "Nagy Benedek", Password = "wnmcxv", Adress = "Pécs", PhoneNumber = "06307539641", BirthDate = Convert.ToDateTime("1996-07-06") },
-                new User() { UserName = "fazekask",   Name = "Fazekas Krisztián", Password = "pgrega", Adress = "Kóka", PhoneNumber = "06308514996", BirthDate = Convert.ToDateTime("1996-07-06") },
-                new User() { UserName = "kalcsoa",  Name = "Kalcsó Árpád", Password = "jsrjzjsz", Adress = "Érd", PhoneNumber = "06301289635", BirthDate = Convert.ToDateTime("1996-07-06") });
+                new User() { UserName = "kisp",   Name = "Kis Péter", Password = Encoding.UTF8.GetString(hmacSHA256.ComputeHash(Encoding.UTF8.GetBytes("hetzh"))), Adress = "Úri", PhoneNumber = "0630597563", BirthDate = Convert.ToDateTime("1996-07-06")},
+                new User() { UserName = "nagye",  Name = "Nagy Endre", Password = Encoding.UTF8.GetString(hmacSHA256.ComputeHash(Encoding.UTF8.GetBytes("geriog"))), Adress = "Eger", PhoneNumber = "06308489635", BirthDate = Convert.ToDateTime("1996-07-06") },
+                new User() { UserName = "kovacsa",  Name = "Kovács András", Password = Encoding.UTF8.GetString(hmacSHA256.ComputeHash(Encoding.UTF8.GetBytes("egrge"))), Adress = "Gyömrõ", PhoneNumber = "0630", BirthDate = Convert.ToDateTime("1996-07-06") },
+                new User() { UserName = "tothz",  Name = "Tóth Zoltán", Password = Encoding.UTF8.GetString(hmacSHA256.ComputeHash(Encoding.UTF8.GetBytes("egrgre"))), Adress = "Pest", PhoneNumber = "0630785391", BirthDate = Convert.ToDateTime("1996-07-06") },
+                new User() { UserName = "tothka",   Name = "Tóth Zoltán", Password = Encoding.UTF8.GetString(hmacSHA256.ComputeHash(Encoding.UTF8.GetBytes("egrgre"))), Adress = "Pest", PhoneNumber = "06301875632", BirthDate = Convert.ToDateTime("1996-07-06") },
+                new User() { UserName = "szantok",   Name = "Szántó Kincsõ", Password = Encoding.UTF8.GetString(hmacSHA256.ComputeHash(Encoding.UTF8.GetBytes("reger"))), Adress = "Buda", PhoneNumber = "063011557799", BirthDate = Convert.ToDateTime("1996-07-06") },
+                new User() { UserName = "kissb",   Name = "Kiss Bence", Password = Encoding.UTF8.GetString(hmacSHA256.ComputeHash(Encoding.UTF8.GetBytes("erqgrg"))), Adress = "Dunaújváros", PhoneNumber = "06305369715", BirthDate = Convert.ToDateTime("1996-07-06") },
+                new User() { UserName = "nandorfiv", Name = "Nándorfi Viktória", Password = Encoding.UTF8.GetString(hmacSHA256.ComputeHash(Encoding.UTF8.GetBytes("lioépjhz"))), Adress = "Szentlõrickáta", PhoneNumber = "0630", BirthDate = Convert.ToDateTime("1996-07-06") },
+                new User() { UserName = "nagyb",  Name = "Nagy Benedek", Password = Encoding.UTF8.GetString(hmacSHA256.ComputeHash(Encoding.UTF8.GetBytes("wnmcxv"))), Adress = "Pécs", PhoneNumber = "06307539641", BirthDate = Convert.ToDateTime("1996-07-06") },
+                new User() { UserName = "fazekask",   Name = "Fazekas Krisztián", Password = Encoding.UTF8.GetString(hmacSHA256.ComputeHash(Encoding.UTF8.GetBytes("pgrega"))), Adress = "Kóka", PhoneNumber = "06308514996", BirthDate = Convert.ToDateTime("1996-07-06") },
+                new User() { UserName = "kalcsoa",  Name = "Kalcsó Árpád", Password = Encoding.UTF8.GetString(hmacSHA256.ComputeHash(Encoding.UTF8.GetBytes("jsrjzjsz"))), Adress = "Érd", PhoneNumber = "06301289635", BirthDate = Convert.ToDateTime("1996-07-06") });
 
 
             context.SaveChanges();

@@ -92,9 +92,9 @@
       <DependentUpon>fr_Reg.cs</DependentUpon>
     </Compile>
     <Compile Include="LogDbContext.cs" />
-    <Compile Include="Migrations\201711202333000_Initial.cs" />
-    <Compile Include="Migrations\201711202333000_Initial.Designer.cs">
-      <DependentUpon>201711202333000_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201712061542372_initial.cs" />
+    <Compile Include="Migrations\201712061542372_initial.Designer.cs">
+      <DependentUpon>201712061542372_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -122,8 +122,8 @@
     <EmbeddedResource Include="fr_Reg.resx">
       <DependentUpon>fr_Reg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711202333000_Initial.resx">
-      <DependentUpon>201711202333000_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712061542372_initial.resx">
+      <DependentUpon>201712061542372_initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
