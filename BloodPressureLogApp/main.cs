@@ -24,7 +24,6 @@ namespace BloodPressureLogApp
         BAL.UserOutput userOut = new BAL.UserOutput();
         LogDbContext context = new LogDbContext();
         string dayPart;
-        //string dataType;
         Boolean sysOn;
         Boolean diaOn;
         Boolean pulseOn;

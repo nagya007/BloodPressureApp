@@ -18,8 +18,7 @@ namespace BloodPressureLogApp.DAL
       public  LogDbContext context;
       public  DbSet<User> users;
       public    DbSet<Entry> entries;
-       // IQueryable<Entry> filterdEntries;
-        static DbService instance = null;
+      static DbService instance = null;
         public DbService()
         {
             context = new LogDbContext();

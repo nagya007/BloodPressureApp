@@ -34,3 +34,4 @@ C:\Users\Adam\documents\visual studio 2017\Projects\BloodPressureLogApp\BloodPre
 C:\Users\Adam\documents\visual studio 2017\Projects\BloodPressureLogApp\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.exe
 C:\Users\Adam\documents\visual studio 2017\Projects\BloodPressureLogApp\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.pdb
 C:\Users\Adam\documents\visual studio 2017\Projects\BloodPressureLogApp\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.Migrations.initial.resources
+C:\Users\Adam\documents\visual studio 2017\Projects\BloodPressureLogApp\BloodPressureLogApp\obj\Debug\BloodPressureLogApp.csprojResolveAssemblyReference.cache

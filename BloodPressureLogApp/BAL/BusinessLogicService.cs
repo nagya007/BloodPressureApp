@@ -6,16 +6,9 @@ using System.Security.Cryptography;
 
 namespace BloodPressureLogApp.BAL
 {
-    public enum Procedure
-    {
-        Add,
-        Remove,
-        Update,
-    };
+  
     public class BusinessLogicService 
-   {
-
-       
+    { 
         public string CurrentUser {get;set;}
         public string CurrentPassword {get;set;}
         public int CurrentUserId { get; set; }
